@@ -1,12 +1,23 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router'; 
+import { Router } from '@angular/router'; 
 
 @Component({
-  selector: 'an-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  selector: 'an-root',  
+  standalone: true,  
+  template: `
+  <nav>
+    <a href="/impressum">impressum</a>
+  </nav>
+  <router-outlet />
+`,
+  imports: [RouterOutlet, RouterLink], 
+  templateUrl: './app.component.html',  
+  styleUrls: ['./app.component.css']  
 })
+
 export class AppComponent {
-  title = 'B2B-Webshop';
+  title = 'B2B-Webshop';  
 }
+
+

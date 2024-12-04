@@ -1,0 +1,120 @@
+/* Header */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgb(31, 50, 56); 
+  color: white;
+}
+
+.logo img {
+  height: 100px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 50%;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.5rem;
+  border: none;
+}
+
+.search-bar button {
+  background-color: rgb(241, 180, 89); 
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.user-actions ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-navigation ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 0.5rem 1rem;
+  background-color: rgb(54, 118, 129); 
+}
+
+/* Hero Karussell */
+.hero-carousel {
+  position: relative;
+}
+
+.carousel {
+  display: flex;
+  overflow: hidden;
+}
+
+.carousel-item {
+  min-width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item img {
+  width: 100%;
+  display: block;
+}
+
+.carousel-caption {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  color: white;
+}
+
+/* Kategorien */
+.categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.category-item {
+  text-align: center;
+  padding: 1rem;
+  background-color: rgb(74, 113, 94); 
+  border-radius: 8px;
+  max-width: 200px;
+}
+
+/* Bestseller */
+.products-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.product-item {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+/* Footer */
+footer {
+  background-color: rgb(31, 50, 56);
+  color: white;
+  padding: 2rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+}
