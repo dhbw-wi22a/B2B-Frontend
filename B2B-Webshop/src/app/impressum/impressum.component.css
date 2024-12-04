@@ -1,0 +1,68 @@
+/* Impressum Styles */
+.impressum {
+    background-color: rgb(54, 88, 97); 
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 900px;
+    font-family: Arial, sans-serif;
+}
+
+.impressum h1 {
+    font-size: 2rem;
+    color: rgb(241, 180, 89); 
+    margin-bottom: 1rem;
+}
+
+.impressum p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #f1f1f1; 
+}
+
+.impressum a {
+    color: rgb(241, 180, 89); 
+    text-decoration: none;
+}
+
+.impressum a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21); 
+}
+
+.impressum strong {
+    color: rgb(241, 180, 89); 
+}
+
+/* Abschnitt Überschriften */
+.impressum h2 {
+    font-size: 1.5rem;
+    color: rgb(241, 180, 89); 
+    margin-top: 2rem;
+}
+
+/* Kontakt Abschnitt */
+.impressum .contact {
+    margin-top: 2rem;
+}
+
+.impressum .contact p {
+    font-size: 1rem;
+}
+
+/* Haftungsausschluss und Datenschutz */
+.impressum .disclaimer {
+    background-color: rgb(31, 50, 56);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+.impressum .disclaimer p {
+    color: #f1f1f1;
+}
+
+.impressum .disclaimer h3 {
+    color: rgb(241, 180, 89); 
+}
