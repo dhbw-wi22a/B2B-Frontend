@@ -1,0 +1,163 @@
+/* Allgemeine Formular Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(54, 88, 97);
+    color: white;
+    padding: 2rem 5rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+form h2 {
+    font-size: 2rem;
+    color: rgb(241, 180, 89);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Formularfelder */
+form div {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+form label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="checkbox"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: rgb(31, 50, 56);
+}
+
+form input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+form input[type="submit"],
+form input[type="reset"] {
+    background-color: rgb(241, 180, 89);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+    width: 48%;
+    margin-right: 2%;
+}
+
+form input[type="submit"]:hover,
+form input[type="reset"]:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+/* Buttons nebeneinander ausrichten */
+form div button[type="submit"] {
+    background-color: rgb(241, 180, 89);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form div button[type="reset"] {
+    background-color: rgb(54, 118, 129);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form div button[type="submit"]:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+form div button[type="reset"]:hover {
+    background-color: rgb(74, 113, 94);
+}
+
+/* Fehlernachricht */
+.error-message {
+    color: rgb(213, 27, 21);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Success Nachricht */
+.success-message {
+    color: rgb(34, 139, 34);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Styling für den akzeptierten AGB-Haken */
+form .terms {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+form .terms input {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+/* Links für bereits registrierte Benutzer */
+.already-registered {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.already-registered a {
+    color: rgb(241, 180, 89);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.already-registered a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21);
+}
+
+/* Footer für Registrierung */
+.registration-footer {
+    background-color: rgb(31, 50, 56);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.registration-footer a {
+    color: rgb(241, 180, 89);
+    text-decoration: none;
+}
+
+.registration-footer a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21);
+}

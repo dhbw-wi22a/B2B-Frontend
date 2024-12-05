@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
   template: `
   <nav>
     <a href="/impressum">impressum</a>
+    <a href="/registrierung">registrierung</a>
+    <a href="/startseite">startseite</a>
+    <a href="/logout">logout</a>
   </nav>
   <router-outlet />
 `,

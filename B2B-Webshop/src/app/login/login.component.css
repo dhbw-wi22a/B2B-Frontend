@@ -1,0 +1,85 @@
+/* Allgemeine Login Styles */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(54, 88, 97);
+    color: white;
+    padding: 2rem 4rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 2rem;
+    color: rgb(241, 180, 89);
+    margin-bottom: 1.5rem;
+}
+
+/* Formularfelder */
+.login-container form div {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.login-container form label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-container form input[type="text"],
+.login-container form input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: rgb(31, 50, 56);
+}
+
+/* Button für die Anmeldung */
+.login-container button {
+    background-color: rgb(241, 180, 89);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%;
+    margin-top: 1rem;
+}
+
+.login-container button:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+/* Fehlermeldung */
+.error-message {
+    color: rgb(213, 27, 21);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Styling für Links für die Registrierung */
+.already-registered {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.already-registered a {
+    color: rgb(241, 180, 89);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.already-registered a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21);
+}

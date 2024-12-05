@@ -1,0 +1,64 @@
+/* Allgemeine Logout Styles */
+.logout-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(54, 88, 97);
+    color: white;
+    padding: 2rem 4rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.logout-container p {
+    font-size: 1.2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+}
+
+/* Button für die Anmeldung */
+.logout-container button {
+    background-color: rgb(241, 180, 89);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%;
+    margin-top: 1rem;
+}
+
+.logout-container button:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+/* Fehlermeldung */
+.error-message {
+    color: rgb(213, 27, 21);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Erfolgsmeldung */
+.success-message {
+    color: rgb(34, 139, 34);
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* Styling für Links in der Logout-Seite */
+.logout-container a {
+    color: rgb(241, 180, 89);
+    text-decoration: none;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.logout-container a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21);
+}

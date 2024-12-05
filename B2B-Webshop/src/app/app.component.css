@@ -12,6 +12,7 @@
   height: 100px;
 }
 
+/* Suchleiste */
 .search-bar {
   display: flex;
   align-items: center;
@@ -31,6 +32,7 @@
   cursor: pointer;
 }
 
+/* Benutzeraktionen */
 .user-actions ul {
   display: flex;
   gap: 1rem;
@@ -39,12 +41,76 @@
   margin: 0;
 }
 
+/* Entfernen der Unterstreichung bei "Hallo, Anmelden" */
+.user-actions ul li a {
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px; 
+  transition: all 0.3s ease; 
+}
+
+/* Kasten hinzufügen beim Hover */
+.user-actions ul li a:hover {
+  color: white; 
+  border: 2px solid rgb(241, 180, 89); 
+}
+
+/* Dropdown-Menü für "Hallo, Anmelden" */
+.user-actions .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-actions .dropbtn {
+  background-color: rgb(31, 50, 56);
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Das Dropdown-Menü */
+.user-actions .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+  border: 1px solid #ddd;
+  top: 100%;
+  left: 0;
+  border-radius: 4px;
+}
+
+.user-actions .dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.user-actions .dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Dropdown sichtbar machen, wenn der Benutzer mit der Maus darüber fährt */
+.user-actions .dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hauptnavigation */
 .main-navigation ul {
   display: flex;
   gap: 1rem;
   list-style: none;
   padding: 0.5rem 1rem;
   background-color: rgb(54, 118, 129); 
+}
+
+.main-navigation li a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Hero Karussell */
@@ -117,4 +183,18 @@ footer {
 .footer-container {
   display: flex;
   justify-content: space-between;
+}
+
+/* Footer - Rechtliches */
+.rechtliches {
+  text-align: right;
+}
+
+.rechtliches a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.rechtliches a:hover {
+  text-decoration: underline;
 }

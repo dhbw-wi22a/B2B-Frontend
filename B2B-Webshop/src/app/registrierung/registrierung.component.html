@@ -1,1 +1,38 @@
-<p>registrierung works!</p>
+<form>
+    <h2>Registrierung</h2>
+
+    <div>
+        <label for="companyName">Firmenname</label>
+        <input id="companyName" type="text" placeholder="Beispiel GmbH">
+    </div>
+
+    <div>
+        <label for="companyId">Unternehmens-ID</label>
+        <input id="companyId" type="text" placeholder="123456">
+    </div>
+
+    <div>
+        <label for="email">E-Mail-Adresse</label>
+        <input id="email" type="email" placeholder="example@firma.com">
+    </div>
+
+    <div>
+        <label for="password">Passwort</label>
+        <input id="password" type="password" placeholder="********">
+    </div>
+
+    <div>
+        <label for="confirmPassword">Passwort bestätigen</label>
+        <input id="confirmPassword" type="password" placeholder="********">
+    </div>
+
+    <div class="terms">
+        <input id="terms" type="checkbox">
+        <label for="terms">Ich akzeptiere die AGB und Datenschutzerklärung</label>
+    </div>
+
+    <div>
+        <button type="submit">Registrieren</button>
+        <button type="reset" (click)="navigateToStartseite()">Abbrechen</button>
+    </div>
+</form>
