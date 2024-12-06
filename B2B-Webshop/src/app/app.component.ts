@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
     <a href="/registrierung">registrierung</a>
     <a href="/startseite">startseite</a>
     <a href="/logout">logout</a>
+    <a href="/produkte">produkte</a>
   </nav>
   <router-outlet />
 `,
