@@ -2,16 +2,19 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router'; 
 import { Router } from '@angular/router'; 
 
+
 @Component({
   selector: 'an-root',  
   standalone: true,  
   template: `
   <nav>
-    <a href="/impressum">impressum</a>
-    <a href="/registrierung">registrierung</a>
-    <a href="/startseite">startseite</a>
+    <a href="/imprint">imprint</a>
+    <a href="/registration">registration</a>
+    <a href="/homepage">homepage</a>
     <a href="/logout">logout</a>
-    <a href="/produkte">produkte</a>
+    <a href="/products">products</a>
+    <a href="/shopping-cart">shopping-cart</a>
+    <a href="/customer-check">customer-check</a>
   </nav>
   <router-outlet />
 `,

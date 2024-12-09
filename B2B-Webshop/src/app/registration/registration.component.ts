@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'an-registrierung',
+  selector: 'an-registration',
   imports: [],
-  templateUrl: './registrierung.component.html',
-  styleUrl: './registrierung.component.css'
+  templateUrl: './registration.component.html',
+  styleUrl: './registration.component.css'
 })
-export class RegistrierungComponent {
+export class RegistrationComponent {
   constructor(private router: Router) {}
 
   navigateToStartseite(): void {
     this.router.navigate(['']); 
   }
+
 }

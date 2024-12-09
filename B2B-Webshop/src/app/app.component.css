@@ -102,6 +102,7 @@
 /* Hauptnavigation */
 .main-navigation ul {
   display: flex;
+  color: white;
   gap: 1rem;
   list-style: none;
   padding: 0.5rem 1rem;
