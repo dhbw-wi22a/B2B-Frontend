@@ -1,0 +1,54 @@
+<header>
+  <div class="header-container">
+    <div class="logo">
+      <a routerLink="">
+        <img src="logo.png" alt="Hot Hardware Shop Logo">
+      </a>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Suche nach Hardware..." />
+      <button>🔍</button>
+    </div>
+    <div class="user-actions">
+      <ul>
+        <li class="dropdown">
+          <a href="javascript:void(0);" class="dropbtn">Hallo, Anmelden</a>
+          <div class="dropdown-content">
+            <a routerLink="/login">Anmelden</a>
+            <a routerLink="/registration">Konto erstellen</a>
+          </div>
+        </li>
+        <li><a routerLink="/shopping-cart">🛒</a></li>
+      </ul>
+    </div>
+  </div>
+  <nav class="main-navigation">
+    <ul>
+      <li><a routerLink="/products">Produkte</a></li>
+      <li><a routerLink="">Kategorien</a></li>
+      <!-- <li><a routerLink="">Angebote</a></li> -->
+    </ul>
+  </nav>
+</header>
+
+<router-outlet></router-outlet>
+
+<footer>
+  <div class="footer-container">
+    <div>
+      <h4>Über uns</h4>
+      <p>Hot Hardware Shop - Ihr IT-Spezialist für hochwertige Hardware.</p>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <p>Email: info&#64;hothardwareshop.com</p>
+      <p>Telefon: +49 123 456789</p>
+    </div>
+    <div class="rechtliches">
+      <h4>Rechtliches</h4>
+      <ul>
+        <a routerLink="/imprint">Impressum</a>
+      </ul>
+    </div>
+  </div>
+</footer>

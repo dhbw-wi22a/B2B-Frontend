@@ -1,0 +1,104 @@
+/* Container für die Produktkarten */
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+/* Stile für einzelne Produktkarten */
+.product-card {
+    background-color: rgb(241,180,89); 
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    padding: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Hover-Effekt für Produktkarten */
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Bild-Styling */
+.product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Produkt-Titel */
+.product-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: rgb(31,50,56); 
+    margin-bottom: 10px;
+}
+
+/* Produktpreis */
+.product-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgb(213,27,21); 
+    margin-bottom: 10px;
+}
+
+/* Steuerangabe */
+.product-tax {
+    font-size: 1rem;
+    color: rgb(54,88,97); 
+    margin-bottom: 20px;
+}
+
+/* Lagerbestand */
+.product-stock {
+    font-size: 0.9rem;
+    color: rgb(110,48,49); 
+    margin-bottom: 15px;
+}
+
+/* Anzahl-Auswahl */
+.quantity-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.quantity-selector label {
+    margin-right: 10px;
+    font-size: 1rem;
+    color: rgb(31,50,56);
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 5px;
+    border: 1px solid rgb(213,27,21);
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+/* Button zum Hinzufügen zum Warenkorb */
+.add-to-cart-btn {
+    background-color: rgb(51,135,184); 
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: rgb(74,113,94); 
+}
