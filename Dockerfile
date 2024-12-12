@@ -1,11 +1,19 @@
-FROM node:latest as node
+# Dockerfile for Angular app build
 
-WORKDIR /src/app
+# Stage 1: Build the Angular app
+FROM node:18 as build
 
-COPY . /src/app/
+# Set working directory
+WORKDIR /app
 
-RUN npm install -g @angular/cli
+# Install dependencies
+COPY package.json package-lock.json ./
+RUN npm install --legacy-peer-deps
 
-RUN npm install
+# Copy source files
+COPY . .
 
-CMD [ "ng", "serve", "--host","0.0.0.0" ]
+# Build the Angular app
+RUN npm run build --prod
+
+
