@@ -1,11 +1,15 @@
-FROM node:latest as node
+# Stage 1: Build the Angular app
+FROM node:18-alpine AS build
 
-WORKDIR /src/app
+# Set working directory
+WORKDIR /app
 
-COPY . /src/app/
+# Install dependencies
+COPY package.json package-lock.json ./
+RUN npm ci --legacy-peer-deps
 
-RUN npm install -g @angular/cli
+# Copy source files
+COPY . .
 
-RUN npm install
-
-CMD [ "ng", "serve", "--host","0.0.0.0" ]
+# Build the Angular app
+RUN npm run build -- --configuration=production --project=B2B-Webshop
