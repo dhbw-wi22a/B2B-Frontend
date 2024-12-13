@@ -44,7 +44,7 @@ export class ProductsComponent implements OnInit {
 
   // Methode zur Datenabfrage
   fetchProducts(): void {
-    const apiUrl = 'http://b2bwebshop-test-psql-pnsvsu-e50437-5-75-130-54.traefik.me/api/items/?format=json';
+    const apiUrl = 'http://webshoptest-app-cosvwc-fb2ce8-5-75-130-54.traefik.me/web/api/items/?format=json';
     this.http.get<Product[]>(apiUrl).subscribe(
       (data) => {
         this.products = data;
