@@ -1,0 +1,36 @@
+# Node modules and dependencies
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment files (optional, depending on your build strategy)
+*.env
+*.local
+*.development
+*.test
+
+# Build outputs
+dist/
+out-tsc/
+coverage/
+
+# IDE and editor config
+.idea/
+.vscode/
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+
+# Git-related files
+.git
+.gitignore
+
+# Docker-related files (exclude only if needed)
+docker-compose.override.yml
