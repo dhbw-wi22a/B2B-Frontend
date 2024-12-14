@@ -1,0 +1,124 @@
+/* Allgemeine Stile */
+body {
+    font-family: Arial, sans-serif;
+    color: rgb(31, 50, 56);
+    background-color: rgb(241, 180, 89);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center; 
+}
+
+.order-success {
+    background: rgb(241, 180, 89); 
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 600px;
+    width: 100%;
+    text-align: center; 
+    margin: auto; 
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    color: rgb(213, 27, 21); 
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.success-message {
+    color: rgb(31, 50, 56);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    background-color: rgb(245, 255, 250); 
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.summary, .items-section {
+    margin-top: 1.5rem;
+}
+
+.summary h3, .items-section h4 {
+    color: rgb(54, 118, 129); 
+    margin-bottom: 0.5rem;
+}
+
+p {
+    line-height: 1.6;
+    color: rgb(31, 50, 56);
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+strong {
+    color: rgb(54, 88, 97); 
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.order-items li {
+    background-color: rgb(231, 239, 243); 
+    margin-bottom: 0.5rem;
+    padding: 0.75rem;
+    border: 1px solid rgb(54, 118, 129); 
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-items li span {
+    display: inline-block;
+}
+
+/* Button-Stile */
+button.home-button {
+    display: block;
+    margin: 2rem auto 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: rgb(54, 88, 97);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button.home-button:hover {
+    background-color: rgb(31, 50, 56);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+
+    .order-success {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .success-message {
+        font-size: 1rem;
+    }
+
+    button.home-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}

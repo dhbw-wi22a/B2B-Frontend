@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
     <a href="/products">products</a>
     <a href="/shopping-cart">shopping-cart</a>
     <a href="/customer-check">customer-check</a>
+    <a href="/payment-method">payment-method</a>
+    <a href="/confirmation">confirmation</a>
   </nav>
   <router-outlet />
 `,

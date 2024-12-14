@@ -51,11 +51,11 @@ export class ShoppingCartComponent implements OnInit {
       this.cart.items = JSON.parse(cartData);
       this.cart.items.forEach(item => {
         if (!item.quantity) {
-          item.quantity = 1;  // Setze die Menge auf 1, falls sie nicht definiert ist
+          item.quantity = 1;  
         }
       });
       this.aggregateCartItems();
-      console.log('Warenkorb geladen:', this.uniqueCartItems);  // Überprüfe den Inhalt des Arrays
+      console.log('Warenkorb geladen:', this.uniqueCartItems);  
     } else {
       console.log('Kein Warenkorb gefunden');
     }
@@ -108,7 +108,7 @@ export class ShoppingCartComponent implements OnInit {
 
   // Warenkorb im localStorage speichern
   updateCart(): void {
-    this.cart.items = this.uniqueCartItems; // Stelle sicher, dass das Array der Produkte aktuell ist
+    this.cart.items = this.uniqueCartItems; 
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 

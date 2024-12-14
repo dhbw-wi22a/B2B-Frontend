@@ -1,0 +1,178 @@
+/* Container für das gesamte Layout */
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: 2rem auto;
+  position: relative;
+}
+
+/* Container für das Formular */
+.form-container {
+  background-color: rgb(54, 88, 97);
+  color: white;
+  padding: 2rem 5rem;
+  border-radius: 8px;
+  width: 500px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+  padding: 0;
+}
+
+form h2 {
+  font-size: 2rem;
+  color: rgb(241, 180, 89);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Formularfelder */
+.form-group {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: white;
+  color: rgb(31, 50, 56);
+}
+
+/* Buttons */
+.submit-btn {
+  background-color: rgb(241, 180, 89);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  text-align: center;
+}
+
+.submit-btn:hover {
+  background-color: rgb(213, 27, 21);
+  transform: scale(1.05); 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.submit-btn[disabled] {
+  background-color: rgb(110, 48, 49);
+  cursor: not-allowed;
+}
+
+/* Fehlernachricht */
+.error-message {
+  color: rgb(213, 27, 21);
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Erfolgsmeldung */
+.success-message {
+  color: rgb(34, 139, 34);
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+/* Links für bereits registrierte Benutzer */
+.already-registered {
+  position: absolute;
+  top: 2rem;
+  right: -5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  text-align: right;
+}
+
+.already-registered div {
+  text-align: right;
+}
+
+.already-registered button {
+  background-color: rgb(241, 180, 89);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  width: auto;
+  text-align: center;
+}
+
+.already-registered button:hover {
+  background-color: rgb(213, 27, 21);
+  transform: scale(1.05); 
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.already-registered a {
+  color: rgb(241, 180, 89);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.already-registered a:hover {
+  text-decoration: underline;
+  color: rgb(213, 27, 21);
+}
+
+/* Text innerhalb der .already-registered div fett machen */
+.already-registered p {
+  font-weight: bold;
+}
+
+/* Footer für Registrierung */
+.registration-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(31, 50, 56);
+  color: white;
+  padding: 1rem;
+  margin-top: 2rem;
+}
+
+.registration-footer a {
+  color: rgb(241, 180, 89);
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.registration-footer a:hover {
+  text-decoration: underline;
+  color: rgb(213, 27, 21);
+}
+
+/* Optional: Linie zwischen den Buttons */
+.registration-footer::before {
+  content: "";
+  border-left: 1px solid rgb(241, 180, 89);
+  height: 2rem;
+  margin: 0 1rem;
+}

@@ -1,1 +1,54 @@
-<p>customer-check works!</p>
+<div class="container">
+  <div class="form-container">
+    <h2>Gastbestellung</h2>
+    <form [formGroup]="customercheckForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="company">Firmenname:</label>
+        <input id="company" formControlName="company" type="text" class="form-control" placeholder="Firmenname">
+      </div>
+      <div class="form-group">
+        <label for="firstName">Vorname:</label>
+        <input id="firstName" formControlName="firstName" type="text" class="form-control" placeholder="Vorname" required>
+      </div>
+      <div class="form-group">
+        <label for="lastName">Nachname:</label>
+        <input id="lastName" formControlName="lastName" type="text" class="form-control" placeholder="Nachname" required>
+      </div>
+      <div class="form-group">
+        <label for="email">E-Mail:</label>
+        <input id="email" formControlName="email" type="email" class="form-control" placeholder="E-Mail" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Telefonnummer:</label>
+        <input id="phone" formControlName="phone" type="text" class="form-control" placeholder="Telefonnummer">
+      </div>
+      <div class="form-group">
+        <label for="street">Straße:</label>
+        <input id="street" formControlName="street" type="text" class="form-control" placeholder="Straße" required>
+      </div>
+      <div class="form-group">
+        <label for="houseNumber">Hausnummer:</label>
+        <input id="houseNumber" formControlName="houseNumber" type="text" class="form-control" placeholder="Hausnummer" required>
+      </div>
+      <div class="form-group">
+        <label for="zipCode">PLZ:</label>
+        <input id="zipCode" formControlName="zipCode" type="text" class="form-control" placeholder="PLZ" required>
+      </div>
+      <div class="form-group">
+        <label for="city">Ort:</label>
+        <input id="city" formControlName="city" type="text" class="form-control" placeholder="Ort" required>
+      </div>
+      <button type="submit" class="submit-btn">Bestellung abschließen</button>
+    </form>
+  </div>
+  <div class="already-registered">
+    <div>
+      <p>Schon registriert?</p>
+      <button class="login-btn" (click)="navigateToLogin()">Login</button>
+    </div>
+    <div>
+      <p>Noch kein Konto? <br>Dann wird es aber Zeit:</p>
+      <button class="register-btn" (click)="navigateToRegister()">Registrieren</button>
+    </div>
+  </div>
+</div>

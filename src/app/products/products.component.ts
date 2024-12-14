@@ -52,7 +52,7 @@ export class ProductsComponent implements OnInit {
 
         // Dynamische FormControls für die Produkte hinzufügen
         this.products.forEach(product => {
-          this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1)); // Standardmenge = 1
+          this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1));
         });
       },
       (error) => {
@@ -73,7 +73,7 @@ export class ProductsComponent implements OnInit {
         return;
       }
 
-      // Versuche, den Warenkorb aus localStorage zu laden und sicherstellen, dass es sich um ein Array handelt
+      // Versuche, den Warenkorb aus localStorage zu laden 
       let cart: Product[] = [];
       const cartData = localStorage.getItem('cart');
       if (cartData) {

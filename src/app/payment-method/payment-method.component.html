@@ -1,1 +1,82 @@
-<p>payment-method works!</p>
+<form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+  
+  <div class="form-header">
+    <h2>Zahlungsmethode auswählen</h2>
+  </div>
+
+  <div class="form-group">
+    <label>Zahlungsart:</label>
+    <br>
+    <label>
+      <input type="radio" formControlName="paymentType" value="creditCard" (change)="onCheckboxChange($event)"> Kreditkarte
+    </label>
+    <br>
+    <label>
+      <input type="radio" formControlName="paymentType" value="paypal" (change)="onCheckboxChange($event)"> PayPal
+    </label>
+    <br>
+    <label>
+      <input type="radio" formControlName="paymentType" value="bankTransfer" (change)="onCheckboxChange($event)"> Vorkasse
+    </label>
+    <br>
+    <label>
+      <input type="radio" formControlName="paymentType" value="invoice" (change)="onCheckboxChange($event)"> Kauf auf Rechnung
+    </label>
+  </div>
+
+  <!-- Kreditkarte -->
+  <div *ngIf="paymentForm.get('paymentType')?.value === 'creditCard'" class="payment-option white-bg">
+    <h3>Kreditkarte</h3>
+    <div class="form-group">
+      <label for="cardName">Name auf der Karte:</label>
+      <input id="cardName" formControlName="cardName" type="text" class="form-control" placeholder="Name auf der Karte" required>
+    </div>
+    <div class="form-group">
+      <label for="cardNumber">Kartennummer:</label>
+      <input id="cardNumber" formControlName="cardNumber" type="text" class="form-control" placeholder="Kartennummer" required>
+    </div>
+    <div class="form-group">
+      <label for="cardExpiry">Ablaufdatum:</label>
+      <input id="cardExpiry" formControlName="cardExpiry" type="text" class="form-control" placeholder="MM/JJ" required>
+    </div>
+    <div class="form-group">
+      <label for="cardCvc">CVC:</label>
+      <input id="cardCvc" formControlName="cardCvc" type="text" class="form-control" placeholder="CVC" required>
+    </div>
+  </div>
+
+  <!-- PayPal -->
+  <div *ngIf="paymentForm.get('paymentType')?.value === 'paypal'" class="payment-option white-bg">
+    <h3>PayPal</h3>
+    <div class="form-group">
+      <label for="paypalEmail">PayPal E-Mail:</label>
+      <input id="paypalEmail" formControlName="paypalEmail" type="email" class="form-control" placeholder="PayPal E-Mail" required>
+    </div>
+  </div>
+
+  <!-- Banküberweisung -->
+  <div *ngIf="paymentForm.get('paymentType')?.value === 'bankTransfer'" class="payment-option white-bg">
+    <h3>Vorkasse (Banküberweisung)</h3>
+    <div class="form-group">
+      <label for="bankAccount">Kontoinhaber:</label>
+      <input id="bankAccount" formControlName="bankAccount" type="text" class="form-control" placeholder="Kontoinhaber" required>
+    </div>
+    <div class="form-group">
+      <label for="bankIban">IBAN:</label>
+      <input id="bankIban" formControlName="bankIban" type="text" class="form-control" placeholder="IBAN" required>
+    </div>
+    <div class="form-group">
+      <label for="bankBic">BIC:</label>
+      <input id="bankBic" formControlName="bankBic" type="text" class="form-control" placeholder="BIC" required>
+    </div>
+  </div>
+
+  <!-- Kauf auf Rechnung -->
+  <div *ngIf="paymentForm.get('paymentType')?.value === 'invoice'" class="payment-option">
+    <h3>Kauf auf Rechnung</h3>
+    <p>Die Rechnung wird an die angegebene Adresse gesendet.</p>
+  </div>
+
+  <button type="submit" class="submit-btn" [ngClass]="{ 'invoice-button': paymentForm.get('paymentType')?.value === 'invoice' }" [disabled]="!paymentForm.valid"> Bezahlen </button>
+
+</form>
