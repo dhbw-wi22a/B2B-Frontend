@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit {
   products: Product[] = [];
   productForm: FormGroup;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder, private renderer: Renderer2) {
     // Initialisiere das Formular
     this.productForm = this.fb.group({});
   }
@@ -102,7 +102,24 @@ export class ProductsComponent implements OnInit {
       localStorage.setItem('cart', JSON.stringify(cart));
 
       console.log('Produkt zum Warenkorb hinzugefügt:', { ...product, quantity });
+      
+      // Pop-up-Fenster anzeigen
+      this.showPopupMessage('Erfolgreich zum Warenkorb hinzugefügt!');
     }
+  }
+
+  // Methode zum Anzeigen des Pop-up-Fensters
+  showPopupMessage(message: string): void {
+    const popup = this.renderer.createElement('div');
+    const text = this.renderer.createText(message);
+    
+    this.renderer.appendChild(popup, text);
+    this.renderer.addClass(popup, 'popup');
+    this.renderer.appendChild(document.body, popup);
+
+    setTimeout(() => {
+      this.renderer.removeChild(document.body, popup);
+    }, 2000); // Pop-up nach 2 Sekunden ausblenden
   }
 
   // trackBy Funktion zur Optimierung der Rendering-Leistung
