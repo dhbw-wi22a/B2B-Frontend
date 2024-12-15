@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
+import { environment } from '../../../src/enviroments/environment';  // Importiere die Umgebungsvariable
 
 interface Image {
   image_id: number;
@@ -44,8 +45,8 @@ export class ProductsComponent implements OnInit {
 
   // Methode zur Datenabfrage
   fetchProducts(): void {
-    const apiUrl = 'http://webshoptest-app-cosvwc-fb2ce8-5-75-130-54.traefik.me/web/api/items/?format=json';
-    this.http.get<Product[]>(apiUrl).subscribe(
+    const apiUrl = environment.apiUrl;  // Verwenden der Umgebungsvariable
+    this.http.get<Product[]>(`${apiUrl}/items/?format=json`).subscribe(
       (data) => {
         this.products = data;
         console.log('Produkte geladen:', this.products);

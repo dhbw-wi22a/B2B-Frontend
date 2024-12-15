@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
+import { environment } from '../../../src/enviroments/environment';  // Importiere die Umgebungsvariable
 
 @Component({
   selector: 'an-payment-method',
@@ -12,7 +13,6 @@ import { NgClass, NgIf } from '@angular/common';
   styleUrls: ['./payment-method.component.css']
 })
 export class PaymentMethodComponent implements OnInit {
-  private readonly API_URL = 'http://webshoptest-app-cosvwc-fb2ce8-5-75-130-54.traefik.me/web/api';
   paymentForm: FormGroup;
   selectedPaymentType: string | null = null;
 
@@ -73,7 +73,7 @@ export class PaymentMethodComponent implements OnInit {
   
       console.log('Sende Bestellung an das Backend:', orderDetails);
       
-      this.http.post(`${this.API_URL}/orders/?format=json`, orderDetails)
+      this.http.post(`${environment.apiUrl}/orders/?format=json`, orderDetails)
         .subscribe(response => {
           console.log('Bestellung erfolgreich an das Backend gesendet:', response);
           localStorage.removeItem('cart');
