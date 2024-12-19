@@ -1,8 +1,9 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { environment } from '../../../src/enviroments/environment';  // Importiere die Umgebungsvariable
+import { interval, Subscription } from 'rxjs';
 
 interface Image {
   image_id: number;
@@ -30,9 +31,11 @@ interface Product {
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   productForm: FormGroup;
+  currentImages: { [key: number]: string } = {}; // Speichert die aktuell angezeigten Bilder für jedes Produkt
+  private intervalSubscription?: Subscription;  // Optionales Feld
 
   constructor(private http: HttpClient, private fb: FormBuilder, private renderer: Renderer2) {
     // Initialisiere das Formular
@@ -43,6 +46,12 @@ export class ProductsComponent implements OnInit {
     this.fetchProducts();
   }
 
+  ngOnDestroy(): void {
+    if (this.intervalSubscription) {
+      this.intervalSubscription.unsubscribe();
+    }
+  }
+
   // Methode zur Datenabfrage
   fetchProducts(): void {
     const apiUrl = environment.apiUrl;  // Verwenden der Umgebungsvariable
@@ -51,15 +60,34 @@ export class ProductsComponent implements OnInit {
         this.products = data;
         console.log('Produkte geladen:', this.products);
 
-        // Dynamische FormControls für die Produkte hinzufügen
+        // Initialisiere die aktuellen Bilder und FormControls für die Produkte
         this.products.forEach(product => {
+          if (product.item_details.images.length > 0) {
+            this.currentImages[product.item_id] = product.item_details.images[0].image;
+          }
           this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1));
         });
+
+        // Starten des Bildwechsel-Intervalls
+        this.startImageRotation();
       },
       (error) => {
         console.error('Fehler beim Laden der Produkte:', error);
       }
     );
+  }
+
+  // Methode zum Starten des Bildwechsel-Intervalls
+  startImageRotation(): void {
+    this.intervalSubscription = interval(10000).subscribe(() => {
+      this.products.forEach(product => {
+        const images = product.item_details.images;
+        const currentImage = this.currentImages[product.item_id];
+        const currentIndex = images.findIndex(img => img.image === currentImage);
+        const nextIndex = (currentIndex + 1) % images.length;
+        this.currentImages[product.item_id] = images[nextIndex].image;
+      });
+    });
   }
 
   // Methode zum Hinzufügen eines Produkts zum Warenkorb (localStorage)
@@ -120,7 +148,7 @@ export class ProductsComponent implements OnInit {
 
     setTimeout(() => {
       this.renderer.removeChild(document.body, popup);
-    }, 2000); // Pop-up nach 2 Sekunden ausblenden
+    }, 2000); 
   }
 
   // trackBy Funktion zur Optimierung der Rendering-Leistung

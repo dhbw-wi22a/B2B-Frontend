@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
   <nav>
     <a href="/imprint">imprint</a>
     <a href="/registration">registration</a>
-    <a href="/homepage">homepage</a>
     <a href="/logout">logout</a>
     <a href="/products">products</a>
     <a href="/shopping-cart">shopping-cart</a>

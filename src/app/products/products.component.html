@@ -1,8 +1,9 @@
 <form [formGroup]="productForm">
     <div *ngFor="let post of products; trackBy: trackByItemId" class="product-container">
         <div class="product-card">
-            <img [src]="post.item_details.images[0]?.image" alt="Produktbild" class="product-image">
-            <h1 class="product-title">{{ post.item_details.item_description }}</h1>
+            <h1 class="product-title">{{ post.item_details.item_name }}</h1>
+            <img [src]="currentImages[post.item_id]" alt="Produktbild" class="product-image">
+            <p class="product-description">{{ post.item_details.item_description }}</p>
             <p class="product-price">{{ post.item_price }} €</p>
             <p class="product-tax">exkl. 19% USt</p>
             <p class="product-stock">Lagerbestand: 10</p>

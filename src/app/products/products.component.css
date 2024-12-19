@@ -45,7 +45,8 @@
 /* Bild-Styling */
 .product-image {
     width: 100%;
-    height: auto;
+    height: 200px; /* Feste Höhe setzen */
+    object-fit: cover; /* Bild skalieren und zuschneiden, um die feste Größe zu erfüllen */
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -117,4 +118,12 @@
 
 .add-to-cart-btn:hover {
     background-color: rgb(74,113,94); 
+}
+
+/* Produktbeschreibung */
+.product-description {
+    font-size: 1rem;
+    color: rgb(31,50,56); 
+    margin-bottom: 15px;
+    overflow: hidden;
 }
