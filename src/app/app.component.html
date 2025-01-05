@@ -11,12 +11,22 @@
     </div>
     <div class="user-actions">
       <ul>
-        <li class="dropdown">
+        <li class="dropdown" *ngIf="!isLoggedIn">
           <a href="javascript:void(0);" class="dropbtn">Hallo, Anmelden</a>
           <div class="dropdown-content">
             <a routerLink="/login">Anmelden</a>
             <a routerLink="/registration">Konto erstellen</a>
           </div>
+        </li>
+        <li class="dropdown" *ngIf="isLoggedIn"> 
+          <a href="javascript:void(0);" class="dropbtn">Mein Konto</a> 
+          <div class="dropdown-content"> 
+            <a routerLink="/admin-dashboard">Dashboard</a> 
+            <a routerLink="/company-profile">Firmenprofil</a>
+            <a routerLink="/order-history">Meine Bestellungen</a>
+            <a routerLink="/settings">Einstellungen</a> 
+            <a routerLink="/logout">Logout</a> 
+          </div> 
         </li>
         <li><a routerLink="/shopping-cart">🛒</a></li>
       </ul>

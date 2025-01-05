@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
-import { environment } from '../../../src/enviroments/environment';  // Importiere die Umgebungsvariable
+import { environment } from '../../../src/enviroments/environment';
 import { interval, Subscription } from 'rxjs';
 
 interface Image {
@@ -35,10 +35,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   productForm: FormGroup;
   currentImages: { [key: number]: string } = {}; // Speichert die aktuell angezeigten Bilder für jedes Produkt
-  private intervalSubscription?: Subscription;  // Optionales Feld
+  private intervalSubscription?: Subscription;  
 
   constructor(private http: HttpClient, private fb: FormBuilder, private renderer: Renderer2) {
-    // Initialisiere das Formular
     this.productForm = this.fb.group({});
   }
 
@@ -54,13 +53,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   // Methode zur Datenabfrage
   fetchProducts(): void {
-    const apiUrl = environment.apiUrl;  // Verwenden der Umgebungsvariable
+    const apiUrl = environment.apiUrl;
     this.http.get<Product[]>(`${apiUrl}/items/?format=json`).subscribe(
       (data) => {
         this.products = data;
         console.log('Produkte geladen:', this.products);
 
-        // Initialisiere die aktuellen Bilder und FormControls für die Produkte
         this.products.forEach(product => {
           if (product.item_details.images.length > 0) {
             this.currentImages[product.item_id] = product.item_details.images[0].image;
@@ -68,7 +66,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1));
         });
 
-        // Starten des Bildwechsel-Intervalls
         this.startImageRotation();
       },
       (error) => {
@@ -102,7 +99,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
         return;
       }
 
-      // Versuche, den Warenkorb aus localStorage zu laden 
       let cart: Product[] = [];
       const cartData = localStorage.getItem('cart');
       if (cartData) {

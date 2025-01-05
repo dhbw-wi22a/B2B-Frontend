@@ -1,0 +1,34 @@
+.settings-section {
+    background-color: rgb(54, 88, 97);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.settings-section h2 {
+    font-size: 1.5rem;
+    color: rgb(241, 180, 89);
+    margin-bottom: 1rem;
+}
+
+.settings-section p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.settings-section button {
+    background-color: rgb(213, 27, 21);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.settings-section button:hover {
+    background-color: rgb(183, 0, 0);
+}
