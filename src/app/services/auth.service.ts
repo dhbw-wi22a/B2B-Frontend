@@ -1,28 +1,37 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../enviroments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
-    private loggedIn = false;
-    private user = { email: 'testuser@example.com', password: 'testpassword' };
+    constructor(private http: HttpClient) {}
 
-constructor() { }
+    login(email: string, password: string) {
+        const loginData = { email, password };
 
-login(email: string, password: string) {
-    if (email === this.user.email && password === this.user.password) {
-        this.loggedIn = true;
-    } else {
-        console.log('Login fehlgeschlagen: ', this.loggedIn);
+        this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData).subscribe(
+            loginResponse => {
+                console.log('Login erfolgreich!', loginResponse);
+                
+                const token = loginResponse.access;
+        
+                localStorage.setItem('authToken', token);
+            },
+            error => {
+                console.log('Login fehlgeschlagen: ', error);
+                alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
+            }
+        );
     }
-}
 
-logout() {
-    this.loggedIn = false;
-    console.log('Logout erfolgreich: ', this.loggedIn);
-}
+    logout() {
+        localStorage.removeItem('authToken');
+        console.log('Logout erfolgreich');
+    }
 
-isLoggedIn(): boolean {
-    return this.loggedIn;
-}
+    isLoggedIn(): boolean {
+        return !!localStorage.getItem('authToken');
+    }
 }

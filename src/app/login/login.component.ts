@@ -28,15 +28,12 @@ export class LoginComponent {
 
         const token = loginResponse.access;
 
-        // Speichere den Token im Local Storage
         localStorage.setItem('authToken', token);
 
-        // Navigiere zur Startseite nach erfolgreichem Login
         this.router.navigate(['/']);
       },
       error => {
         console.log('Login fehlgeschlagen', error);
-        // Zeige eine Fehlermeldung an
         alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
       }
     );

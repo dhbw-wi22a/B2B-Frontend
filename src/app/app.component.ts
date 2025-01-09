@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router'; 
 import { AuthService } from './services/auth.service';
 import { NgIf } from '@angular/common';
@@ -6,7 +6,8 @@ import { HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'an-root',  
-  standalone: true,  
+  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
   <nav>
     <a href="/admin-dashboard">admin-dashboard</a>
@@ -24,21 +25,21 @@ import { HttpClientModule} from '@angular/common/http';
     <a href="/shopping-cart">shopping-cart</a> 
   </nav>
   <router-outlet />
-`,
+  `,
   imports: [RouterOutlet, RouterLink, NgIf, HttpClientModule], 
   templateUrl: './app.component.html',  
   styleUrls: ['./app.component.css']  
 })
-
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'B2B-Webshop'; 
-  
-  constructor(private authService: AuthService) { } 
-  
+
+  constructor(private authService: AuthService, private cdr: ChangeDetectorRef) {}
+
   get isLoggedIn(): boolean { 
     return this.authService.isLoggedIn(); 
   }
-  
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
 }
-
-

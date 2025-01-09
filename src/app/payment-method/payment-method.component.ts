@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
-import { environment } from '../../../src/enviroments/environment';  // Importiere die Umgebungsvariable
+import { environment } from '../../../src/enviroments/environment';
 
 @Component({
   selector: 'an-payment-method',
