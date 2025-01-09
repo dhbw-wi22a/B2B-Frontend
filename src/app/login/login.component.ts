@@ -1,33 +1,48 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../enviroments/environment';
 
 @Component({
   selector: 'an-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  imports: [FormsModule]
+  imports: [FormsModule, HttpClientModule]
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private router: Router, private http: HttpClient) {}
 
   login() {
-    this.authService.login(this.email, this.password);
-    if (this.authService.isLoggedIn()) {
-      console.log('Login erfolgreich');
-      this.router.navigate(['/']);
-    } else {
-      console.log('Login fehlgeschlagen'); 
-      // Zeige eine Fehlermeldung an
-      alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
-    }
+    const loginData = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData).subscribe(
+      loginResponse => {
+        console.log('Login erfolgreich!', loginResponse);
+
+        const token = loginResponse.access;
+
+        // Speichere den Token im Local Storage
+        localStorage.setItem('authToken', token);
+
+        // Navigiere zur Startseite nach erfolgreichem Login
+        this.router.navigate(['/']);
+      },
+      error => {
+        console.log('Login fehlgeschlagen', error);
+        // Zeige eine Fehlermeldung an
+        alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
+      }
+    );
   }
 
   navigateToStartseite(): void {
-    this.router.navigate(['']);
+    this.router.navigate(['/']);
   }
 }

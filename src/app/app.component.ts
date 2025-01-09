@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router'; 
-import { Router } from '@angular/router'; 
 import { AuthService } from './services/auth.service';
 import { NgIf } from '@angular/common';
-  
-
+import { HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'an-root',  
@@ -27,7 +25,7 @@ import { NgIf } from '@angular/common';
   </nav>
   <router-outlet />
 `,
-  imports: [RouterOutlet, RouterLink, NgIf], 
+  imports: [RouterOutlet, RouterLink, NgIf, HttpClientModule], 
   templateUrl: './app.component.html',  
   styleUrls: ['./app.component.css']  
 })

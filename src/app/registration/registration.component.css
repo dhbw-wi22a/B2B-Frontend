@@ -64,12 +64,7 @@ form input[type="reset"] {
     margin-right: 2%;
 }
 
-form input[type="submit"]:hover,
-form input[type="reset"]:hover {
-    background-color: rgb(213, 27, 21);
-}
-
-/* Buttons nebeneinander ausrichten */
+/* Abstand zwischen den Buttons */
 form div button[type="submit"] {
     background-color: rgb(241, 180, 89);
     color: white;
@@ -79,6 +74,7 @@ form div button[type="submit"] {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 1rem; /* Abstand zwischen den Buttons */
 }
 
 form div button[type="reset"] {
