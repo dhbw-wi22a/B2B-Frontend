@@ -1,6 +1,6 @@
 <form [formGroup]="productForm">
-    <div *ngFor="let post of products; trackBy: trackByItemId" class="product-container">
-        <div class="product-card">
+    <div class="product-container">
+        <div *ngFor="let post of products; trackBy: trackByItemId" class="product-card">
             <h1 class="product-title">{{ post.item_details.item_name }}</h1>
             <img [src]="currentImages[post.item_id]" alt="Produktbild" class="product-image">
             <p class="product-description">{{ post.item_details.item_description }}</p>
