@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { environment } from '../../../src/enviroments/environment';
 import { interval, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -29,7 +29,7 @@ interface Product {
 @Component({
   selector: 'an-products',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule, NgFor],
+  imports: [HttpClientModule, ReactiveFormsModule, NgFor, NgIf],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
@@ -39,6 +39,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   currentImages: { [key: number]: string } = {}; 
   private intervalSubscription?: Subscription;  
   private routerSubscription?: Subscription;
+  selectedProduct: Product | null = null; // Hinzugefügt für Modal-Funktion
 
   constructor(
     private http: HttpClient,
@@ -107,6 +108,16 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.currentImages[product.item_id] = images[nextIndex].image;
       });
     });
+  }
+
+  // Methode zum Öffnen des Modals
+  openModal(product: Product): void {
+    this.selectedProduct = product;
+  }
+
+  // Methode zum Schließen des Modals
+  closeModal(): void {
+    this.selectedProduct = null;
   }
 
   // Methode zum Hinzufügen eines Produkts zum Warenkorb (localStorage)

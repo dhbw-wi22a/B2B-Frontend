@@ -128,6 +128,62 @@
     overflow: hidden;
 }
 
+/* Modal-Overlay */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Modal-Inhalt */
+.modal-content {
+    background-color: rgb(241, 180, 89);
+    color: rgb(31, 50, 56);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    text-align: center;
+}
+
+/* Schließen-Button */
+.close {
+    color: rgb(31, 50, 56);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Fade-In-Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide-In-Animation */
+@keyframes slideIn {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .popup {
@@ -160,6 +216,10 @@
     .add-to-cart-btn {
         font-size: 0.9rem;
         padding: 8px 15px;
+    }
+
+    .modal-content {
+        max-width: 90%;
     }
 }
 
@@ -194,5 +254,9 @@
     .add-to-cart-btn {
         font-size: 0.8rem;
         padding: 5px 10px;
+    }
+
+    .modal-content {
+        max-width: 90%;
     }
 }
