@@ -25,7 +25,7 @@
 
 /* Stile für einzelne Produktkarten */
 .product-card {
-    background-color: rgb(241,180,89); 
+    background-color: rgb(241, 180, 89);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -45,8 +45,8 @@
 /* Bild-Styling */
 .product-image {
     width: 100%;
-    height: 200px; 
-    object-fit: cover; 
+    height: 200px;
+    object-fit: cover;
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -55,7 +55,7 @@
 .product-title {
     font-size: 1.4rem;
     font-weight: bold;
-    color: rgb(31,50,56); 
+    color: rgb(31, 50, 56);
     margin-bottom: 10px;
 }
 
@@ -63,21 +63,21 @@
 .product-price {
     font-size: 1.2rem;
     font-weight: 600;
-    color: rgb(213,27,21); 
+    color: rgb(213, 27, 21);
     margin-bottom: 10px;
 }
 
 /* Steuerangabe */
 .product-tax {
     font-size: 1rem;
-    color: rgb(54,88,97); 
+    color: rgb(54, 88, 97);
     margin-bottom: 20px;
 }
 
 /* Lagerbestand */
 .product-stock {
     font-size: 0.9rem;
-    color: rgb(110,48,49); 
+    color: rgb(110, 48, 49);
     margin-bottom: 15px;
 }
 
@@ -92,13 +92,13 @@
 .quantity-selector label {
     margin-right: 10px;
     font-size: 1rem;
-    color: rgb(31,50,56);
+    color: rgb(31, 50, 56);
 }
 
 .quantity-input {
     width: 60px;
     padding: 5px;
-    border: 1px solid rgb(213,27,21);
+    border: 1px solid rgb(213, 27, 21);
     border-radius: 5px;
     text-align: center;
     font-size: 1rem;
@@ -106,7 +106,7 @@
 
 /* Button zum Hinzufügen zum Warenkorb */
 .add-to-cart-btn {
-    background-color: rgb(51,135,184); 
+    background-color: rgb(51, 135, 184);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -117,13 +117,82 @@
 }
 
 .add-to-cart-btn:hover {
-    background-color: rgb(74,113,94); 
+    background-color: rgb(74, 113, 94);
 }
 
 /* Produktbeschreibung */
 .product-description {
     font-size: 1rem;
-    color: rgb(31,50,56); 
+    color: rgb(31, 50, 56);
     margin-bottom: 15px;
     overflow: hidden;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .popup {
+        font-size: 1rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+
+    .product-title {
+        font-size: 1.2rem;
+    }
+
+    .product-price, .product-tax, .product-stock {
+        font-size: 1rem;
+    }
+
+    .quantity-selector label, .quantity-input {
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    .popup {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-title {
+        font-size: 1rem;
+    }
+
+    .product-price, .product-tax, .product-stock {
+        font-size: 0.9rem;
+    }
+
+    .quantity-selector label, .quantity-input {
+        font-size: 0.8rem;
+    }
+
+    .add-to-cart-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
 }

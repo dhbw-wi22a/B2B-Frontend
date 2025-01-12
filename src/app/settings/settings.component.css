@@ -32,3 +32,42 @@
 .settings-section button:hover {
     background-color: rgb(183, 0, 0);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .settings-section {
+        padding: 1.5rem;
+    }
+
+    .settings-section h2 {
+        font-size: 1.3rem;
+    }
+
+    .settings-section p {
+        font-size: 0.9rem;
+    }
+
+    .settings-section button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .settings-section {
+        padding: 1rem;
+    }
+
+    .settings-section h2 {
+        font-size: 1.1rem;
+    }
+
+    .settings-section p {
+        font-size: 0.8rem;
+    }
+
+    .settings-section button {
+        padding: 0.6rem;
+        font-size: 0.8rem;
+    }
+}

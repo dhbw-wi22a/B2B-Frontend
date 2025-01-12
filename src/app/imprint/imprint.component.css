@@ -1,6 +1,6 @@
 /* Impressum Styles */
 .impressum {
-    background-color: rgb(54, 88, 97); 
+    background-color: rgb(54, 88, 97);
     color: white;
     padding: 2rem;
     border-radius: 8px;
@@ -11,7 +11,7 @@
 
 .impressum h1 {
     font-size: 2rem;
-    color: rgb(241, 180, 89); 
+    color: rgb(241, 180, 89);
     margin-bottom: 1rem;
 }
 
@@ -19,27 +19,27 @@
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
-    color: #f1f1f1; 
+    color: #f1f1f1;
 }
 
 .impressum a {
-    color: rgb(241, 180, 89); 
+    color: rgb(241, 180, 89);
     text-decoration: none;
 }
 
 .impressum a:hover {
     text-decoration: underline;
-    color: rgb(213, 27, 21); 
+    color: rgb(213, 27, 21);
 }
 
 .impressum strong {
-    color: rgb(241, 180, 89); 
+    color: rgb(241, 180, 89);
 }
 
 /* Abschnitt Überschriften */
 .impressum h2 {
     font-size: 1.5rem;
-    color: rgb(241, 180, 89); 
+    color: rgb(241, 180, 89);
     margin-top: 2rem;
 }
 
@@ -59,10 +59,66 @@
     border-radius: 8px;
     margin-top: 2rem;
 }
+
 .impressum .disclaimer p {
     color: #f1f1f1;
 }
 
 .impressum .disclaimer h3 {
-    color: rgb(241, 180, 89); 
+    color: rgb(241, 180, 89);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .impressum {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .impressum h1 {
+        font-size: 1.8rem;
+    }
+
+    .impressum h2 {
+        font-size: 1.4rem;
+    }
+
+    .impressum p {
+        font-size: 0.9rem;
+    }
+
+    .impressum .contact p {
+        font-size: 0.9rem;
+    }
+
+    .impressum .disclaimer h3 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .impressum {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    .impressum h1 {
+        font-size: 1.5rem;
+    }
+
+    .impressum h2 {
+        font-size: 1.2rem;
+    }
+
+    .impressum p {
+        font-size: 0.8rem;
+    }
+
+    .impressum .contact p {
+        font-size: 0.8rem;
+    }
+
+    .impressum .disclaimer h3 {
+        font-size: 1.1rem;
+    }
 }

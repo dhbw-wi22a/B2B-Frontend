@@ -62,3 +62,37 @@
     text-decoration: underline;
     color: rgb(213, 27, 21);
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logout-container {
+        padding: 1.5rem 3rem;
+    }
+
+    .logout-container p {
+        font-size: 1rem;
+    }
+
+    .logout-container button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .logout-container {
+        padding: 1rem 1.5rem;
+    }
+
+    .logout-container p {
+        font-size: 0.9rem;
+    }
+
+    .logout-container button {
+        font-size: 0.9rem;
+        padding: 0.8rem;
+    }
+
+    .logout-container a {
+        font-size: 0.9rem;
+    }
+}

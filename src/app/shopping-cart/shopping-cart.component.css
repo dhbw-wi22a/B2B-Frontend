@@ -42,7 +42,7 @@
     margin-bottom: 10px;
 }
 
-/* Produktpreis */
+  /* Produktpreis */
 .product-price {
     font-size: 1.2rem;
     font-weight: 600;
@@ -50,14 +50,14 @@
     margin-bottom: 10px;
 }
 
-/* Steuerangabe */
+  /* Steuerangabe */
 .product-tax {
     font-size: 1rem;
     color: rgb(54, 88, 97); 
     margin-bottom: 20px;
 }
 
-/* Lagerbestand */
+  /* Lagerbestand */
 .product-stock {
     font-size: 0.9rem;
     color: rgb(110, 48, 49); 
@@ -120,4 +120,63 @@
 
 .proceed-to-checkout-btn:hover {
     background-color: rgb(74, 113, 94); 
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+
+    .product-title {
+        font-size: 1.2rem;
+    }
+
+    .product-price {
+        font-size: 1rem;
+    }
+
+    .product-tax, .product-stock, .product-price {
+        margin-bottom: 10px;
+    }
+
+    .add-to-cart-btn, .remove-from-cart-btn, .proceed-to-checkout-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        padding: 5px;
+        gap: 10px;
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-title {
+        font-size: 1rem;
+    }
+
+    .product-price {
+        font-size: 0.9rem;
+    }
+
+    .product-tax, .product-stock, .product-price {
+        margin-bottom: 5px;
+    }
+
+    .add-to-cart-btn, .remove-from-cart-btn, .proceed-to-checkout-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
+    }
 }

@@ -94,7 +94,7 @@
   background-color: #ddd;
 }
 
-/* Dropdown sichtbar machen, wenn der Benutzer mit der Maus darüber fährt */
+/* Dropdown sichtbar machen */
 .user-actions .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -198,4 +198,89 @@ footer {
 
 .rechtliches a:hover {
   text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .header-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-bar {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .user-actions ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .main-navigation ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo img {
+    height: 80px;
+  }
+
+  .search-bar input {
+    padding: 0.5rem;
+  }
+
+  .search-bar button {
+    padding: 0.5rem;
+  }
+
+  .carousel-caption {
+    bottom: 10%;
+    left: 5%;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .categories-grid, .products-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-item, .product-item {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-container {
+    padding: 0.5rem;
+  }
+
+  .search-bar input {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .search-bar button {
+    font-size: 0.9rem;
+    padding: 0.4rem;
+  }
+
+  .carousel-caption {
+    font-size: 0.7rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rechtliches {
+    text-align: left;
+    margin-top: 1rem;
+  }
 }
