@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 import { environment } from '../../../src/enviroments/environment';
 import { interval, Subscription } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { Router, NavigationEnd } from '@angular/router';
 
 interface Image {
   image_id: number;
@@ -34,27 +36,49 @@ interface Product {
 export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   productForm: FormGroup;
-  currentImages: { [key: number]: string } = {}; // Speichert die aktuell angezeigten Bilder für jedes Produkt
+  currentImages: { [key: number]: string } = {}; 
   private intervalSubscription?: Subscription;  
+  private routerSubscription?: Subscription;
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private renderer: Renderer2) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef,
+    private router: Router
+  ) {
     this.productForm = this.fb.group({});
   }
 
   ngOnInit(): void {
     this.fetchProducts();
+
+    // Router-Ereignis überwachen und Produkte neu laden
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.fetchProducts();
+      }
+    });
   }
 
   ngOnDestroy(): void {
     if (this.intervalSubscription) {
       this.intervalSubscription.unsubscribe();
     }
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   // Methode zur Datenabfrage
   fetchProducts(): void {
     const apiUrl = environment.apiUrl;
-    this.http.get<Product[]>(`${apiUrl}/items/?format=json`).subscribe(
+    this.http.get<Product[]>(`${apiUrl}/items/?format=json`).pipe(
+      catchError((error) => {
+        console.error('Fehler beim Laden der Produkte:', error);
+        throw error; // Fehler weiterwerfen
+      })
+    ).subscribe(
       (data) => {
         this.products = data;
         console.log('Produkte geladen:', this.products);
@@ -66,10 +90,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
           this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1));
         });
 
+        this.cdr.detectChanges(); // Manuelle Veränderungserkennung auslösen
         this.startImageRotation();
-      },
-      (error) => {
-        console.error('Fehler beim Laden der Produkte:', error);
       }
     );
   }
