@@ -3,8 +3,8 @@
         <div *ngFor="let post of products; trackBy: trackByItemId" class="product-card" (click)="openModal(post)">
             <h1 class="product-title">{{ post.item_details.item_name }}</h1>
             <img [src]="currentImages[post.item_id]" alt="Produktbild" class="product-image">
-            <p class="product-price">{{ post.item_price }} €
-            <p class="product-stock">Lagerbestand: 10</p>
+            <p class="product-price">{{ post.item_price }} €</p>
+            <p class="product-stock">Lagerbestand: {{ post.item_stock }}</p>
         </div>
     </div>
 </form>
@@ -18,7 +18,7 @@
         <p class="product-description">{{ selectedProduct.item_details.item_description }}</p>
         <p class="product-price">{{ selectedProduct.item_price }} €</p>
         <p class="product-tax">exkl. 19% USt</p>
-        <p class="product-stock">Lagerbestand: 10</p>
+        <p class="product-stock">Lagerbestand: {{ selectedProduct.item_stock }}</p>
         <div class="quantity-selector">
             <label [for]="'quantity-' + selectedProduct.item_id">Anzahl:</label>
             <input [formControlName]="'quantity-' + selectedProduct.item_id"

@@ -17,12 +17,15 @@ interface ItemDetails {
   item_name: string;
   item_description: string;
   images: Image[];
+  categories: number[];
 }
 
 interface Product {
   item_id: number;
   item_price: string;
   item_details: ItemDetails;
+  item_stock: number; // Lagerbestand hinzufügen
+  article_id: string;
   quantity: number; // Menge des Produkts hinzufügen
 }
 
@@ -127,8 +130,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const quantity = quantityControl ? quantityControl.value : 1;
 
     if (product) {
-      if (!quantity || quantity <= 0) {
-        alert("Bitte eine gültige Anzahl eingeben.");
+      if (quantity > product.item_stock) {
+        this.showPopupMessage('Nicht genügend Lagerbestand verfügbar.', true);
         return;
       }
 
@@ -167,12 +170,17 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   // Methode zum Anzeigen des Pop-up-Fensters
-  showPopupMessage(message: string): void {
+  showPopupMessage(message: string, isError: boolean = false): void {
     const popup = this.renderer.createElement('div');
     const text = this.renderer.createText(message);
     
     this.renderer.appendChild(popup, text);
     this.renderer.addClass(popup, 'popup');
+    if (isError) {
+      this.renderer.setStyle(popup, 'background-color', 'rgb(213, 27, 21)');
+    } else {
+      this.renderer.setStyle(popup, 'background-color', '#4caf50');
+    }
     this.renderer.appendChild(document.body, popup);
 
     setTimeout(() => {
