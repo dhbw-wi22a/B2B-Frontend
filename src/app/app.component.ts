@@ -20,6 +20,7 @@ import { HttpClientModule} from '@angular/common/http';
     <a href="/order-history">order-history</a>
     <a href="/payment-method">payment-method</a>
     <a href="/products">products</a>
+    <a href="/profile">profile</a>
     <a href="/registration">registration</a>
     <a href="/settings">settings</a>
     <a href="/shopping-cart">shopping-cart</a> 

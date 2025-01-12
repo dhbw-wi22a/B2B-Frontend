@@ -4,13 +4,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Component({
-  selector: 'an-company-profile',
-  standalone: true,
+  selector: 'an-profile',
   imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
-  templateUrl: './company-profile.component.html',
-  styleUrls: ['./company-profile.component.css']
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.css'
 })
-export class CompanyProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
   isEditing = false;
 
@@ -69,3 +68,4 @@ export class CompanyProfileComponent implements OnInit {
     }
   }
 }
+
