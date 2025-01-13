@@ -36,18 +36,17 @@ export class ConfirmationComponent implements OnInit {
     const storedOrderDetails = localStorage.getItem('orderDetails');
     if (storedOrderDetails) {
       try {
-        const parsedOrderDetails = JSON.parse(storedOrderDetails);
-        if (parsedOrderDetails && parsedOrderDetails.order_info) {
+        const parsedOrderDetails: OrderDetails = JSON.parse(storedOrderDetails);
+        if (parsedOrderDetails?.order_info) {
           this.orderDetails = parsedOrderDetails;
         } else {
-          console.error('Order details have an unexpected structure:', parsedOrderDetails);
+          console.error('Unerwartete Struktur der Bestelldetails:', parsedOrderDetails);
         }
       } catch (error) {
-        console.error('Error parsing order details:', error);
+        console.error('Fehler beim Parsen der Bestelldetails:', error);
       }
     }
   }
-  
 
   navigateToHome(): void {
     this.router.navigate(['/']);

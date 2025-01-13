@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent {
-  constructor(private router: Router) {}
+  constructor(private readonly router: Router) {}
 
-  deleteAccount() {
+  deleteAccount(): void {
     if (confirm("Sind Sie sicher, dass Sie Ihren Account löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.")) {
       alert("Ihr Account wurde erfolgreich gelöscht.");
       this.navigateToStartseite();

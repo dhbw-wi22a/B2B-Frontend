@@ -27,18 +27,18 @@ export class CustomerCheckComponent implements OnInit {
   }
   
   ngOnInit(): void {}
-  
+
   onSubmit(): void {
     if (this.customercheckForm.valid) {
       const userDetails = {
-        buyer_name: `${this.customercheckForm.value.firstName} ${this.customercheckForm.value.lastName}`,
-        buyer_email: this.customercheckForm.value.email,
-        buyer_phone: this.customercheckForm.value.phone,
-        buyer_address: `${this.customercheckForm.value.street} ${this.customercheckForm.value.houseNumber}, ${this.customercheckForm.value.city}, ${this.customercheckForm.value.zipCode}`
+        buyer_name: `${this.customercheckForm.get('firstName')?.value} ${this.customercheckForm.get('lastName')?.value}`,
+        buyer_email: this.customercheckForm.get('email')?.value,
+        buyer_phone: this.customercheckForm.get('phone')?.value,
+        buyer_address: `${this.customercheckForm.get('street')?.value} ${this.customercheckForm.get('houseNumber')?.value}, ${this.customercheckForm.get('city')?.value}, ${this.customercheckForm.get('zipCode')?.value}`
       };
       const orderDetails = {
         order_info: userDetails,
-        items: [] 
+        items: []
       };
       localStorage.setItem('orderDetails', JSON.stringify(orderDetails));
       
@@ -48,7 +48,6 @@ export class CustomerCheckComponent implements OnInit {
       console.log('Formular ist ungültig');
     }
   }
-  
 
   navigateToRegister(): void {
     this.router.navigate(['/registration']);

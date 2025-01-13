@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { NgIf, CommonModule } from '@angular/common';
@@ -22,9 +22,12 @@ export class ProfileComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private renderer: Renderer2,
-    private cdr: ChangeDetectorRef
+    private renderer: Renderer2
   ) {}
+
+  get authToken(): string | null {
+    return localStorage.getItem('authToken');
+  }
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
@@ -43,35 +46,35 @@ export class ProfileComponent implements OnInit {
       postalCode: ['', Validators.required]
     });
 
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      this.loadProfileData(token);
+    if (this.authToken) {
+      this.loadProfileData(this.authToken);
     } else {
       console.error('Token nicht verfügbar.');
     }
   }
 
-  loadProfileData(token: string): void {
+  async loadProfileData(token: string): Promise<void> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.http.get<any>(this.apiUrl, { headers }).pipe(
-      catchError((error) => {
-        console.error('Fehler beim Laden der Profildaten:', error);
-        throw error;
-      })
-    ).subscribe(
-      (data) => {
-        this.profileForm.patchValue({
-          companyName: data.company_name,
-          companyId: data.company_identifier,
-          firstName: data.first_name,
-          lastName: data.last_name,
-          phone: data.phone,
-          email: data.email
-        });
-        this.cdr.detectChanges();
-      }
-    );
+    try {
+      const data = await this.http.get<any>(this.apiUrl, { headers }).pipe(
+        catchError((error) => {
+          console.error('Fehler beim Laden der Profildaten:', error);
+          throw error;
+        })
+      ).toPromise();
+
+      this.profileForm.patchValue({
+        companyName: data.company_name,
+        companyId: data.company_identifier,
+        firstName: data.first_name,
+        lastName: data.last_name,
+        phone: data.phone,
+        email: data.email
+      });
+    } catch (error) {
+      this.handleError(error);
+    }
   }
 
   toggleEdit(): void {
@@ -82,30 +85,31 @@ export class ProfileComponent implements OnInit {
     this.isAddressEditing = !this.isAddressEditing;
   }
 
-  saveChanges(): void {
-    const token = localStorage.getItem('authToken');
-    if (!token) {
+  async saveChanges(): Promise<void> {
+    if (!this.authToken) {
       console.error('Token nicht verfügbar.');
       return;
     }
 
     if (this.profileForm.valid) {
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${this.authToken}`);
 
-      this.http.post(this.apiUrl, this.profileForm.value, { headers }).pipe(
-        catchError((error) => {
-          console.error('Fehler beim Speichern der Daten:', error);
-          this.showPopupMessage('Fehler beim Speichern der Daten.', true);
-          throw error;
-        })
-      ).subscribe(
-        (response) => {
-          console.log('Daten erfolgreich gespeichert:', response);
-          this.isEditing = false;
-          this.loadProfileData(token);
-          this.showPopupMessage('Daten erfolgreich gespeichert!');
-        }
-      );
+      try {
+        const response = await this.http.post(this.apiUrl, this.profileForm.value, { headers }).pipe(
+          catchError((error) => {
+            console.error('Fehler beim Speichern der Daten:', error);
+            this.showPopupMessage('Fehler beim Speichern der Daten.', true);
+            throw error;
+          })
+        ).toPromise();
+
+        console.log('Daten erfolgreich gespeichert:', response);
+        this.isEditing = false;
+        this.loadProfileData(this.authToken);
+        this.showPopupMessage('Daten erfolgreich gespeichert!');
+      } catch (error) {
+        this.handleError(error);
+      }
     }
   }
 
@@ -123,15 +127,16 @@ export class ProfileComponent implements OnInit {
     
     this.renderer.appendChild(popup, text);
     this.renderer.addClass(popup, 'popup');
-    if (isError) {
-      this.renderer.setStyle(popup, 'background-color', 'rgb(213, 27, 21)');
-    } else {
-      this.renderer.setStyle(popup, 'background-color', '#4caf50');
-    }
+    this.renderer.setStyle(popup, 'background-color', isError ? 'rgb(213, 27, 21)' : '#4caf50');
     this.renderer.appendChild(document.body, popup);
 
     setTimeout(() => {
       this.renderer.removeChild(document.body, popup);
     }, 2000); 
+  }
+
+  private handleError(error: any): void {
+    console.error('Ein Fehler ist aufgetreten:', error);
+    this.showPopupMessage('Ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.', true);
   }
 }
