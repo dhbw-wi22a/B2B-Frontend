@@ -1,21 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { NgIf, CommonModule } from '@angular/common';
+import { catchError } from 'rxjs/operators';
+import { environment } from '../../enviroments/environment';
 
 @Component({
   selector: 'an-profile',
-  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
+  standalone: true,
+  imports: [NgIf, CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   profileForm!: FormGroup;
+  addressForm!: FormGroup;
   isEditing = false;
+  isAddressEditing = false;
+  apiUrl = environment.apiUrl + '/me/detail/';
 
-  apiUrl = 'http://example.com/api/me/profile'; // Ersetze mit deiner API-URL
-
-  constructor(private fb: FormBuilder, private http: HttpClient) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
@@ -24,15 +33,33 @@ export class ProfileComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9\s\-\+\(\)]+$/)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]]
     });
 
-    this.loadProfileData();
+    this.addressForm = this.fb.group({
+      street: ['', Validators.required],
+      houseNumber: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required]
+    });
+
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      this.loadProfileData(token);
+    } else {
+      console.error('Token nicht verfügbar.');
+    }
   }
 
-  loadProfileData(): void {
-    this.http.get<any>(this.apiUrl).subscribe(
+  loadProfileData(token: string): void {
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.get<any>(this.apiUrl, { headers }).pipe(
+      catchError((error) => {
+        console.error('Fehler beim Laden der Profildaten:', error);
+        throw error;
+      })
+    ).subscribe(
       (data) => {
         this.profileForm.patchValue({
           companyName: data.company_name,
@@ -40,12 +67,9 @@ export class ProfileComponent implements OnInit {
           firstName: data.first_name,
           lastName: data.last_name,
           phone: data.phone,
-          email: data.email,
-          password: '********' // Platzhalter für das Passwort
+          email: data.email
         });
-      },
-      (error) => {
-        console.error('Fehler beim Laden der Profildaten:', error);
+        this.cdr.detectChanges();
       }
     );
   }
@@ -54,18 +78,60 @@ export class ProfileComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
+  toggleAddressEdit(): void {
+    this.isAddressEditing = !this.isAddressEditing;
+  }
+
   saveChanges(): void {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      console.error('Token nicht verfügbar.');
+      return;
+    }
+
     if (this.profileForm.valid) {
-      this.http.put(this.apiUrl, this.profileForm.value).subscribe(
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+      this.http.post(this.apiUrl, this.profileForm.value, { headers }).pipe(
+        catchError((error) => {
+          console.error('Fehler beim Speichern der Daten:', error);
+          this.showPopupMessage('Fehler beim Speichern der Daten.', true);
+          throw error;
+        })
+      ).subscribe(
         (response) => {
           console.log('Daten erfolgreich gespeichert:', response);
           this.isEditing = false;
-        },
-        (error) => {
-          console.error('Fehler beim Speichern der Daten:', error);
+          this.loadProfileData(token);
+          this.showPopupMessage('Daten erfolgreich gespeichert!');
         }
       );
     }
   }
-}
 
+  saveAddressChanges(): void {
+    if (this.addressForm.valid) {
+      console.log('Address data:', this.addressForm.value);
+      this.isAddressEditing = false;
+      this.showPopupMessage('Lieferadresse erfolgreich gespeichert!');
+    }
+  }
+
+  showPopupMessage(message: string, isError: boolean = false): void {
+    const popup = this.renderer.createElement('div');
+    const text = this.renderer.createText(message);
+    
+    this.renderer.appendChild(popup, text);
+    this.renderer.addClass(popup, 'popup');
+    if (isError) {
+      this.renderer.setStyle(popup, 'background-color', 'rgb(213, 27, 21)');
+    } else {
+      this.renderer.setStyle(popup, 'background-color', '#4caf50');
+    }
+    this.renderer.appendChild(document.body, popup);
+
+    setTimeout(() => {
+      this.renderer.removeChild(document.body, popup);
+    }, 2000); 
+  }
+}

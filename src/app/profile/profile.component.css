@@ -7,9 +7,18 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.address-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgb(200, 230, 201);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 .header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
     position: relative;
@@ -20,13 +29,10 @@ h2 {
     color: rgb(31, 50, 56);
     text-align: center;
     flex: 1;
+    font-size: 2rem;
 }
 
 .edit-btn {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
     padding: 0.5rem 1rem;
     background-color: rgb(54, 88, 97);
     color: white;
@@ -48,6 +54,7 @@ h2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: left;
 }
 
 label {
@@ -59,6 +66,7 @@ span,
 input {
     flex: 1;
     margin-right: 1rem;
+    text-align: left;
 }
 
 input {
@@ -83,9 +91,26 @@ input {
     background-color: rgb(31, 50, 56);
 }
 
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    z-index: 1000;
+    background-color: #4caf50;
+}
+
+.popup.error {
+    background-color: rgb(213, 27, 21);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
-    .profile-container {
+    .profile-container, .address-container {
         padding: 1.5rem;
         margin: 1.5rem auto;
     }
@@ -104,6 +129,7 @@ input {
     .field {
         flex-direction: column;
         align-items: flex-start;
+        text-align: left; 
     }
 
     h2 {
@@ -119,6 +145,7 @@ input {
         margin-right: 0;
         margin-bottom: 1rem;
         width: 100%;
+        text-align: left;
     }
 
     .save-btn {
@@ -127,7 +154,7 @@ input {
 }
 
 @media (max-width: 576px) {
-    .profile-container {
+    .profile-container, .address-container {
         padding: 1rem;
         margin: 1rem auto;
     }
