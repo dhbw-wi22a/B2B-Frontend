@@ -24,9 +24,9 @@ interface Product {
   item_id: number;
   item_price: string;
   item_details: ItemDetails;
-  item_stock: number; // Lagerbestand hinzufügen
+  item_stock: number;
   article_id: string;
-  quantity: number; // Menge des Produkts hinzufügen
+  quantity: number; 
 }
 
 @Component({
@@ -42,7 +42,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   currentImages: { [key: number]: string } = {}; 
   private intervalSubscription?: Subscription;  
   private routerSubscription?: Subscription;
-  selectedProduct: Product | null = null; // Hinzugefügt für Modal-Funktion
+  selectedProduct: Product | null = null;
 
   constructor(
     private http: HttpClient,
@@ -56,8 +56,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.fetchProducts();
-
-    // Router-Ereignis überwachen und Produkte neu laden
     this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.fetchProducts();
@@ -66,41 +64,37 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.intervalSubscription) {
-      this.intervalSubscription.unsubscribe();
-    }
-    if (this.routerSubscription) {
-      this.routerSubscription.unsubscribe();
-    }
+    this.intervalSubscription?.unsubscribe();
+    this.routerSubscription?.unsubscribe();
   }
 
-  // Methode zur Datenabfrage
   fetchProducts(): void {
     const apiUrl = environment.apiUrl;
     this.http.get<Product[]>(`${apiUrl}/items/?format=json`).pipe(
       catchError((error) => {
         console.error('Fehler beim Laden der Produkte:', error);
-        throw error; // Fehler weiterwerfen
+        throw error;
       })
     ).subscribe(
       (data) => {
         this.products = data;
         console.log('Produkte geladen:', this.products);
-
-        this.products.forEach(product => {
-          if (product.item_details.images.length > 0) {
-            this.currentImages[product.item_id] = product.item_details.images[0].image;
-          }
-          this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1));
-        });
-
-        this.cdr.detectChanges(); // Manuelle Veränderungserkennung auslösen
+        this.initializeFormAndImages();
+        this.cdr.detectChanges();
         this.startImageRotation();
       }
     );
   }
 
-  // Methode zum Starten des Bildwechsel-Intervalls
+  initializeFormAndImages(): void {
+    this.products.forEach(product => {
+      if (product.item_details.images.length > 0) {
+        this.currentImages[product.item_id] = product.item_details.images[0].image;
+      }
+      this.productForm.addControl(`quantity-${product.item_id}`, this.fb.control(1));
+    });
+  }
+
   startImageRotation(): void {
     this.intervalSubscription = interval(10000).subscribe(() => {
       this.products.forEach(product => {
@@ -113,17 +107,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     });
   }
 
-  // Methode zum Öffnen des Modals
   openModal(product: Product): void {
     this.selectedProduct = product;
   }
 
-  // Methode zum Schließen des Modals
   closeModal(): void {
     this.selectedProduct = null;
   }
 
-  // Methode zum Hinzufügen eines Produkts zum Warenkorb (localStorage)
   addToCart(itemId: number): void {
     const product = this.products.find(p => p.item_id === itemId);
     const quantityControl = this.productForm.get(`quantity-${itemId}`);
@@ -139,7 +130,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       const cartData = localStorage.getItem('cart');
       if (cartData) {
         try {
-          cart = JSON.parse(cartData);
+          cart = JSON.parse(cartData) as Product[];
           if (!Array.isArray(cart)) {
             cart = [];
           }
@@ -148,39 +139,27 @@ export class ProductsComponent implements OnInit, OnDestroy {
         }
       }
 
-      // Prüfen, ob das Produkt bereits im Warenkorb ist
       const existingProduct = cart.find(p => p.item_id === product.item_id);
 
       if (existingProduct) {
-        // Wenn das Produkt bereits im Warenkorb ist, die Menge erhöhen
         existingProduct.quantity += quantity;
       } else {
-        // Neues Produkt zum Warenkorb hinzufügen
         cart.push({ ...product, quantity });
       }
 
-      // Speichere den aktualisierten Warenkorb wieder im localStorage
       localStorage.setItem('cart', JSON.stringify(cart));
-
       console.log('Produkt zum Warenkorb hinzugefügt:', { ...product, quantity });
-      
-      // Pop-up-Fenster anzeigen
       this.showPopupMessage('Erfolgreich zum Warenkorb hinzugefügt!');
     }
   }
 
-  // Methode zum Anzeigen des Pop-up-Fensters
   showPopupMessage(message: string, isError: boolean = false): void {
     const popup = this.renderer.createElement('div');
     const text = this.renderer.createText(message);
     
     this.renderer.appendChild(popup, text);
     this.renderer.addClass(popup, 'popup');
-    if (isError) {
-      this.renderer.setStyle(popup, 'background-color', 'rgb(213, 27, 21)');
-    } else {
-      this.renderer.setStyle(popup, 'background-color', '#4caf50');
-    }
+    this.renderer.setStyle(popup, 'background-color', isError ? 'rgb(213, 27, 21)' : '#4caf50');
     this.renderer.appendChild(document.body, popup);
 
     setTimeout(() => {
@@ -188,7 +167,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     }, 2000); 
   }
 
-  // trackBy Funktion zur Optimierung der Rendering-Leistung
   trackByItemId(index: number, post: Product): number {
     return post.item_id;
   }

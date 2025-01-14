@@ -50,28 +50,21 @@ export class RegistrationComponent {
         const token = response.access;
         localStorage.setItem('authToken', token);
 
-        this.login(token);
+        this.login();
       },
       error => {
-        if (error.status === 400 && error.error && error.error.email) {
-          this.errorMessage = `Fehler bei der Registrierung: ${error.error.email.join(', ')}`;
-        } else {
-          this.errorMessage = 'Es gab ein Problem bei der Registrierung.';
-        }
-        console.error('Registrierungsfehler', error);
+        this.handleError(error);
       }
     );
   }
 
-  login(token: string): void {
+  login(): void {
     const loginData = {
       email: this.email,
       password: this.password
     };
 
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData, { headers }).subscribe(
+    this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData).subscribe(
       response => {
         console.log('Login erfolgreich!', response);
         const newToken = response.access;
@@ -105,5 +98,14 @@ export class RegistrationComponent {
         console.error('Profilaktualisierungsfehler', error);
       }
     );
+  }
+
+  private handleError(error: any): void {
+    if (error.status === 400 && error.error && error.error.email) {
+      this.errorMessage = `Fehler bei der Registrierung: ${error.error.email.join(', ')}`;
+    } else {
+      this.errorMessage = 'Es gab ein Problem bei der Registrierung.';
+    }
+    console.error('Registrierungsfehler', error);
   }
 }

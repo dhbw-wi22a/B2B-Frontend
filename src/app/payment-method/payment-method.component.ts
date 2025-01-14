@@ -32,15 +32,17 @@ export class PaymentMethodComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onCheckboxChange(event: any): void {
-    const value = event.target.value;
+  get f() { return this.paymentForm.controls; }
+
+  onCheckboxChange(event: Event): void {
+    const value = (event.target as HTMLInputElement).value;
     this.selectedPaymentType = value;
-    this.paymentForm.get('paymentType')?.setValue(value);
+    this.f['paymentType'].setValue(value);
 
     const controlsToUpdate = ['cardName', 'cardNumber', 'cardExpiry', 'cardCvc', 'paypalEmail', 'bankAccount', 'bankIban', 'bankBic'];
     
     controlsToUpdate.forEach(control => {
-      const formControl = this.paymentForm.get(control);
+      const formControl = this.f[control];
       if (!formControl) return;
 
       if (this.selectedPaymentType === 'creditCard' && ['cardName', 'cardNumber', 'cardExpiry', 'cardCvc'].includes(control)) {
@@ -52,10 +54,9 @@ export class PaymentMethodComponent implements OnInit {
       } else {
         formControl.clearValidators();
       }
-      formControl.updateValueAndValidity();
     });
 
-    this.paymentForm.updateValueAndValidity(); 
+    this.paymentForm.updateValueAndValidity();
   }
 
   onSubmit(): void {

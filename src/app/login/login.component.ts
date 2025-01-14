@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../enviroments/environment';
 
@@ -27,19 +27,22 @@ export class LoginComponent {
         console.log('Login erfolgreich!', loginResponse);
 
         const token = loginResponse.access;
-
         localStorage.setItem('authToken', token);
 
         this.router.navigate(['/']);
       },
       error => {
-        console.log('Login fehlgeschlagen', error);
-        alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
+        this.handleLoginError(error);
       }
     );
   }
 
   navigateToStartseite(): void {
     this.router.navigate(['/']);
+  }
+
+  private handleLoginError(error: any): void {
+    console.log('Login fehlgeschlagen', error);
+    alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
   }
 }

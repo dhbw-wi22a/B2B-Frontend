@@ -38,10 +38,20 @@ export class ShoppingCartComponent implements OnInit {
   cart: Cart = { cart_id: 0, items: [] };
   uniqueCartItems: Product[] = [];
 
-  constructor(private router: Router) {} 
+  constructor(private readonly router: Router) {}
 
   ngOnInit(): void {
     this.loadCart();  
+  }
+
+  // Getter für die Gesamtanzahl der Artikel
+  get totalItems(): number {
+    return this.uniqueCartItems.reduce((total, product) => total + (product.quantity || 1), 0);
+  }
+
+  // Getter für den Gesamtpreis der Artikel im Warenkorb
+  get totalPrice(): string {
+    return this.uniqueCartItems.reduce((total, product) => total + (product.quantity || 1) * parseFloat(product.item_price), 0).toFixed(2);
   }
 
   // Warenkorb aus localStorage laden
@@ -49,11 +59,7 @@ export class ShoppingCartComponent implements OnInit {
     const cartData = localStorage.getItem('cart');
     if (cartData) {
       this.cart.items = JSON.parse(cartData);
-      this.cart.items.forEach(item => {
-        if (!item.quantity) {
-          item.quantity = 1;  
-        }
-      });
+      this.cart.items.forEach(item => item.quantity = item.quantity || 1);
       this.aggregateCartItems();
       console.log('Warenkorb geladen:', this.uniqueCartItems);  
     } else {
@@ -66,11 +72,9 @@ export class ShoppingCartComponent implements OnInit {
     const itemMap = new Map<number, Product>();
   
     this.cart.items.forEach(product => {
-      if (itemMap.has(product.item_id)) {
-        const existingProduct = itemMap.get(product.item_id);
-        if (existingProduct) {
-          existingProduct.quantity += product.quantity;
-        }
+      const existingProduct = itemMap.get(product.item_id);
+      if (existingProduct) {
+        existingProduct.quantity += product.quantity;
       } else {
         itemMap.set(product.item_id, { ...product });
       }

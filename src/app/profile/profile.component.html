@@ -1,90 +1,127 @@
-<div class="profile-container" *ngIf="profileData; else loading">
-    <div class="header">
-      <h2>Kontodaten</h2>
-      <button class="edit-btn" (click)="toggleEdit()">
-        {{ isEditing ? 'Abbrechen' : 'Bearbeiten' }}
-      </button>
-    </div>
+<!-- Erfolgsmeldung -->
+<div *ngIf="showSuccessMessage" class="success-message">
+    <p>Profildaten erfolgreich gespeichert! Sie werden gleich weitergeleitet...</p>
+  </div>
   
-    <div *ngIf="!isEditing">
-      <div class="form-group">
-        <label>Firmenname:</label>
-        <div class="field">{{ profileData.companyName }}</div>
+  <div class="profile-container" *ngIf="!isLoading; else loading">
+      <div class="header">
+        <h2>Kontodaten</h2>
+        <button class="edit-btn" (click)="toggleEdit()">
+          {{ isEditing ? 'Abbrechen' : 'Bearbeiten' }}
+        </button>
       </div>
-      <div class="form-group">
-        <label>Unternehmens-ID:</label>
-        <div class="field">{{ profileData.companyId }}</div>
-      </div>
-      <div class="form-group">
-        <label>Vorname:</label>
-        <div class="field">{{ profileData.firstName }}</div>
-      </div>
-      <div class="form-group">
-        <label>Nachname:</label>
-        <div class="field">{{ profileData.lastName }}</div>
-      </div>
-      <div class="form-group">
-        <label>Telefonnummer:</label>
-        <div class="field">{{ profileData.phone }}</div>
-      </div>
-      <div class="form-group">
-        <label>E-Mail-Adresse:</label>
-        <div class="field">{{ profileData.email }}</div>
-      </div>
-      <div class="form-group">
-        <label>Passwort:</label>
-        <div class="field">********</div>
-      </div>
-    </div>
   
-    <form *ngIf="isEditing" [formGroup]="profileForm">
-      <div class="form-group">
-        <label>Firmenname:</label>
-        <div class="field">
-          <input formControlName="companyName" type="text" />
+      <!-- Anzeigemodus -->
+      <div *ngIf="!isEditing">
+        <div class="form-group">
+          <label>Firmenname:</label>
+          <div class="field">{{ profileData.companyName }}</div>
+        </div>
+        <div class="form-group">
+          <label>Unternehmens-ID:</label>
+          <div class="field">{{ profileData.companyId }}</div>
+        </div>
+        <div class="form-group">
+          <label>Vorname:</label>
+          <div class="field">{{ profileData.firstName }}</div>
+        </div>
+        <div class="form-group">
+          <label>Nachname:</label>
+          <div class="field">{{ profileData.lastName }}</div>
+        </div>
+        <div class="form-group">
+          <label>Telefonnummer:</label>
+          <div class="field">{{ profileData.phone }}</div>
+        </div>
+        <div class="form-group">
+          <label>E-Mail-Adresse:</label>
+          <div class="field">{{ profileData.email }}</div>
         </div>
       </div>
-      <div class="form-group">
-        <label>Unternehmens-ID:</label>
-        <div class="field">
-          <input formControlName="companyId" type="text" />
+  
+      <!-- Bearbeitungsmodus -->
+      <form *ngIf="isEditing" [formGroup]="profileForm">
+        <div class="form-group">
+          <label>Firmenname:</label>
+          <div class="field">
+            <input formControlName="companyName" type="text" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Vorname:</label>
-        <div class="field">
-          <input formControlName="firstName" type="text" />
+        <div class="form-group">
+          <label>Unternehmens-ID:</label>
+          <div class="field">
+            <input formControlName="companyId" type="text" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Nachname:</label>
-        <div class="field">
-          <input formControlName="lastName" type="text" />
+        <div class="form-group">
+          <label>Vorname:</label>
+          <div class="field">
+            <input formControlName="firstName" type="text" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Telefonnummer:</label>
-        <div class="field">
-          <input formControlName="phone" type="text" />
+        <div class="form-group">
+          <label>Nachname:</label>
+          <div class="field">
+            <input formControlName="lastName" type="text" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>E-Mail-Adresse:</label>
-        <div class="field">
-          <input formControlName="email" type="email" />
+        <div class="form-group">
+          <label>Telefonnummer:</label>
+          <div class="field">
+            <input formControlName="phone" type="text" />
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label>Passwort:</label>
-        <div class="field">
-          <input formControlName="password" type="password" />
+        <div class="form-group">
+          <label>E-Mail-Adresse:</label>
+          <div class="field">
+            <input formControlName="email" type="email" />
+          </div>
         </div>
+        <button class="save-btn" type="button" (click)="saveChanges()">Speichern</button>
+      </form>
+  </div>
+  
+  <div class="address-container">
+      <div class="header">
+          <h2>Lieferadresse</h2>
+          <button class="edit-btn" (click)="toggleAddressEdit()">
+              {{ isAddressEditing ? 'Abbrechen' : 'Bearbeiten' }}
+          </button>
       </div>
-      <button class="save-btn" type="button" (click)="saveChanges()">Speichern</button>
-    </form>
+      <form [formGroup]="addressForm">
+          <div class="form-group">
+              <label>Straße:</label>
+              <div class="field">
+                  <span *ngIf="!isAddressEditing">{{ addressForm.get('street')?.value }}</span>
+                  <input *ngIf="isAddressEditing" formControlName="street" type="text" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Hausnummer:</label>
+              <div class="field">
+                  <span *ngIf="!isAddressEditing">{{ addressForm.get('houseNumber')?.value }}</span>
+                  <input *ngIf="isAddressEditing" formControlName="houseNumber" type="text" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label>Ort:</label>
+              <div class="field">
+                  <span *ngIf="!isAddressEditing">{{ addressForm.get('city')?.value }}</span>
+                  <input *ngIf="isAddressEditing" formControlName="city" type="text" />
+              </div>
+          </div>
+          <div class="form-group">
+              <label>PLZ:</label>
+              <div class="field">
+                  <span *ngIf="!isAddressEditing">{{ addressForm.get('postalCode')?.value }}</span>
+                  <input *ngIf="isAddressEditing" formControlName="postalCode" type="text" />
+              </div>
+          </div>
+          <button class="save-btn" *ngIf="isAddressEditing" type="button" (click)="saveAddressChanges()">Speichern</button>
+      </form>
   </div>
   
   <ng-template #loading>
-    <p>Lade Profildaten...</p>
+      <p>Lade Profildaten...</p>
   </ng-template>
   

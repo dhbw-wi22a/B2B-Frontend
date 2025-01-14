@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
@@ -15,14 +15,23 @@ import { environment } from '../../enviroments/environment';
 export class ProfileComponent implements OnInit {
   profileData: any = null;
   profileForm!: FormGroup;
+  addressForm!: FormGroup;
   isEditing = false;
+  isAddressEditing = false;
   apiUrl = `${environment.apiUrl}/me/profile/`;
+  isLoading = true;
+  showSuccessMessage = false; // Flag für die Anzeige der Benachrichtigung
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.initializeForm();
-    this.loadProfileData(); // Lade die Profildaten beim Aufruf der Seite
+    this.loadProfileData();
   }
 
   initializeForm(): void {
@@ -33,7 +42,13 @@ export class ProfileComponent implements OnInit {
       lastName: ['', Validators.required],
       phone: ['', [Validators.required, Validators.pattern(/^[0-9\s\-\+\(\)]+$/)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['********'] // Passwort bleibt Platzhalter
+    });
+
+    this.addressForm = this.fb.group({
+      street: ['', Validators.required],
+      houseNumber: ['', Validators.required],
+      city: ['', Validators.required],
+      postalCode: ['', Validators.required],
     });
   }
 
@@ -47,11 +62,12 @@ export class ProfileComponent implements OnInit {
           lastName: data.last_name || 'Nicht verfügbar',
           phone: data.phone || 'Nicht verfügbar',
           email: data.email || 'Nicht verfügbar',
-          password: '********' // Passwort bleibt Platzhalter
         };
 
-        // Fülle das Formular mit den geladenen Daten
         this.profileForm.patchValue(this.profileData);
+
+        this.isLoading = false;
+        this.cdr.detectChanges();
       },
       (error) => {
         console.error('Fehler beim Laden der Profildaten:', error);
@@ -61,10 +77,13 @@ export class ProfileComponent implements OnInit {
 
   toggleEdit(): void {
     this.isEditing = !this.isEditing;
-
     if (!this.isEditing && this.profileData) {
       this.profileForm.patchValue(this.profileData);
     }
+  }
+
+  toggleAddressEdit(): void {
+    this.isAddressEditing = !this.isAddressEditing;
   }
 
   saveChanges(): void {
@@ -75,24 +94,56 @@ export class ProfileComponent implements OnInit {
         first_name: this.profileForm.value.firstName,
         last_name: this.profileForm.value.lastName,
         phone: this.profileForm.value.phone,
-        email: this.profileForm.value.email
+        email: this.profileForm.value.email,
       };
-
+  
       const csrfToken = this.getCsrfToken();
       const headers = new HttpHeaders({
-        'X-CSRFToken': csrfToken
+        'X-CSRFToken': csrfToken,
       });
-
+  
+      // Disable the button to prevent further clicks
+      const saveButton = document.querySelector('.save-btn') as HTMLButtonElement;
+      if (saveButton) {
+        saveButton.disabled = true; // Disable the button
+      }
+  
       this.http.post(this.apiUrl, updatedData, { headers }).subscribe(
         () => {
-          this.router.navigate(['/'], { state: { message: 'Profildaten erfolgreich geändert!' } });
+          this.isEditing = false;
+          this.profileData = { ...updatedData };
+  
+          // Zeige die Erfolgsmeldung an und trigger Change Detection
+          this.showSuccessMessage = true;
+  
+          // Manuelle Auslösung der Change Detection
+          this.cdr.detectChanges(); 
+  
+          // Nach 2 Sekunden Weiterleitung zur Startseite
+          setTimeout(() => {
+            this.router.navigate(['/']);
+          }, 2000);
         },
         (error) => {
           console.error('Fehler beim Speichern der Daten:', error);
+        },
+        () => {
+          // Enable the button again after the request is finished
+          if (saveButton) {
+            saveButton.disabled = false; // Re-enable the button
+          }
         }
       );
-    } else {
-      console.error('Das Formular ist ungültig.');
+    }
+  }
+  
+  
+
+  saveAddressChanges(): void {
+    if (this.addressForm.valid) {
+      console.log('Address data:', this.addressForm.value);
+      this.isAddressEditing = false;
+      this.showPopupMessage('Lieferadresse erfolgreich gespeichert!');
     }
   }
 
@@ -106,5 +157,9 @@ export class ProfileComponent implements OnInit {
       }
     }
     return '';
+  }
+
+  private showPopupMessage(message: string): void {
+    alert(message); // Nachricht zur Benachrichtigung des Users
   }
 }

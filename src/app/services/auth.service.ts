@@ -8,30 +8,45 @@ import { environment } from '../../enviroments/environment';
 export class AuthService {
     constructor(private http: HttpClient) {}
 
-    login(email: string, password: string) {
-        const loginData = { email, password };
-
-        this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData).subscribe(
-            loginResponse => {
-                console.log('Login erfolgreich!', loginResponse);
-                
-                const token = loginResponse.access;
-        
-                localStorage.setItem('authToken', token);
-            },
-            error => {
-                console.log('Login fehlgeschlagen: ', error);
-                alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
-            }
-        );
+    private get authToken(): string | null {
+        return localStorage.getItem('authToken');
     }
 
-    logout() {
-        localStorage.removeItem('authToken');
+    private set authToken(token: string | null) {
+        if (token) {
+            localStorage.setItem('authToken', token);
+        } else {
+            localStorage.removeItem('authToken');
+        }
+    }
+
+    async login(email: string, password: string): Promise<void> {
+        const loginData = { email, password };
+        
+        try {
+            const loginResponse = await this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData).toPromise();
+            if (loginResponse) {
+                console.log('Login erfolgreich!', loginResponse);
+                this.authToken = loginResponse.access;
+            } else {
+                this.handleError('Unerwartete Antwort des Servers.');
+            }
+        } catch (error) {
+            this.handleError('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
+        }
+    }
+
+    logout(): void {
+        this.authToken = null;
         console.log('Logout erfolgreich');
     }
 
     isLoggedIn(): boolean {
-        return !!localStorage.getItem('authToken');
+        return !!this.authToken;
+    }
+
+    private handleError(error: any): void {
+        console.log('Ein Fehler ist aufgetreten:', error);
+        alert(error);
     }
 }
