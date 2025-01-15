@@ -1,62 +1,89 @@
-<header>
-  <div class="header-container">
-    <div class="logo">
-      <a routerLink="">
-        <img src="logo.png" alt="Hot Hardware Shop Logo">
+<div class="app-container">
+  <header class="header">
+    <div class="header-container">
+      <a routerLink="/" class="logo">
+        <img src="logo.png" alt="Hot Hardware Hub Logo" />
       </a>
-    </div>
-    <div class="search-bar">
-      <input type="text" placeholder="Suche nach Hardware..." />
-      <button>🔍</button>
-    </div>
-    <div class="user-actions">
-      <ul>
-        <li class="dropdown" *ngIf="!isLoggedIn">
-          <a href="javascript:void(0);" class="dropbtn">Hallo, Anmelden</a>
-          <div class="dropdown-content">
-            <a routerLink="/login">Anmelden</a>
-            <a routerLink="/registration">Konto erstellen</a>
-          </div>
-        </li>
-        <li class="dropdown" *ngIf="isLoggedIn"> 
-          <a href="javascript:void(0);" class="dropbtn">Mein Konto</a> 
-          <div class="dropdown-content"> 
-            <a routerLink="/admin-dashboard">Dashboard</a> 
-            <a routerLink="/profile">Konto</a>
-            <a routerLink="/order-history">Meine Bestellungen</a>
-            <a routerLink="/settings">Einstellungen</a> 
-            <a routerLink="/logout">Logout</a> 
-          </div> 
-        </li>
-        <li><a routerLink="/shopping-cart">🛒</a></li>
-      </ul>
-    </div>
-  </div>
-  <nav class="main-navigation">
-    <ul>
-      <li><a routerLink="">Laptop</a></li>
-    </ul>
-  </nav>
-</header>
 
-<router-outlet></router-outlet>
+      <div class="search-bar">
+        <input type="text" placeholder="Suche nach Hardware..." />
+        <button><span class="material-icons">search</span></button>
+      </div>
 
-<footer>
-  <div class="footer-container">
-    <div>
-      <h4>Über uns</h4>
-      <p>Hot Hardware Shop - Ihr IT-Spezialist für hochwertige Hardware.</p>
+      <nav class="user-actions">
+        <ul>
+          <li>
+            <a routerLink="/wishlist" class="wishlist">
+              <span class="material-icons">favorite</span>
+            </a>
+          </li>
+          <li class="dropdown" *ngIf="!isLoggedIn">
+            <a href="javascript:void(0);" class="dropicon-person">
+              <span class="material-icons">person</span>
+            </a>
+            <div class="dropdown-content">
+              <a routerLink="/login">Anmelden</a>
+              <a routerLink="/registration">Konto erstellen</a>
+            </div>
+          </li>
+          <li class="dropdown" *ngIf="isLoggedIn">
+            <a href="javascript:void(0);" class="dropicon-person">
+              <span class="material-icons">badge</span>
+            </a>
+            <div class="dropdown-content">
+              <a routerLink="/admin-dashboard">Dashboard</a>
+              <a routerLink="/profile">Konto</a>
+              <a routerLink="/order-history">Meine Bestellungen</a>
+              <a routerLink="/settings">Einstellungen</a>
+              <a routerLink="/logout">Logout</a>
+            </div>
+          </li>
+          <li>
+            <a routerLink="/shopping-cart" class="shopping-cart">
+              <span class="material-icons">shopping_cart</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <div>
-      <h4>Kontakt</h4>
-      <p>Email: <a href="mailto:hothardwarehub@gmail.com">hothardwarehub&#64;gmail.com</a></p>
-      <p>Telefon: +49 123 456789</p>
-    </div>
-    <div class="rechtliches">
-      <h4>Rechtliches</h4>
+
+    <nav class="main-navigation">
       <ul>
-        <li><a routerLink="/imprint">Impressum</a></li>
+        <li><a routerLink="/">Alle Produkte</a></li>
+        <li><a routerLink="/offers">Hot Deals</a></li>
+        <li><a routerLink="/laptops">Laptops</a></li>
+        <li><a routerLink="/desktop">Desktop PCs</a></li>
+        <li><a routerLink="/screens">Monitore</a></li>
+        <li><a routerLink="/accessories">Zubehör</a></li>
       </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <section class="footer-section">
+        <h4>Über uns</h4>
+        <p>© 2025 Hot Hardware Hub<br>Ihr IT-Shop für hochwertige Hardware.</p>
+        <p>Alle Rechte vorbehalten.</p>
+      </section>
+      <section class="footer-section">
+        <h4>Kontakt</h4>
+        <p><a href="mailto:hothardwarehub@gmail.com">hothardwarehub&#64;gmail.com</a></p>
+        <p>+49 123 456789</p>
+      </section>
+      <section class="footer-section">
+        <h4>Rechtliches</h4>
+        <ul>
+          <li><a routerLink="/imprint">Impressum</a></li>
+          <li><a routerLink="/privacy">Datenschutz</a></li>
+          <li><a routerLink="/ship_payment">Versand & Zahlung</a></li>
+          <li><a routerLink="/terms">AGB</a></li>
+        </ul>
+      </section>
     </div>
-  </div>
-</footer>
+  </footer>
+</div>
