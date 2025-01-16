@@ -14,9 +14,11 @@ import { SettingsComponent } from './settings/settings.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AboutComponent } from './about/about.component';
 
 
 export const routes: Routes = [
+    { path: 'about', component: AboutComponent },
     { path: 'admin-dashboard', component: AdminDashboardComponent},
     { path: 'confirmation', component: ConfirmationComponent},
     { path: 'customer-check', component: CustomerCheckComponent},

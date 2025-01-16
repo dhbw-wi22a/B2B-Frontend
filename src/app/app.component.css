@@ -73,7 +73,6 @@ html, body, .app-container {
   margin: 0;
 }
 
-
 .user-actions ul li a {
   text-decoration: none;
   padding: 5px 10px;
@@ -84,7 +83,6 @@ html, body, .app-container {
 .user-actions ul li a:hover {
   color: rgb(241, 180, 89);
 }
-
 
 .user-actions .dropdown {
   position: relative;
@@ -278,9 +276,25 @@ html, body, .app-container {
   text-align: left;
 }
 
+.footer-section h4 a {
+  color: rgb(241, 180, 89);
+  text-decoration: none;
+}
+
+.footer-section h4 a:hover {
+  color: rgb(213, 27, 21);
+}
+
 .footer-section p {
   margin: 5px 0;
   text-align: start;
+  justify-content: start;
+}
+
+.footer-section a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
   justify-content: start;
 }
 
@@ -296,13 +310,6 @@ html, body, .app-container {
 
 .footer-section ul li {
   margin: 0.2rem 0;
-}
-
-.footer-section a {
-  color: white;
-  text-decoration: none;
-  transition: color 0.3s ease;
-  justify-content: start;
 }
 
 /* Responsive Design */
