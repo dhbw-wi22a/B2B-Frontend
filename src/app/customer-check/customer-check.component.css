@@ -18,6 +18,12 @@
   width: 500px;
 }
 
+body.dark-mode .form-container {
+  background-color: #3a3a3a;
+  color: white;
+}
+
+/* Formular */
 form {
   display: flex;
   flex-direction: column;
@@ -33,6 +39,10 @@ form h2 {
   text-align: center;
 }
 
+body.dark-mode form h2 {
+  color: rgb(241, 180, 89);
+}
+
 /* Formularfelder */
 .form-group {
   width: 100%;
@@ -43,6 +53,7 @@ label {
   display: block;
   font-size: 1rem;
   margin-bottom: 0.5rem;
+  color: inherit;
 }
 
 .form-control {
@@ -54,6 +65,12 @@ label {
   border-radius: 4px;
   background-color: white;
   color: rgb(31, 50, 56);
+}
+
+body.dark-mode .form-control {
+  background-color: #2b2b2b;
+  color: white;
+  border: 1px solid rgb(241, 180, 89);
 }
 
 /* Buttons */
@@ -75,6 +92,16 @@ label {
   background-color: rgb(213, 27, 21);
   transform: scale(1.05);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .submit-btn {
+  background-color: rgb(241, 180, 89);
+  color: black;
+}
+
+body.dark-mode .submit-btn:hover {
+  background-color: rgb(213, 27, 21);
+  color: white;
 }
 
 .submit-btn[disabled] {
@@ -125,6 +152,16 @@ label {
   text-align: center;
 }
 
+body.dark-mode .already-registered button {
+  background-color: rgb(241, 180, 89);
+  color: black;
+}
+
+body.dark-mode .already-registered button:hover {
+  background-color: rgb(213, 27, 21);
+  color: white;
+}
+
 .already-registered button:hover {
   background-color: rgb(213, 27, 21);
   transform: scale(1.05);
@@ -135,6 +172,14 @@ label {
   color: rgb(241, 180, 89);
   text-decoration: none;
   font-size: 1rem;
+}
+
+body.dark-mode .already-registered a {
+  color: rgb(241, 180, 89);
+}
+
+body.dark-mode .already-registered a:hover {
+  color: rgb(213, 27, 21);
 }
 
 .already-registered a:hover {
@@ -158,10 +203,22 @@ label {
   margin-top: 2rem;
 }
 
+body.dark-mode .registration-footer {
+  background-color: rgb(20, 20, 20);
+}
+
 .registration-footer a {
   color: rgb(241, 180, 89);
   text-decoration: none;
   font-size: 1rem;
+}
+
+body.dark-mode .registration-footer a {
+  color: rgb(241, 180, 89);
+}
+
+body.dark-mode .registration-footer a:hover {
+  color: rgb(213, 27, 21);
 }
 
 .registration-footer a:hover {

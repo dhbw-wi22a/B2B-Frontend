@@ -1,5 +1,37 @@
 <div class="settings-section">
-    <h2>Account löschen</h2>
-    <p>Bitte beachten Sie, dass das Löschen Ihres Accounts nicht rückgängig gemacht werden kann.</p>
-    <button (click)="deleteAccount()">Account löschen</button>
+    <h2>Account-Einstellungen</h2>
+    <p>Ändern Sie Ihre Kontoeinstellungen unten.</p>
+    
+    <div>
+        <h3>Passwort ändern</h3>
+        <input type="password" placeholder="Neues Passwort">
+        <button (click)="changePassword()">Passwort ändern</button>
+    </div>
+    
+    <div>
+        <h3>Dark Mode</h3>
+        <div class="dark-mode-buttons">
+            <button (click)="setLightMode()" [class.active]="!isDarkMode">
+                ☀️
+            </button>
+            <button (click)="setDarkMode()" [class.active]="isDarkMode">
+                🌙
+            </button>
+        </div>
+    </div>
+    
+    <div>
+        <h3>Sprache ändern</h3>
+        <select (change)="changeLanguage($event)">
+            <option value="de">Deutsch</option>
+            <option value="en">Englisch</option>
+            <!-- Weitere Optionen hinzufügen -->
+        </select>
+    </div>
+    
+    <div>
+        <h3>Account löschen</h3>
+        <p>Bitte beachten Sie, dass das Löschen Ihres Accounts nicht rückgängig gemacht werden kann.</p>
+        <button (click)="deleteAccount()">Account löschen</button>
+    </div>
 </div>

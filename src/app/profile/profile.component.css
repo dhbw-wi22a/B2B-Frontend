@@ -1,5 +1,17 @@
-/* Allgemeine Stile für Container */
-.profile-container,
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgb(241, 180, 89);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .profile-container {
+    background-color: #3a3a3a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
 .address-container {
     max-width: 600px;
     margin: 2rem auto;
@@ -9,29 +21,11 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.success-message {
-    background-color: rgb(54, 118, 129);  /* Farbton an den restlichen Designstil angepasst */
-    color: white;
-    padding: 15px;
-    margin: 10px 0;
-    text-align: center;
-    border-radius: 5px;
-    font-size: 16px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Schatten für bessere Sichtbarkeit */
-    animation: fadeIn 1s ease-out;
+body.dark-mode .address-container {
+    background-color: #3a3a3a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* Faded-in Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-/* Header-Style */
 .header {
     display: flex;
     justify-content: space-between;
@@ -48,6 +42,10 @@ h2 {
     font-size: 2rem;
 }
 
+body.dark-mode h2 {
+    color: rgb(241, 180, 89);
+}
+
 .edit-btn {
     padding: 0.5rem 1rem;
     background-color: rgb(54, 88, 97);
@@ -62,7 +60,6 @@ h2 {
     background-color: rgb(31, 50, 56);
 }
 
-/* Form-Container und Feld-Stile */
 .form-group {
     margin-bottom: 2rem;
 }
@@ -92,6 +89,12 @@ input {
     border-radius: 5px;
 }
 
+body.dark-mode input {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid rgb(241, 180, 89);
+}
+
 .save-btn {
     display: block;
     margin: 1.5rem auto 0;
@@ -108,7 +111,14 @@ input {
     background-color: rgb(31, 50, 56);
 }
 
-/* Popup (Error) - Optional */
+body.dark-mode .save-btn {
+    background-color: rgb(241, 180, 89);
+}
+
+body.dark-mode .save-btn:hover {
+    background-color: rgb(213, 27, 21);
+}
+
 .popup {
     position: fixed;
     top: 20px;

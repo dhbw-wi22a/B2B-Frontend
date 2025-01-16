@@ -1,5 +1,6 @@
 /* Allgemeine Stile */
 body {
+    font-family: Arial, sans-serif;
     color: rgb(31, 50, 56);
     background-color: rgb(241, 180, 89);
     margin: 0;
@@ -9,6 +10,11 @@ body {
     align-items: center;
     min-height: 100vh;
     text-align: center;
+}
+
+body.dark-mode {
+    background-color: rgb(20, 20, 20);
+    color: white;
 }
 
 .order-success {
@@ -22,10 +28,19 @@ body {
     margin-bottom: 1.5rem;
 }
 
+body.dark-mode .order-success {
+    background: #3a3a3a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
 h2 {
     color: rgb(213, 27, 21);
     font-size: 2rem;
     margin-bottom: 1rem;
+}
+
+body.dark-mode h2 {
+    color: rgb(241, 180, 89);
 }
 
 .success-message {
@@ -37,6 +52,11 @@ h2 {
     border-radius: 5px;
 }
 
+body.dark-mode .success-message {
+    color: white;
+    background-color: #4e4e4e;
+}
+
 .summary, .items-section {
     margin-top: 1.5rem;
 }
@@ -46,6 +66,11 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
+body.dark-mode .summary h3,
+body.dark-mode .items-section h4 {
+    color: rgb(241, 180, 89);
+}
+
 p {
     line-height: 1.6;
     color: rgb(31, 50, 56);
@@ -53,8 +78,16 @@ p {
     margin: 0.5rem 0;
 }
 
+body.dark-mode p {
+    color: white;
+}
+
 strong {
     color: rgb(54, 88, 97);
+}
+
+body.dark-mode strong {
+    color: rgb(241, 180, 89);
 }
 
 ul {
@@ -82,6 +115,11 @@ ul {
     margin: 0.5rem;
 }
 
+body.dark-mode .order-items li {
+    background-color: #4e4e4e;
+    border: 1px solid rgb(241, 180, 89);
+}
+
 .order-items li span {
     display: inline-block;
 }
@@ -103,6 +141,16 @@ button.home-button {
 button.home-button:hover {
     background-color: rgb(31, 50, 56);
     transform: scale(1.05);
+}
+
+body.dark-mode button.home-button {
+    background-color: rgb(241, 180, 89);
+    color: black;
+}
+
+body.dark-mode button.home-button:hover {
+    background-color: rgb(213, 27, 21);
+    color: white;
 }
 
 /* Responsive Design */

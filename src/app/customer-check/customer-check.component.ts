@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
   selector: 'an-customer-check',
@@ -12,7 +13,11 @@ import { Router } from '@angular/router';
 export class CustomerCheckComponent implements OnInit {
   customercheckForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private darkModeService: DarkModeService
+  ) {
     this.customercheckForm = this.fb.group({
       company: [''],
       firstName: ['', Validators.required],
@@ -26,7 +31,13 @@ export class CustomerCheckComponent implements OnInit {
     });
   }
   
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.darkModeService.isDarkModeEnabled()) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }
 
   onSubmit(): void {
     if (this.customercheckForm.valid) {

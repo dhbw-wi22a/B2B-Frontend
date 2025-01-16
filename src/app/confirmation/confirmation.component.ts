@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgIf, NgFor } from '@angular/common';
+import { DarkModeService } from '../services/dark-mode.service';
 
 interface CartItem {
   item_id: number;
@@ -30,7 +31,7 @@ interface OrderDetails {
 export class ConfirmationComponent implements OnInit {
   orderDetails: OrderDetails | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private darkModeService: DarkModeService) {}
 
   ngOnInit(): void {
     const storedOrderDetails = localStorage.getItem('orderDetails');
@@ -45,6 +46,12 @@ export class ConfirmationComponent implements OnInit {
       } catch (error) {
         console.error('Fehler beim Parsen der Bestelldetails:', error);
       }
+    }
+
+    if (this.darkModeService.isDarkModeEnabled()) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
     }
   }
 
