@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
 html, body {
   margin: 0;
   padding: 0;
@@ -16,6 +16,12 @@ body.dark-mode {
 
 body.dark-mode .header-container {
   background-color: #3a3a3a;
+  color: white;
+}
+
+body.dark-mode .search-bar {
+  background-color: #2b2b2b; 
+  color: white;
 }
 
 body.dark-mode .search-bar input {
@@ -29,19 +35,72 @@ body.dark-mode .search-bar button {
 
 body.dark-mode .user-actions ul li a {
   color: white;
+  background-color: transparent !important; 
+}
+
+body.dark-mode .user-actions ul li a .material-icons {
+  background-color: transparent !important; 
+  color: white !important;
+}
+
+body.dark-mode .user-actions ul li a:hover {
+  background-color: #555 !important; 
+}
+
+body.dark-mode .dropicon-person {
+  background-color: transparent !important; 
+  color: white !important; 
+}
+
+body.dark-mode .user-actions .dropdown-content {
+  background-color: #2a2a2a; 
+  border-color: #444;
+}
+
+body.dark-mode .user-actions .dropdown-content a {
+  color: white; 
+}
+
+body.dark-mode .user-actions .dropdown-content a:hover {
+  background-color: #555;
+}
+
+body.dark-mode .main-navigation {
+  background-color: #3a3a3a;
 }
 
 body.dark-mode .main-navigation ul {
   background-color: #3a3a3a;
 }
 
+body.dark-mode .main-navigation li a {
+  color: white; 
+}
+
+body.dark-mode .main-navigation li a:hover {
+  color: rgb(241, 180, 89);
+}
+
 body.dark-mode .category-item {
   background-color: #4e4e4e;
 }
 
-body.dark-mode footer {
+body.dark-mode .footer {
   background-color: #3a3a3a;
+  color: white;
 }
+
+body.dark-mode .footer-section h4,
+body.dark-mode .footer-section p,
+body.dark-mode .footer-section a {
+  color: white;
+}
+
+body.dark-mode .footer-section h4 a:hover,
+body.dark-mode .footer-section a:hover {
+  color: rgb(241, 180, 89);
+}
+
 
 /* Impressum Section */
 body.dark-mode .impressum {

@@ -23,7 +23,7 @@ html, body, .app-container {
   color: white;
   position: fixed;
   width: 100%;
-  height: 100px; /* Höhe des Headers */
+  height: 100px;
   top: 0;
   z-index: 1000;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -132,8 +132,8 @@ html, body, .app-container {
   padding: 0.5rem 1rem;
   text-align: center;
   width: 100%;
-  position: relative; /* Verhindert Überschneidungen */
-  top: 100px; /* Genau unter dem Header positionieren */
+  position: relative;
+  top: 100px;
   z-index: 999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -151,7 +151,7 @@ html, body, .app-container {
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-size: 0.9rem; /* Kleinere Schriftgröße */
+  font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
@@ -376,7 +376,7 @@ html, body, .app-container {
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 28px; /* Icon-Größe */
+  font-size: 28px;
   display: inline-block;
   line-height: 1;
   text-transform: none;
