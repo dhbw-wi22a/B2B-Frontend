@@ -34,3 +34,8 @@ temp/
 
 # Docker-related files (exclude only if needed)
 docker-compose.override.yml
+
+.env*
+.flaskenv*
+!.env.project
+!.env.vault

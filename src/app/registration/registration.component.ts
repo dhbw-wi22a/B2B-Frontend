@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { environment } from '../../enviroments/environment';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'an-registration',

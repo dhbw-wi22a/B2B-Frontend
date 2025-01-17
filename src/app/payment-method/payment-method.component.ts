@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
-import { environment } from '../../../src/enviroments/environment';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'an-payment-method',
@@ -40,7 +40,7 @@ export class PaymentMethodComponent implements OnInit {
     this.f['paymentType'].setValue(value);
 
     const controlsToUpdate = ['cardName', 'cardNumber', 'cardExpiry', 'cardCvc', 'paypalEmail', 'bankAccount', 'bankIban', 'bankBic'];
-    
+
     controlsToUpdate.forEach(control => {
       const formControl = this.f[control];
       if (!formControl) return;
@@ -67,13 +67,13 @@ export class PaymentMethodComponent implements OnInit {
         item_name: item.item_details.item_name,
         quantity: item.quantity
       }));
-      
+
       console.log('Abgerufene Käuferinformationen:', orderDetails);
-  
+
       orderDetails.items = cartItems;
-  
+
       console.log('Sende Bestellung an das Backend:', orderDetails);
-      
+
       this.http.post(`${environment.apiUrl}/orders/?format=json`, orderDetails)
         .subscribe(response => {
           console.log('Bestellung erfolgreich an das Backend gesendet:', response);

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../enviroments/environment';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthService {
 
     async login(email: string, password: string): Promise<void> {
         const loginData = { email, password };
-        
+
         try {
             const loginResponse = await this.http.post<{ access: string }>(`${environment.apiUrl}/auth/login/`, loginData).toPromise();
             if (loginResponse) {

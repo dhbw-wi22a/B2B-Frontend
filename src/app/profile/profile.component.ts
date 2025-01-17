@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { NgIf, CommonModule } from '@angular/common';
 import { catchError } from 'rxjs/operators';
-import { environment } from '../../enviroments/environment';
+import { environment } from '../../environments/environment';
 import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
@@ -133,7 +133,7 @@ export class ProfileComponent implements OnInit {
   showPopupMessage(message: string, isError: boolean = false): void {
     const popup = this.renderer.createElement('div');
     const text = this.renderer.createText(message);
-    
+
     this.renderer.appendChild(popup, text);
     this.renderer.addClass(popup, 'popup');
     this.renderer.setStyle(popup, 'background-color', isError ? 'rgb(213, 27, 21)' : '#4caf50');
@@ -141,7 +141,7 @@ export class ProfileComponent implements OnInit {
 
     setTimeout(() => {
       this.renderer.removeChild(document.body, popup);
-    }, 2000); 
+    }, 2000);
   }
 
   private handleError(error: any): void {

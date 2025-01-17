@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Renderer2, ChangeDetectorRef } from '@ang
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgFor, NgIf } from '@angular/common';
-import { environment } from '../../../src/enviroments/environment';
+import { environment } from '../../environments/environment';
 import { interval, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router, NavigationEnd } from '@angular/router';
@@ -26,7 +26,7 @@ interface Product {
   item_details: ItemDetails;
   item_stock: number;
   article_id: string;
-  quantity: number; 
+  quantity: number;
 }
 
 @Component({
@@ -39,8 +39,8 @@ interface Product {
 export class ProductsComponent implements OnInit, OnDestroy {
   products: Product[] = [];
   productForm: FormGroup;
-  currentImages: { [key: number]: string } = {}; 
-  private intervalSubscription?: Subscription;  
+  currentImages: { [key: number]: string } = {};
+  private intervalSubscription?: Subscription;
   private routerSubscription?: Subscription;
   selectedProduct: Product | null = null;
 
@@ -156,7 +156,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   showPopupMessage(message: string, isError: boolean = false): void {
     const popup = this.renderer.createElement('div');
     const text = this.renderer.createText(message);
-    
+
     this.renderer.appendChild(popup, text);
     this.renderer.addClass(popup, 'popup');
     this.renderer.setStyle(popup, 'background-color', isError ? 'rgb(213, 27, 21)' : '#4caf50');
@@ -164,7 +164,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
     setTimeout(() => {
       this.renderer.removeChild(document.body, popup);
-    }, 2000); 
+    }, 2000);
   }
 
   trackByItemId(index: number, post: Product): number {
