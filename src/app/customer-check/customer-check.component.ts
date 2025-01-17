@@ -15,8 +15,7 @@ export class CustomerCheckComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
-    private darkModeService: DarkModeService
+    private router: Router
   ) {
     this.customercheckForm = this.fb.group({
       company: [''],
@@ -32,11 +31,6 @@ export class CustomerCheckComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    if (this.darkModeService.isDarkModeEnabled()) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
   }
 
   onSubmit(): void {

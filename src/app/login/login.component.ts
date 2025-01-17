@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../environments/environment';
+import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
   selector: 'an-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private darkModeService: DarkModeService) {}
 
   login() {
     const loginData = {
@@ -39,6 +40,10 @@ export class LoginComponent {
 
   navigateToStartseite(): void {
     this.router.navigate(['/']);
+  }
+
+  toggleDarkMode(): void {
+    this.darkModeService.toggleDarkMode();
   }
 
   private handleLoginError(error: any): void {

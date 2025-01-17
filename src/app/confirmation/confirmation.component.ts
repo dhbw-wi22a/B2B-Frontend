@@ -47,12 +47,6 @@ export class ConfirmationComponent implements OnInit {
         console.error('Fehler beim Parsen der Bestelldetails:', error);
       }
     }
-
-    if (this.darkModeService.isDarkModeEnabled()) {
-      document.body.classList.add('dark-mode');
-    } else {
-      document.body.classList.remove('dark-mode');
-    }
   }
 
   navigateToHome(): void {

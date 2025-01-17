@@ -9,10 +9,6 @@
     font-family: Arial, sans-serif;
 }
 
-body.dark-mode .impressum {
-    background-color: #3a3a3a;
-    color: white;
-}
 
 .impressum h1 {
     font-size: 2rem;
@@ -20,19 +16,11 @@ body.dark-mode .impressum {
     margin-bottom: 1rem;
 }
 
-body.dark-mode .impressum h1 {
-    color: rgb(241, 180, 89);
-}
-
 .impressum p {
     font-size: 1rem;
     line-height: 1.6;
     margin-bottom: 1.5rem;
     color: #f1f1f1;
-}
-
-body.dark-mode .impressum p {
-    color: white;
 }
 
 .impressum a {
@@ -45,19 +33,7 @@ body.dark-mode .impressum p {
     color: rgb(213, 27, 21);
 }
 
-body.dark-mode .impressum a {
-    color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum a:hover {
-    color: rgb(213, 27, 21);
-}
-
 .impressum strong {
-    color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum strong {
     color: rgb(241, 180, 89);
 }
 
@@ -66,10 +42,6 @@ body.dark-mode .impressum strong {
     font-size: 1.5rem;
     color: rgb(241, 180, 89);
     margin-top: 2rem;
-}
-
-body.dark-mode .impressum h2 {
-    color: rgb(241, 180, 89);
 }
 
 /* Kontakt Abschnitt */
@@ -81,10 +53,6 @@ body.dark-mode .impressum h2 {
     font-size: 1rem;
 }
 
-body.dark-mode .impressum .contact p {
-    color: white;
-}
-
 /* Haftungsausschluss und Datenschutz */
 .impressum .disclaimer {
     background-color: rgb(31, 50, 56);
@@ -93,23 +61,11 @@ body.dark-mode .impressum .contact p {
     margin-top: 2rem;
 }
 
-body.dark-mode .impressum .disclaimer {
-    background-color: #2a2a2a;
-}
-
 .impressum .disclaimer p {
     color: #f1f1f1;
 }
 
-body.dark-mode .impressum .disclaimer p {
-    color: white;
-}
-
 .impressum .disclaimer h3 {
-    color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum .disclaimer h3 {
     color: rgb(241, 180, 89);
 }
 

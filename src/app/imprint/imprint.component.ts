@@ -14,8 +14,13 @@ export class ImprintComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.updateDarkMode();
+  }
+
+  private updateDarkMode(): void {
     const isDarkModeEnabled = this.darkModeService.isDarkModeEnabled();
     console.log('Dark Mode Status:', isDarkModeEnabled);
+
     if (isDarkModeEnabled) {
       this.renderer.addClass(document.body, 'dark-mode');
       console.log('Dark Mode aktiviert:', document.body.classList);

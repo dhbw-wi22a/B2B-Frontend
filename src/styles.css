@@ -1,3 +1,16 @@
+/* Farbvariablen */
+:root {
+  --bg-dark: #333;
+  --bg-darker: #2a2a2a;
+  --bg-darkest: #3a3a3a;
+  --text-light: #ffffff;
+  --accent: #ffb746;
+  --accent-hover: #d51b15;
+  --border-dark: #555;
+  --bg-primary: rgb(20, 20, 20);
+  --text-primary: white;
+}
+
 /* Global Styles */
 html, body {
   margin: 0;
@@ -10,299 +23,206 @@ html, body {
 
 /* Global Dark Mode Stile */
 body.dark-mode {
-  background-color: rgb(20, 20, 20);
-  color: white;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
-/* Ergänzungen für .about Section */
+/* Dark Mode Styles für die Logout-Komponente */
+body.dark-mode .logout-container {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .logout-container p {
+  color: var(--text-light);
+}
+
+body.dark-mode .logout-container button {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .logout-container button:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .logout-container a {
+  color: var(--accent);
+}
+
+body.dark-mode .logout-container a:hover {
+  color: var(--accent-hover);
+}
+
+/* Dark Mode Styles für das Impressum */
+body.dark-mode .impressum {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .impressum h1,
+body.dark-mode .impressum h2,
+body.dark-mode .impressum strong {
+  color: var(--accent);
+}
+
+body.dark-mode .impressum a {
+  color: var(--accent);
+}
+
+body.dark-mode .impressum a:hover {
+  color: var(--accent-hover);
+}
+
+/* Dark Mode Styles für das Anmeldeformular */
+body.dark-mode .an-login {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .an-login h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .an-login label {
+  color: var(--text-light);
+}
+
+body.dark-mode .an-login input[type="email"],
+body.dark-mode .an-login input[type="password"],
+body.dark-mode .an-login input[type="checkbox"] {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .an-login button[type="submit"],
+body.dark-mode .an-login button[type="reset"] {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .an-login button[type="submit"]:hover,
+body.dark-mode .an-login button[type="reset"]:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .an-login .forgot-password a {
+  color: var(--accent);
+}
+
+body.dark-mode .an-login .forgot-password a:hover {
+  color: var(--accent-hover);
+}
+
+/* Weitere Dark Mode Stile */
+body.dark-mode .about,
+body.dark-mode .header-container,
+body.dark-mode .search-bar,
+body.dark-mode .user-actions .dropdown-content,
+body.dark-mode .main-navigation,
+body.dark-mode .category-item,
+body.dark-mode .footer,
+body.dark-mode .profile-container,
+body.dark-mode .address-container,
+body.dark-mode .form-container,
+body.dark-mode .registration-footer {
+  background-color: var(--bg-darkest);
+  color: var(--text-light);
+}
+
+body.dark-mode .about a,
+body.dark-mode .footer-section a,
+body.dark-mode .impressum a,
+body.dark-mode .already-registered a,
+body.dark-mode .registration-footer a {
+  color: var(--accent);
+}
+
+body.dark-mode .about a:hover,
+body.dark-mode .footer-section a:hover,
+body.dark-mode .impressum a:hover,
+body.dark-mode .already-registered a:hover,
+body.dark-mode .registration-footer a:hover {
+  color: var(--accent-hover);
+}
+
+body.dark-mode .search-bar input,
+body.dark-mode input {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+}
+
+body.dark-mode .order-items li {
+  background-color: var(--bg-darker);
+  border: 1px solid var(--accent);
+}
+
+body.dark-mode .material-icons,
+body.dark-mode .dropicon-person {
+  color: var(--text-light);
+  background-color: transparent !important;
+}
+
+body.dark-mode .user-actions ul li a {
+  color: var(--text-light);
+  background-color: transparent !important;
+}
+
+body.dark-mode .user-actions ul li a:hover,
+body.dark-mode .user-actions .dropdown-content a:hover {
+  background-color: #555 !important;
+}
+
+/* Stile für spezifische Abschnitte */
 body.dark-mode .about {
-  background-color: #2a2a2a;
   padding: 2rem;
   border-radius: 8px;
   margin: 2rem auto;
 }
 
-body.dark-mode .about h1 {
-  color: rgb(241, 180, 89);
+body.dark-mode .about h1,
+body.dark-mode h2,
+body.dark-mode .summary h3,
+body.dark-mode .items-section h4,
+body.dark-mode .impressum h1,
+body.dark-mode .impressum h2,
+body.dark-mode .impressum .disclaimer h3 {
+  color: var(--accent);
 }
 
 body.dark-mode .about h2 {
   color: rgb(213, 27, 21);
 }
 
-body.dark-mode .about p {
-  color: white;
+body.dark-mode p,
+body.dark-mode .about p,
+body.dark-mode .success-message,
+body.dark-mode .error-message {
+  color: var(--text-light);
 }
 
-body.dark-mode .about a {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .about a:hover {
-  color: rgb(213, 27, 21);
-}
-
-/* ... weitere Dark Mode Stile ... */
-
-body.dark-mode .header-container {
-  background-color: #3a3a3a;
-  color: white;
-}
-
-body.dark-mode .search-bar {
-  background-color: #2b2b2b; 
-  color: white;
-}
-
-body.dark-mode .search-bar input {
-  background-color: #2b2b2b;
-  color: white;
-}
-
-body.dark-mode .search-bar button {
-  background-color: #ffb74d;
-}
-
-body.dark-mode .user-actions ul li a {
-  color: white;
-  background-color: transparent !important; 
-}
-
-body.dark-mode .user-actions ul li a .material-icons {
-  background-color: transparent !important; 
-  color: white !important;
-}
-
-body.dark-mode .user-actions ul li a:hover {
-  background-color: #555 !important; 
-}
-
-body.dark-mode .dropicon-person {
-  background-color: transparent !important; 
-  color: white !important; 
-}
-
-body.dark-mode .user-actions .dropdown-content {
-  background-color: #2a2a2a; 
-  border-color: #444;
-}
-
-body.dark-mode .user-actions .dropdown-content a {
-  color: white; 
-}
-
-body.dark-mode .user-actions .dropdown-content a:hover {
-  background-color: #555;
-}
-
-body.dark-mode .main-navigation {
-  background-color: #3a3a3a;
-}
-
-body.dark-mode .main-navigation ul {
-  background-color: #3a3a3a;
-}
-
-body.dark-mode .main-navigation li a {
-  color: white; 
-}
-
-body.dark-mode .main-navigation li a:hover {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .category-item {
+body.dark-mode .order-success,
+body.dark-mode .success-message {
   background-color: #4e4e4e;
 }
 
-body.dark-mode .footer {
-  background-color: #3a3a3a;
-  color: white;
+body.dark-mode .order-success {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .footer-section h4,
-body.dark-mode .footer-section p,
-body.dark-mode .footer-section a {
-  color: white;
-}
-
-body.dark-mode .footer-section h4 a:hover,
-body.dark-mode .footer-section a:hover {
-  color: rgb(241, 180, 89);
-}
-
-
-/* Impressum Section */
-body.dark-mode .impressum {
-  background-color: #3a3a3a;
-  color: white;
-  padding: 2rem;
-  border-radius: 8px;
-  margin: 2rem auto;
-}
-
-body.dark-mode .impressum h1 {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum p {
-  color: white;
-}
-
-body.dark-mode .impressum a {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum a:hover {
-  color: rgb(213, 27, 21);
-}
-
+body.dark-mode strong,
 body.dark-mode .impressum strong {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum h2 {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .impressum .contact p {
-  color: white;
+  color: var(--accent);
 }
 
 body.dark-mode .impressum .disclaimer {
-  background-color: #2a2a2a;
+  background-color: var(--bg-darker);
 }
 
-body.dark-mode .impressum .disclaimer p {
-  color: white;
-}
-
-body.dark-mode .impressum .disclaimer h3 {
-  color: rgb(241, 180, 89);
-}
-
-/* Zusätzliche Dark Mode Stile */
-body.dark-mode .order-success {
-  background: #3a3a3a;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode h2 {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .success-message {
-  color: white;
-  background-color: #4e4e4e;
-}
-
-body.dark-mode .summary h3,
-body.dark-mode .items-section h4 {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode p {
-  color: white;
-}
-
-body.dark-mode strong {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .order-items li {
-  background-color: #4e4e4e;
-  border: 1px solid rgb(241, 180, 89);
-}
-
-body.dark-mode button.home-button {
-  background-color: rgb(241, 180, 89);
-}
-
-body.dark-mode button.home-button:hover {
-  background-color: rgb(213, 27, 21);
-}
-
-body.dark-mode .profile-container,
-body.dark-mode .address-container {
-  background-color: #3a3a3a;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode input {
-  background-color: #2b2b2b;
-  color: white;
-  border: 1px solid rgb(241, 180, 89);
-}
-
-body.dark-mode .save-btn {
-  background-color: rgb(241, 180, 89);
-}
-
-body.dark-mode .save-btn:hover {
-  background-color: rgb(213, 27, 21);
-}
-
-/* Formular und Eingabefelder */
-body.dark-mode .form-container {
-  background-color: #3a3a3a;
-  color: white;
-}
-
-body.dark-mode form h2 {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .form-control {
-  background-color: #2b2b2b;
-  color: white;
-  border: 1px solid rgb(241, 180, 89);
-}
-
-body.dark-mode .submit-btn {
-  background-color: rgb(241, 180, 89);
-  color: black;
-}
-
-body.dark-mode .submit-btn:hover {
-  background-color: rgb(213, 27, 21);
-  color: white;
-}
-
-body.dark-mode .already-registered button {
-  background-color: rgb(241, 180, 89);
-  color: black;
-}
-
-body.dark-mode .already-registered button:hover {
-  background-color: rgb(213, 27, 21);
-  color: white;
-}
-
-body.dark-mode .already-registered a {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .already-registered a:hover {
-  color: rgb(213, 27, 21);
-  text-decoration: underline;
-}
-
-body.dark-mode .registration-footer {
-  background-color: rgb(20, 20, 20);
-}
-
-body.dark-mode .registration-footer a {
-  color: rgb(241, 180, 89);
-}
-
-body.dark-mode .registration-footer a:hover {
-  color: rgb(213, 27, 21);
-}
-
-/* Optional: Linie zwischen den Buttons */
 body.dark-mode .registration-footer::before {
   content: "";
-  border-left: 1px solid rgb(241, 180, 89);
+  border-left: 1px solid var(--accent);
   height: 2rem;
   margin: 0 1rem;
 }
@@ -314,7 +234,6 @@ body.dark-mode .error-message {
 
 body.dark-mode .success-message {
   color: rgb(34, 139, 34);
-  background-color: #4e4e4e;
 }
 
 /* Responsive Design */
