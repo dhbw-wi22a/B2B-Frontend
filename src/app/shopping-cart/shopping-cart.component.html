@@ -1,27 +1,29 @@
-<h1>{{ getTotalItems() }} Artikel im Warenkorb</h1>
+<div class="shopping-cart-container">
+  <h1>{{ getTotalItems() }} Artikel im Warenkorb</h1>
 
-<div *ngIf="isCartEmpty()" class="cart-empty-message">Warenkorb ist leer</div>
+  <div *ngIf="isCartEmpty()" class="cart-empty-message">Warenkorb ist leer</div>
 
-<div *ngFor="let post of uniqueCartItems; trackBy: trackByItemId" class="product-container">
-  <div class="product-card">
-    <h3 class="product-title">{{ post.item_details.item_name }}</h3>
-    <img [src]="post.item_details.images[0].image" alt="Produktbild" class="product-image">
-    <p>{{ post.item_details.item_description }}</p>
-    <p class="product-price">{{ post.item_price }} € pro Stück</p>
-    <p class="product-tax">exkl. 19% USt</p>
+  <div *ngFor="let post of uniqueCartItems; trackBy: trackByItemId" class="product-container">
+    <div class="product-card">
+      <h3 class="product-title">{{ post.item_details.item_name }}</h3>
+      <img [src]="post.item_details.images[0].image" alt="Produktbild" class="product-image">
+      <p>{{ post.item_details.item_description }}</p>
+      <p class="product-price">{{ post.item_price }} € pro Stück</p>
+      <p class="product-tax">exkl. 19% USt</p>
 
-    <!-- Anzahl ändern -->
-    <div class="quantity-selector">
-      <label for="quantity-{{ post.item_id }}">Anzahl:</label>
-      <input id="quantity-{{ post.item_id }}" type="number" [(ngModel)]="post.quantity" (change)="updateCart()" min="1">
+      <!-- Anzahl ändern -->
+      <div class="quantity-selector">
+        <label for="quantity-{{ post.item_id }}">Anzahl:</label>
+        <input id="quantity-{{ post.item_id }}" type="number" [(ngModel)]="post.quantity" (change)="updateCart()" min="1">
+      </div>
+
+      <p>Gesamtpreis: {{ getTotalPrice(post) }} €</p>
+
+      <!-- Artikel entfernen -->
+      <button class="remove-from-cart-btn" (click)="removeFromCart(post.item_id)">Entfernen</button>
     </div>
-
-    <p>Gesamtpreis: {{ getTotalPrice(post) }} €</p>
-
-    <!-- Artikel entfernen -->
-    <button class="remove-from-cart-btn" (click)="removeFromCart(post.item_id)">Entfernen</button>
   </div>
-</div>
 
-<!-- Weiterleitungsbutton -->
-<button *ngIf="!isCartEmpty()" class="proceed-to-checkout-btn" (click)="navigateToCustomerPage()">Zur Kasse gehen</button>
+  <!-- Weiterleitungsbutton -->
+  <button *ngIf="!isCartEmpty()" class="proceed-to-checkout-btn" (click)="navigateToCustomerPage()">Zur Kasse gehen</button>
+</div>

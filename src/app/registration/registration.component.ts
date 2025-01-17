@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
   selector: 'an-registration',
@@ -11,7 +12,7 @@ import { environment } from '../../environments/environment';
   styleUrls: ['./registration.component.css'],
   imports: [FormsModule, NgIf, HttpClientModule]
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit {  
   firstName: string = '';
   lastName: string = '';
   companyName: string = '';
@@ -22,7 +23,17 @@ export class RegistrationComponent {
   termsAccepted: boolean = false;
   errorMessage: string = '';
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient, private darkModeService: DarkModeService) {} 
+
+  ngOnInit(): void {
+    const isDarkModeEnabled = this.darkModeService.isDarkModeEnabled();
+    if (isDarkModeEnabled) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    console.log('Dark Mode Status:', isDarkModeEnabled);
+  }
 
   navigateToStartseite(): void {
     this.router.navigate(['/']);

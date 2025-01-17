@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 import { interval, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router, NavigationEnd } from '@angular/router';
+import { DarkModeService } from '../services/dark-mode.service'; 
 
 interface Image {
   image_id: number;
@@ -49,7 +50,8 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
-    private router: Router
+    private router: Router,
+    private darkModeService: DarkModeService
   ) {
     this.productForm = this.fb.group({});
   }
@@ -61,6 +63,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
         this.fetchProducts();
       }
     });
+
+    const isDarkModeEnabled = this.darkModeService.isDarkModeEnabled();
+    if (isDarkModeEnabled) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    console.log('Dark Mode Status:', isDarkModeEnabled);
   }
 
   ngOnDestroy(): void {

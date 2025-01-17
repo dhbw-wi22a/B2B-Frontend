@@ -27,6 +27,122 @@ body.dark-mode {
   color: var(--text-primary);
 }
 
+/* Dark Mode Styles für die Products-Komponente */
+body.dark-mode .product-container {
+  color: var(--text-light);
+}
+
+body.dark-mode .product-container .product-card {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .product-container .product-title {
+  color: var(--accent);
+}
+
+body.dark-mode .product-container .product-price,
+body.dark-mode .product-container .product-stock,
+body.dark-mode .product-container .product-description {
+  color: var(--text-light);
+}
+
+body.dark-mode .product-container .product-image {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+body.dark-mode .modal .modal-content {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+body.dark-mode .modal .close {
+  color: var(--text-light);
+}
+
+body.dark-mode .modal .product-title {
+  color: var(--accent);
+}
+
+body.dark-mode .modal .product-description,
+body.dark-mode .modal .product-price,
+body.dark-mode .modal .product-tax,
+body.dark-mode .modal .product-stock,
+body.dark-mode .modal .quantity-selector label {
+  color: #ffffff;
+}
+
+body.dark-mode .quantity-selector input {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .add-to-cart-btn {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .add-to-cart-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Dark Mode Styles für die Shopping Cart-Komponente */
+body.dark-mode .shopping-cart-container {
+  color: var(--text-light);
+}
+
+body.dark-mode .shopping-cart-container h1,
+body.dark-mode .shopping-cart-container h3 {
+  color: var(--accent);
+}
+
+body.dark-mode .shopping-cart-container label,
+body.dark-mode .shopping-cart-container p {
+  color: var(--text-light);
+}
+
+body.dark-mode .shopping-cart-container .product-card {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+body.dark-mode .shopping-cart-container .product-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+body.dark-mode .shopping-cart-container .quantity-selector input {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .shopping-cart-container .remove-from-cart-btn,
+body.dark-mode .shopping-cart-container .proceed-to-checkout-btn {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .shopping-cart-container .remove-from-cart-btn:hover,
+body.dark-mode .shopping-cart-container .proceed-to-checkout-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .shopping-cart-container .cart-empty-message {
+  color: var(--text-primary);
+}
+
 /* Dark Mode Styles für die Logout-Komponente */
 body.dark-mode .logout-container {
   background-color: var(--bg-dark);
@@ -72,6 +188,78 @@ body.dark-mode .impressum a {
 
 body.dark-mode .impressum a:hover {
   color: var(--accent-hover);
+}
+/* Dark Mode Styles für die Payment-Komponente */
+body.dark-mode .payment-container {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-container h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .payment-container label {
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-container input[type="text"],
+body.dark-mode .payment-container input[type="email"],
+body.dark-mode .payment-container input[type="number"] {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .payment-container button[type="submit"] {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .payment-container button[type="submit"]:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .payment-container .error-message {
+  color: rgb(213, 27, 21);
+}
+
+/* Dark Mode Styles für das Anmeldeformular */
+body.dark-mode .registration-container {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .registration-container h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .registration-container label {
+  color: var(--text-light);
+}
+
+body.dark-mode .registration-container input[type="email"],
+body.dark-mode .registration-container input[type="password"],
+body.dark-mode .registration-container input[type="checkbox"],
+body.dark-mode .registration-container input[type="text"] {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .registration-container button[type="submit"],
+body.dark-mode .registration-container button[type="reset"] {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .registration-container button[type="submit"]:hover,
+body.dark-mode .registration-container button[type="reset"]:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .registration-container .error-message {
+  color: rgb(213, 27, 21);
 }
 
 /* Dark Mode Styles für das Anmeldeformular */

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { DarkModeService } from '../services/dark-mode.service';
 
 interface Image {
   image_id: number;
@@ -38,10 +39,17 @@ export class ShoppingCartComponent implements OnInit {
   cart: Cart = { cart_id: 0, items: [] };
   uniqueCartItems: Product[] = [];
 
-  constructor(private readonly router: Router) {}
+  constructor(private readonly router: Router, private darkModeService: DarkModeService) {}  // DarkModeService hinzufügen
 
   ngOnInit(): void {
     this.loadCart();  
+    const isDarkModeEnabled = this.darkModeService.isDarkModeEnabled();
+    if (isDarkModeEnabled) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    console.log('Dark Mode Status:', isDarkModeEnabled);
   }
 
   // Getter für die Gesamtanzahl der Artikel

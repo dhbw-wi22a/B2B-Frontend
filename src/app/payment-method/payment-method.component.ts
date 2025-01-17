@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { environment } from '../../environments/environment';
+import { DarkModeService } from '../services/dark-mode.service';
 
 @Component({
   selector: 'an-payment-method',
@@ -16,7 +17,7 @@ export class PaymentMethodComponent implements OnInit {
   paymentForm: FormGroup;
   selectedPaymentType: string | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient, private darkModeService: DarkModeService) { 
     this.paymentForm = this.fb.group({
       paymentType: ['', Validators.required],
       cardName: [''],
@@ -30,7 +31,15 @@ export class PaymentMethodComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const isDarkModeEnabled = this.darkModeService.isDarkModeEnabled();
+    if (isDarkModeEnabled) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+    console.log('Dark Mode Status:', isDarkModeEnabled);
+  }
 
   get f() { return this.paymentForm.controls; }
 
