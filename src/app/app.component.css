@@ -312,6 +312,39 @@ html, body, .app-container {
   margin: 0.2rem 0;
 }
 
+/* Dark Mode Buttons Styling */
+.dark-mode-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+body.dark-mode .dark-mode-buttons button,
+.dark-mode-buttons button {
+  background: none;
+  border: 2px solid #fff;
+  border-radius: 50%; 
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+body.dark-mode .dark-mode-buttons button.active,
+.dark-mode-buttons button.active {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+body.dark-mode .dark-mode-buttons button:hover,
+.dark-mode-buttons button:hover {
+  border-color: #4CAF50;
+}
+
+
 /* Responsive Design */
 @media (max-width: 992px) {
   .header-container {

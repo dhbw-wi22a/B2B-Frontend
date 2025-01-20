@@ -7,19 +7,7 @@
         <input type="password" placeholder="Neues Passwort">
         <button (click)="changePassword()">Passwort ändern</button>
     </div>
-    
-    <div>
-        <h3>Dark Mode</h3>
-        <div class="dark-mode-buttons">
-            <button (click)="setLightMode()" [class.active]="!isDarkMode">
-                ☀️
-            </button>
-            <button (click)="setDarkMode()" [class.active]="isDarkMode">
-                🌙
-            </button>
-        </div>
-    </div>
-    
+        
     <div>
         <h3>Sprache ändern</h3>
         <select (change)="changeLanguage($event)">

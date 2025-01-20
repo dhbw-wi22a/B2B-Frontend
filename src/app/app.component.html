@@ -12,6 +12,14 @@
 
       <nav class="user-actions">
         <ul>
+          <!-- Dark Mode Buttons -->
+          <li>
+            <div class="dark-mode-buttons">
+              <button *ngIf="!isDarkMode" (click)="setDarkMode()">☀️</button>
+              <button *ngIf="isDarkMode" (click)="setLightMode()">🌙</button>
+            </div>
+          </li>
+          <!-- End of Dark Mode Buttons -->
           <li>
             <a routerLink="/wishlist" class="wishlist">
               <span class="material-icons">favorite</span>

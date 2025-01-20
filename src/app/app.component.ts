@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, Renderer2 } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, Renderer2, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router'; 
 import { AuthService } from './services/auth.service';
 import { NgIf } from '@angular/common';
@@ -32,8 +32,9 @@ import { DarkModeService } from './services/dark-mode.service';
   templateUrl: './app.component.html',  
   styleUrls: ['./app.component.css']  
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements AfterViewInit, OnInit {
   title = 'B2B-Webshop'; 
+  isDarkMode = false;
 
   constructor(
     private authService: AuthService, 
@@ -47,9 +48,9 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngOnInit(): void {
-    const isDarkModeEnabled = this.darkModeService.isDarkModeEnabled();
-    console.log('Dark Mode Status:', isDarkModeEnabled);
-    if (isDarkModeEnabled) {
+    this.isDarkMode = this.darkModeService.isDarkModeEnabled();
+    console.log('Dark Mode Status:', this.isDarkMode);
+    if (this.isDarkMode) {
       this.renderer.addClass(document.body, 'dark-mode');
       console.log('Dark Mode aktiviert:', document.body.classList);
     } else {
@@ -60,5 +61,19 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
+  }
+
+  setLightMode(): void {
+    this.darkModeService.disableDarkMode();
+    this.isDarkMode = false;
+    this.renderer.removeClass(document.body, 'dark-mode');
+    console.log('Heller Modus aktiviert');
+  }
+
+  setDarkMode(): void {
+    this.darkModeService.enableDarkMode();
+    this.isDarkMode = true;
+    this.renderer.addClass(document.body, 'dark-mode');
+    console.log('Dunkler Modus aktiviert');
   }
 }

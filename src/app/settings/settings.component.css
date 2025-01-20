@@ -82,7 +82,7 @@ body.dark-mode .dark-mode-buttons button,
 .dark-mode-buttons button {
     background: none;
     border: 2px solid #fff;
-    border-radius: 50%; /* Stellt sicher, dass die Buttons rund bleiben */
+    border-radius: 50%; 
     width: 40px;
     height: 40px;
     font-size: 1.2rem;

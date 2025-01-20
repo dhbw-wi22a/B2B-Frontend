@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'an-settings',
   standalone: true,
-  encapsulation: ViewEncapsulation.None,  // Dies deaktiviert die ViewEncapsulation
+  encapsulation: ViewEncapsulation.None,
   imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.css']
@@ -22,24 +22,6 @@ export class SettingsComponent {
 
   changePassword(): void {
     alert("Ihr Passwort wurde erfolgreich geändert.");
-  }
-
-  toggleDarkMode(event: any): void {
-    this.darkModeService.toggleDarkMode();
-    this.isDarkMode = this.darkModeService.isDarkModeEnabled();
-    console.log('Dark Mode Zustand nach Toggle:', this.isDarkMode);
-  }
-
-  setLightMode(): void {
-    this.darkModeService.disableDarkMode();
-    this.isDarkMode = false;
-    console.log('Heller Modus aktiviert');
-  }
-
-  setDarkMode(): void {
-    this.darkModeService.enableDarkMode();
-    this.isDarkMode = true;
-    console.log('Dunkler Modus aktiviert');
   }
 
   changeLanguage(event: any): void {
