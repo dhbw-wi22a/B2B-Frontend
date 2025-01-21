@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, OnInit, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { NgIf, CommonModule } from '@angular/common';
@@ -24,7 +24,8 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private http: HttpClient,
     private renderer: Renderer2,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
+    private cdr: ChangeDetectorRef // Hinzugefügt
   ) {}
 
   get authToken(): string | null {
@@ -54,7 +55,6 @@ export class ProfileComponent implements OnInit {
       console.error('Token nicht verfügbar.');
     }
 
-    // Überprüfe und wende den Dark Mode an
     if (this.darkModeService.isDarkModeEnabled()) {
       document.body.classList.add('dark-mode');
     } else {
@@ -81,6 +81,8 @@ export class ProfileComponent implements OnInit {
         phone: data.phone,
         email: data.email
       });
+
+      this.cdr.detectChanges();
     } catch (error) {
       this.handleError(error);
     }

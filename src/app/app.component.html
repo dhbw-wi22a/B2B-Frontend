@@ -12,14 +12,12 @@
 
       <nav class="user-actions">
         <ul>
-          <!-- Dark Mode Buttons -->
           <li>
             <div class="dark-mode-buttons">
               <button *ngIf="!isDarkMode" (click)="setDarkMode()">☀️</button>
               <button *ngIf="isDarkMode" (click)="setLightMode()">🌙</button>
             </div>
           </li>
-          <!-- End of Dark Mode Buttons -->
           <li>
             <a routerLink="/wishlist" class="wishlist">
               <span class="material-icons">favorite</span>
@@ -80,6 +78,9 @@
       </section>
       <section class="footer-section">
         <h4>Kontakt</h4>
+        <ul>
+          <li><a routerLink="/about">Über uns</a></li>
+        </ul>
         <p><a href="mailto:hothardwarehub@gmail.com">hothardwarehub&#64;gmail.com</a></p>
         <p>+49 123 456789</p>
       </section>
@@ -88,7 +89,7 @@
         <ul>
           <li><a routerLink="/imprint">Impressum</a></li>
           <li><a routerLink="/privacy">Datenschutz</a></li>
-          <li><a routerLink="/ship_payment">Versand & Zahlung</a></li>
+          <li><a routerLink="/shipping-payment">Versand & Zahlung</a></li>
           <li><a routerLink="/terms">AGB</a></li>
         </ul>
       </section>

@@ -2,7 +2,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DarkModeService } from '../services/dark-mode.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth.service';
 import { environment } from '../../environments/environment';
 
 @Component({
@@ -17,7 +19,11 @@ export class SettingsComponent {
   isDarkMode = false;
   showFields = false;
 
-  constructor(private darkModeService: DarkModeService) {
+  constructor(
+    private darkModeService: DarkModeService, 
+    private http: HttpClient, 
+    private authService: AuthService
+  ) {
     this.isDarkMode = this.darkModeService.isDarkModeEnabled();
     console.log('Dark Mode initialer Zustand:', this.isDarkMode);
   }
@@ -37,7 +43,16 @@ export class SettingsComponent {
 
   deleteAccount(): void {
     if (confirm("Sind Sie sicher, dass Sie Ihren Account löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.")) {
-      alert("Ihr Account wurde erfolgreich gelöscht.");
+      this.http.patch(`${environment.apiUrl}/me/profile/update`, { is_active: false })
+        .subscribe({
+          next: () => {
+            alert("Ihr Account wurde erfolgreich gelöscht.");
+            this.authService.logout();
+          },
+          error: () => {
+            alert("Es gab ein Problem beim Löschen Ihres Accounts.");
+          }
+        });
     }
   }
 }

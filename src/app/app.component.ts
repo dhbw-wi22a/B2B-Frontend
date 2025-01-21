@@ -15,11 +15,13 @@ import { DarkModeService } from './services/dark-mode.service';
     <a href="/company-profile">company-profile</a>
     <a href="/confirmation">confirmation</a>
     <a href="/customer-check">customer-check</a>
+    <a href="/privacy">privacy</a>
     <a href="/imprint">imprint</a>
     <a href="/login">login</a>
     <a href="/logout">logout</a>
     <a href="/order-history">order-history</a>
     <a href="/payment-method">payment-method</a>
+    <a href="/shipping-payment">shipping-payment</a>
     <a href="/products">products</a>
     <a href="/profile">profile</a>
     <a href="/registration">registration</a>

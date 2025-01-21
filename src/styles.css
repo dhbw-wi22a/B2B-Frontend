@@ -27,6 +27,79 @@ body.dark-mode {
   color: var(--text-primary);
 }
 
+body.dark-mode .datenschutzerklaerung {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .datenschutzerklaerung h1,
+body.dark-mode .datenschutzerklaerung h2,
+body.dark-mode .datenschutzerklaerung h3,
+body.dark-mode .datenschutzerklaerung strong {
+  color: var(--accent);
+}
+
+body.dark-mode .datenschutzerklaerung p,
+body.dark-mode .datenschutzerklaerung ul li {
+  color: var(--text-light);
+}
+
+body.dark-mode .datenschutzerklaerung a {
+  color: var(--accent);
+}
+
+body.dark-mode .datenschutzerklaerung a:hover {
+  color: var(--accent-hover);
+}
+
+body.dark-mode .order-success .order-items li {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .payment-option {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .payment-shipping {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-shipping h1,
+body.dark-mode .payment-shipping h2,
+body.dark-mode .payment-shipping strong,
+body.dark-mode .payment-shipping a {
+  color: var(--accent);
+}
+
+body.dark-mode .payment-shipping a:hover {
+  color: var(--accent-hover);
+}
+
+body.dark-mode .payment-shipping .notice {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-shipping ul li {
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-shipping .notice {
+  background-color: var(--bg-darker) !important;
+  color: var(--text-light) !important;
+}
+
 /* Dark Mode Styles für die Products-Komponente */
 body.dark-mode .product-container {
   color: var(--text-light);
