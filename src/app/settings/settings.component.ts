@@ -2,7 +2,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DarkModeService } from '../services/dark-mode.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'an-settings',
@@ -14,10 +15,15 @@ import { FormsModule } from '@angular/forms';
 })
 export class SettingsComponent {
   isDarkMode = false;
+  showFields = false;
 
   constructor(private darkModeService: DarkModeService) {
     this.isDarkMode = this.darkModeService.isDarkModeEnabled();
     console.log('Dark Mode initialer Zustand:', this.isDarkMode);
+  }
+
+  showPasswordFields(): void {
+    this.showFields = true;
   }
 
   changePassword(): void {
@@ -26,7 +32,7 @@ export class SettingsComponent {
 
   changeLanguage(event: any): void {
     const selectedLanguage = event.target.value;
-    alert(`Die Sprache wurde auf ${selectedLanguage} geändert.`);
+    alert(`Ist noch funktionslos`);
   }
 
   deleteAccount(): void {

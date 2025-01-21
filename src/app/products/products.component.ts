@@ -180,4 +180,10 @@ export class ProductsComponent implements OnInit, OnDestroy {
   trackByItemId(index: number, post: Product): number {
     return post.item_id;
   }
+
+  sanitizeDescription(description: string): string {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = description;
+    return tempElement.textContent || tempElement.innerText || '';
+  }
 }

@@ -20,7 +20,7 @@ interface Product {
   item_id: number;
   item_price: string;
   item_details: ItemDetails;
-  quantity: number;  
+  quantity: number;
 }
 
 interface Cart {
@@ -39,7 +39,7 @@ export class ShoppingCartComponent implements OnInit {
   cart: Cart = { cart_id: 0, items: [] };
   uniqueCartItems: Product[] = [];
 
-  constructor(private readonly router: Router, private darkModeService: DarkModeService) {}  // DarkModeService hinzufügen
+  constructor(private readonly router: Router, private darkModeService: DarkModeService) {}  
 
   ngOnInit(): void {
     this.loadCart();  
@@ -52,17 +52,14 @@ export class ShoppingCartComponent implements OnInit {
     console.log('Dark Mode Status:', isDarkModeEnabled);
   }
 
-  // Getter für die Gesamtanzahl der Artikel
   get totalItems(): number {
     return this.uniqueCartItems.reduce((total, product) => total + (product.quantity || 1), 0);
   }
 
-  // Getter für den Gesamtpreis der Artikel im Warenkorb
   get totalPrice(): string {
     return this.uniqueCartItems.reduce((total, product) => total + (product.quantity || 1) * parseFloat(product.item_price), 0).toFixed(2);
   }
 
-  // Warenkorb aus localStorage laden
   loadCart(): void {
     const cartData = localStorage.getItem('cart');
     if (cartData) {
@@ -75,7 +72,7 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  // Produkte mit derselben ItemID zusammenfassen
+  
   aggregateCartItems(): void {
     const itemMap = new Map<number, Product>();
   
@@ -91,46 +88,45 @@ export class ShoppingCartComponent implements OnInit {
     this.uniqueCartItems = Array.from(itemMap.values());
   }
 
-  // Überprüfung, ob der Warenkorb leer ist
+  
   isCartEmpty(): boolean {
     return this.uniqueCartItems.length === 0;
   }
   
-  // Berechnung der Gesamtanzahl der Artikel im Warenkorb
   getTotalItems(): number {
     return this.uniqueCartItems.reduce((total, product) => total + (product.quantity || 1), 0);
   }
 
-  // Berechnung des Gesamtpreises für ein einzelnes Produkt
   getTotalPrice(product: Product): string {
     return ((product.quantity || 1) * parseFloat(product.item_price)).toFixed(2);
   }
 
-  // Entfernen eines Produkts aus dem Warenkorb
   removeFromCart(itemId: number): void {
     this.uniqueCartItems = this.uniqueCartItems.filter(item => item.item_id !== itemId);
-    this.updateCart();  // Warenkorb nach Änderung aktualisieren
+    this.updateCart(); 
   }
 
-  // Warenkorb leeren
   clearCart(): void {
     this.uniqueCartItems = [];
-    this.updateCart();  // Warenkorb nach dem Leeren aktualisieren
+    this.updateCart(); 
   }
 
-  // Warenkorb im localStorage speichern
   updateCart(): void {
     this.cart.items = this.uniqueCartItems; 
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
-  // trackBy Funktion zur Optimierung der Rendering-Leistung
   trackByItemId(index: number, post: Product): number {
     return post.item_id;
   }
 
-  // Methode zum Navigieren zur Kundenseite
   navigateToCustomerPage(): void {
     this.router.navigate(['/customer-check']);
+  }
+
+  sanitizeDescription(description: string): string {
+    const tempElement = document.createElement('div');
+    tempElement.innerHTML = description;
+    return tempElement.textContent || tempElement.innerText || '';
   }
 }

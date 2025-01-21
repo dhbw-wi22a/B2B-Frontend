@@ -4,8 +4,21 @@
     
     <div>
         <h3>Passwort ändern</h3>
-        <input type="password" placeholder="Neues Passwort">
-        <button (click)="changePassword()">Passwort ändern</button>
+        <button *ngIf="!showFields" (click)="showPasswordFields()">Passwort ändern</button>
+        <div *ngIf="showFields">
+            <form>
+                <label for="oldPassword">Altes Passwort:</label><br>
+                <input type="password" id="oldPassword" placeholder="Altes Passwort" required><br><br>
+                
+                <label for="newPassword">Neues Passwort:</label><br>
+                <input type="password" id="newPassword" placeholder="Neues Passwort" required><br><br>
+                
+                <label for="confirmPassword">Neues Passwort bestätigen:</label><br>
+                <input type="password" id="confirmPassword" placeholder="Neues Passwort bestätigen" required><br><br>
+                
+                <button type="submit">Passwort ändern</button>
+            </form>
+        </div>
     </div>
         
     <div>

@@ -1,29 +1,29 @@
 <form [formGroup]="productForm">
     <div class="product-container">
-        <div *ngFor="let post of products; trackBy: trackByItemId" class="product-card" (click)="openModal(post)">
-            <h1 class="product-title">{{ post.item_details.item_name }}</h1>
-            <img [src]="currentImages[post.item_id]" alt="Produktbild" class="product-image">
-            <p class="product-price">{{ post.item_price }} €</p>
-            <p class="product-stock">Lagerbestand: {{ post.item_stock }}</p>
+      <div *ngFor="let post of products; trackBy: trackByItemId" class="product-card" (click)="openModal(post)">
+        <h1 class="product-title">{{ post.item_details.item_name }}</h1>
+        <img [src]="currentImages[post.item_id]" alt="Produktbild" class="product-image">
+        <p class="product-price">{{ post.item_price }} €</p>
+        <p class="product-stock">Lagerbestand: {{ post.item_stock }}</p>
         </div>
     </div>
 </form>
 
 <!-- Modal -->
-<div *ngIf="selectedProduct" class="modal">
-    <div class="modal-content" [formGroup]="productForm">
+<div *ngIf="selectedProduct" class="modal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()" [formGroup]="productForm">
         <span class="close" (click)="closeModal()">&times;</span>
         <h1 class="product-title">{{ selectedProduct.item_details.item_name }}</h1>
         <img [src]="currentImages[selectedProduct.item_id]" alt="Produktbild" class="product-image">
-        <p class="product-description">{{ selectedProduct.item_details.item_description }}</p>
+        <p class="product-description">{{ sanitizeDescription(selectedProduct.item_details.item_description) }}</p>
         <p class="product-price">{{ selectedProduct.item_price }} €</p>
         <p class="product-tax">exkl. 19% USt</p>
         <p class="product-stock">Lagerbestand: {{ selectedProduct.item_stock }}</p>
-        <div class="quantity-selector">
-            <label [for]="'quantity-' + selectedProduct.item_id">Anzahl:</label>
-            <input [formControlName]="'quantity-' + selectedProduct.item_id"
-                    [id]="'quantity-' + selectedProduct.item_id" type="number" min="1" value="1">
-        </div>
+    <div class="quantity-selector">
+        <label [for]="'quantity-' + selectedProduct.item_id">Anzahl:</label>
+        <input [formControlName]="'quantity-' + selectedProduct.item_id" 
+            [id]="'quantity-' + selectedProduct.item_id" type="number" min="1" value="1">
+    </div>
         <button class="add-to-cart-btn" (click)="addToCart(selectedProduct.item_id)">Zum Warenkorb hinzufügen</button>
     </div>
 </div>
