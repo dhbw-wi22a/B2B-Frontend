@@ -72,7 +72,7 @@ export class PaymentMethodComponent implements OnInit {
     if (this.paymentForm.valid) {
       const orderDetails = JSON.parse(localStorage.getItem('orderDetails') || '{}');
       const cartItems = JSON.parse(localStorage.getItem('cart') || '[]').map((item: any) => ({
-        item: item.item_id,
+        item_id: item.item_id,
         item_name: item.item_details.item_name,
         quantity: item.quantity
       }));
@@ -83,7 +83,7 @@ export class PaymentMethodComponent implements OnInit {
 
       console.log('Sende Bestellung an das Backend:', orderDetails);
 
-      this.http.post(`${environment.apiUrl}/orders/?format=json`, orderDetails)
+      this.http.post(`${environment.apiUrl}/me/orders/?format=json`, orderDetails)
         .subscribe(response => {
           console.log('Bestellung erfolgreich an das Backend gesendet:', response);
           localStorage.removeItem('cart');

@@ -39,7 +39,7 @@ export class LoginComponent {
   }
 
   navigateToStartseite(): void {
-    this.router.navigate(['/']);
+    this.router.navigate(['/registration']);
   }
 
   toggleDarkMode(): void {
