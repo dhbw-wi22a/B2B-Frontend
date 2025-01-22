@@ -209,4 +209,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.filteredProducts = this.products;
     }
   }
+
+  addToWishlist(product: Product): void {
+    console.log('Produkt zur Wunschliste hinzugefügt:', product);
+  }
+
 }

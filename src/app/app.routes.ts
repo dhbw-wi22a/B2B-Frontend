@@ -17,6 +17,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
 
 
 export const routes: Routes = [
@@ -35,5 +36,6 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent},
     { path: 'registration', component: RegistrationComponent},
     { path: 'settings', component: SettingsComponent},
-    { path: 'shopping-cart', component: ShoppingCartComponent}
+    { path: 'shopping-cart', component: ShoppingCartComponent},
+    { path: 'wishlist', component: WishlistComponent}
 ];

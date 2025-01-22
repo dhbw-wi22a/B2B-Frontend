@@ -15,6 +15,9 @@
         <span class="close" (click)="closeModal()">&times;</span>
         <h1 class="product-title">{{ selectedProduct.item_details.item_name }}</h1>
         <img [src]="currentImages[selectedProduct.item_id]" alt="Produktbild" class="product-image">
+        <button class="wishlist-btn" (click)="addToWishlist(selectedProduct)">
+            <span class="material-icons">star_border</span>
+        </button>
         <p class="product-description">{{ sanitizeDescription(selectedProduct.item_details.item_description) }}</p>
         <p class="product-price">{{ selectedProduct.item_price }} €</p>
         <p class="product-tax">exkl. 19% USt</p>

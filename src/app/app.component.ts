@@ -29,6 +29,7 @@ import { SearchService } from './services/search.service';
     <a href="/registration">registration</a>
     <a href="/settings">settings</a>
     <a href="/shopping-cart">shopping-cart</a> 
+    <a href="/wishlist">wishlist</a>
   </nav>
   `,
   imports: [RouterOutlet, RouterLink, NgIf, HttpClientModule, FormsModule], 
