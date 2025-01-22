@@ -6,8 +6,8 @@
       </a>
 
       <div class="search-bar">
-        <input type="text" placeholder="Suche nach Hardware..." />
-        <button><span class="material-icons">search</span></button>
+        <input type="text" placeholder="Suche nach Hardware..." [(ngModel)]="searchText" (keyup.enter)="updateSearchText()" />
+        <button (click)="updateSearchText()"><span class="material-icons">search</span></button>
       </div>
 
       <nav class="user-actions">

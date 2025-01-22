@@ -4,6 +4,8 @@ import { AuthService } from './services/auth.service';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DarkModeService } from './services/dark-mode.service';
+import { FormsModule } from '@angular/forms';
+import { SearchService } from './services/search.service';
 
 @Component({
   selector: 'an-root',  
@@ -28,25 +30,30 @@ import { DarkModeService } from './services/dark-mode.service';
     <a href="/settings">settings</a>
     <a href="/shopping-cart">shopping-cart</a> 
   </nav>
-  <router-outlet />
   `,
-  imports: [RouterOutlet, RouterLink, NgIf, HttpClientModule], 
+  imports: [RouterOutlet, RouterLink, NgIf, HttpClientModule, FormsModule], 
   templateUrl: './app.component.html',  
   styleUrls: ['./app.component.css']  
 })
 export class AppComponent implements AfterViewInit, OnInit {
   title = 'B2B-Webshop'; 
   isDarkMode = false;
+  searchText: string = '';
 
   constructor(
     private authService: AuthService, 
     private cdr: ChangeDetectorRef,
     private renderer: Renderer2,
-    private darkModeService: DarkModeService
+    private darkModeService: DarkModeService,
+    private searchService: SearchService
   ) {}
 
   get isLoggedIn(): boolean { 
     return this.authService.isLoggedIn(); 
+  }
+
+  updateSearchText() {
+    this.searchService.setSearchText(this.searchText);
   }
 
   ngOnInit(): void {

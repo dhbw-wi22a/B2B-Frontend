@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy, Renderer2, ChangeDetectorRef } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { interval, Subscription } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Router, NavigationEnd } from '@angular/router';
-import { DarkModeService } from '../services/dark-mode.service'; 
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router'; 
+import { DarkModeService } from '../services/dark-mode.service';
+import { SearchService } from '../services/search.service'; 
 
 interface Image {
   image_id: number;
@@ -31,17 +32,20 @@ interface Product {
 }
 
 @Component({
-  selector: 'an-products',
+  selector: 'app-product',
   standalone: true,
-  imports: [HttpClientModule, ReactiveFormsModule, NgFor, NgIf],
+  imports: [HttpClientModule, ReactiveFormsModule, NgFor, NgIf, CommonModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit, OnDestroy {
+  searchText: string = '';
   products: Product[] = [];
+  filteredProducts: Product[] = []; 
   productForm: FormGroup;
   currentImages: { [key: number]: string } = {};
   private intervalSubscription?: Subscription;
+  private searchSubscription?: Subscription; 
   private routerSubscription?: Subscription;
   selectedProduct: Product | null = null;
 
@@ -50,15 +54,22 @@ export class ProductsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
-    private router: Router,
-    private darkModeService: DarkModeService
+    private router: Router, 
+    private route: ActivatedRoute,
+    private darkModeService: DarkModeService,
+    private searchService: SearchService  
   ) {
     this.productForm = this.fb.group({});
   }
 
   ngOnInit(): void {
     this.fetchProducts();
-    this.routerSubscription = this.router.events.subscribe(event => {
+    this.searchSubscription = this.searchService.searchText$.subscribe(searchText => {
+      this.searchText = searchText;
+      this.filterProducts(); 
+    });
+
+    this.routerSubscription = this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.fetchProducts();
       }
@@ -75,6 +86,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.intervalSubscription?.unsubscribe();
+    this.searchSubscription?.unsubscribe(); 
     this.routerSubscription?.unsubscribe();
   }
 
@@ -88,10 +100,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
     ).subscribe(
       (data) => {
         this.products = data;
+        this.filteredProducts = data; 
         console.log('Produkte geladen:', this.products);
         this.initializeFormAndImages();
         this.cdr.detectChanges();
         this.startImageRotation();
+        this.filterProducts(); 
       }
     );
   }
@@ -185,5 +199,14 @@ export class ProductsComponent implements OnInit, OnDestroy {
     const tempElement = document.createElement('div');
     tempElement.innerHTML = description;
     return tempElement.textContent || tempElement.innerText || '';
+  }
+
+  filterProducts(): void {
+    if (this.searchText) {
+      this.filteredProducts = this.products.filter(product =>
+        product.item_details.item_name.toLowerCase().includes(this.searchText.toLowerCase()));
+    } else {
+      this.filteredProducts = this.products;
+    }
   }
 }
