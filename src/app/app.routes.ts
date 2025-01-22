@@ -18,11 +18,13 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
+import { CompanyAreaComponent } from './company-area/company-area.component';
 
 
 export const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'admin-dashboard', component: AdminDashboardComponent},
+    { path: 'company-area', component: CompanyAreaComponent},
     { path: 'confirmation', component: ConfirmationComponent},
     { path: 'customer-check', component: CustomerCheckComponent},
     { path: 'privacy', component: PrivacyComponent},
