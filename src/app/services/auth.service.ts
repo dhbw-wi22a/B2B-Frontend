@@ -49,4 +49,8 @@ export class AuthService {
         console.log('Ein Fehler ist aufgetreten:', error);
         alert(error);
     }
+    
+    public getAuthToken(): string | null {
+        return this.authToken;
+    }
 }
