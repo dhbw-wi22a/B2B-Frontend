@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Component } from '@angular/core';
 
 import { ImprintComponent } from './imprint/imprint.component';
 import { ProductsComponent } from './products/products.component';
@@ -19,7 +18,6 @@ import { AboutComponent } from './about/about.component';
 import { PrivacyComponent } from './privacy/privacy.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CompanyAreaComponent } from './company-area/company-area.component';
-
 
 export const routes: Routes = [
     { path: 'about', component: AboutComponent },

@@ -1,11 +1,12 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit, Renderer2, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router'; 
+import { RouterLink, RouterOutlet, Router, NavigationEnd } from '@angular/router'; 
 import { AuthService } from './services/auth.service';
 import { NgIf } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { DarkModeService } from './services/dark-mode.service';
 import { FormsModule } from '@angular/forms';
 import { SearchService } from './services/search.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'an-root',  
@@ -47,7 +48,8 @@ export class AppComponent implements AfterViewInit, OnInit {
     private cdr: ChangeDetectorRef,
     private renderer: Renderer2,
     private darkModeService: DarkModeService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private router: Router
   ) {}
 
   get isLoggedIn(): boolean { 
@@ -68,6 +70,12 @@ export class AppComponent implements AfterViewInit, OnInit {
       this.renderer.removeClass(document.body, 'dark-mode');
       console.log('Dark Mode deaktiviert:', document.body.classList);
     }
+
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      window.scrollTo(0, 0); 
+    });
   }
 
   ngAfterViewInit() {
