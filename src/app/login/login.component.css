@@ -68,7 +68,6 @@ form button[type="reset"]:hover {
     background-color: rgb(213, 27, 21);
 }
 
-/* Buttons nebeneinander ausrichten */
 form div button[type="submit"] {
     background-color: rgb(241, 180, 89);
     color: white;
@@ -126,6 +125,29 @@ form .remember-me input {
 .forgot-password a:hover {
     text-decoration: underline;
     color: rgb(213, 27, 21);
+}
+
+/* Pop-up-Fenster-Stile für Login */
+.login-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.login-popup.success {
+    background-color: #4caf50; 
+}
+
+.login-popup.error {
+    background-color: rgb(213, 27, 21); 
 }
 
 /* Responsive Design */

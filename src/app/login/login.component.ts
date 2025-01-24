@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -14,8 +14,14 @@ import { DarkModeService } from '../services/dark-mode.service';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  passwordResetUrl: string = environment.passwordResetUrl;
 
-  constructor(private router: Router, private http: HttpClient, private darkModeService: DarkModeService) {}
+  constructor(
+    private router: Router, 
+    private http: HttpClient, 
+    private darkModeService: DarkModeService,
+    private renderer: Renderer2
+  ) {}
 
   login() {
     const loginData = {
@@ -30,6 +36,7 @@ export class LoginComponent {
         const token = loginResponse.access;
         localStorage.setItem('authToken', token);
 
+        this.showPopupMessage('Login erfolgreich!', false);
         this.router.navigate(['/']);
       },
       error => {
@@ -48,6 +55,20 @@ export class LoginComponent {
 
   private handleLoginError(error: any): void {
     console.log('Login fehlgeschlagen', error);
-    alert('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.');
+    this.showPopupMessage('Login fehlgeschlagen. Bitte überprüfe deine E-Mail und dein Passwort.', true);
+  }
+
+  private showPopupMessage(message: string, isError: boolean = false): void {
+    const popup = this.renderer.createElement('div');
+    const text = this.renderer.createText(message);
+
+    this.renderer.appendChild(popup, text);
+    this.renderer.addClass(popup, 'login-popup');
+    this.renderer.addClass(popup, isError ? 'error' : 'success');
+    this.renderer.appendChild(document.body, popup);
+
+    setTimeout(() => {
+      this.renderer.removeChild(document.body, popup);
+    }, 2000);
   }
 }
