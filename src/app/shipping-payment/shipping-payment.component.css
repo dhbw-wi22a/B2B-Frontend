@@ -1,0 +1,106 @@
+/* Zahlung und Versand Styles */
+.payment-shipping {
+    background-color: rgb(54, 88, 97);
+    color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin: 2rem auto;
+    max-width: 900px;
+    font-family: Arial, sans-serif;
+}
+
+.payment-shipping h1 {
+    font-size: 2rem;
+    color: rgb(241, 180, 89);
+    margin-bottom: 1rem;
+}
+
+.payment-shipping h2 {
+    font-size: 1.5rem;
+    color: rgb(241, 180, 89);
+    margin-top: 2rem;
+}
+
+.payment-shipping ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.payment-shipping ul li {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+    color: #f1f1f1;
+}
+
+.payment-shipping strong {
+    color: rgb(241, 180, 89);
+}
+
+.payment-shipping .notice {
+    background-color: rgb(31, 50, 56);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #f1f1f1;
+}
+
+/* Links */
+.payment-shipping a {
+    color: rgb(241, 180, 89);
+    text-decoration: none;
+}
+
+.payment-shipping a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .payment-shipping {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .payment-shipping h1 {
+        font-size: 1.8rem;
+    }
+
+    .payment-shipping h2 {
+        font-size: 1.4rem;
+    }
+
+    .payment-shipping ul li {
+        font-size: 0.9rem;
+    }
+
+    .payment-shipping .notice {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .payment-shipping {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    .payment-shipping h1 {
+        font-size: 1.5rem;
+    }
+
+    .payment-shipping h2 {
+        font-size: 1.2rem;
+    }
+
+    .payment-shipping ul li {
+        font-size: 0.8rem;
+    }
+
+    .payment-shipping .notice {
+        font-size: 0.7rem;
+    }
+}

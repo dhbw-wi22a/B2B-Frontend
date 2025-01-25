@@ -1,18 +1,32 @@
 <form [formGroup]="productForm">
-    <div *ngFor="let post of products; trackBy: trackByItemId" class="product-container">
-        <div class="product-card">
-            <img [src]="post.item_details.images[post.item_id-1].image" alt="Produktbild" class="product-image">
-            <h1 class="product-title">{{ post.item_details.item_description }}</h1>
+    <div class="product-container">
+        <div *ngFor="let post of filteredProducts; trackBy: trackByItemId" class="product-card" (click)="openModal(post)">
+            <h1 class="product-title">{{ post.item_details.item_name }}</h1>
+            <img [src]="currentImages[post.item_id]" alt="Produktbild" class="product-image">
             <p class="product-price">{{ post.item_price }} €</p>
-            <p class="product-tax">exkl. 19% USt</p>
-            <p class="product-stock">Lagerbestand: 10</p>
-
-        <div class="quantity-selector">
-            <label [for]="'quantity-' + post.item_id">Anzahl:</label>
-            <input [formControlName]="'quantity-' + post.item_id" [id]="'quantity-' + post.item_id" type="number" min="1" value="1">
-        </div>
-
-        <button class="add-to-cart-btn" (click)="addToCart(post.item_id)">Zum Warenkorb hinzufügen</button>
+            <p class="product-stock">Lagerbestand: {{ post.item_stock }}</p>
         </div>
     </div>
 </form>
+
+<!-- Modal -->
+<div *ngIf="selectedProduct" class="modal" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()" [formGroup]="productForm">
+        <span class="close" (click)="closeModal()">&times;</span>
+        <h1 class="product-title">{{ selectedProduct.item_details.item_name }}</h1>
+        <img [src]="currentImages[selectedProduct.item_id]" alt="Produktbild" class="product-image">
+        <button class="wishlist-btn" (click)="addToWishlist(selectedProduct)">
+            <span class="material-icons">star_border</span>
+        </button>
+        <p class="product-description">{{ sanitizeDescription(selectedProduct.item_details.item_description) }}</p>
+        <p class="product-price">{{ selectedProduct.item_price }} €</p>
+        <p class="product-tax">exkl. 19% USt</p>
+        <p class="product-stock">Lagerbestand: {{ selectedProduct.item_stock }}</p>
+        <div class="quantity-selector">
+            <label [for]="'quantity-' + selectedProduct.item_id">Anzahl:</label>
+            <input [formControlName]="'quantity-' + selectedProduct.item_id"
+                [id]="'quantity-' + selectedProduct.item_id" type="number" min="1" value="1">
+        </div>
+        <button class="add-to-cart-btn" (click)="addToCart(selectedProduct.item_id)">Zum Warenkorb hinzufügen</button>
+    </div>
+</div>

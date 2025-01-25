@@ -1,0 +1,95 @@
+<div class="profile-container">
+    <div class="header">
+        <h2>Kontodaten</h2>
+        <button class="edit-btn" (click)="toggleEdit()">
+            {{ isEditing ? 'Abbrechen' : 'Bearbeiten' }}
+        </button>
+    </div>
+    <form [formGroup]="profileForm">
+        <div class="section">
+            <div class="form-group">
+                <label>Firmenname:</label>
+                <div class="field">
+                    <span *ngIf="!isEditing">{{ profileForm.get('companyName')?.value }}</span>
+                    <input *ngIf="isEditing" formControlName="companyName" type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Unternehmens-ID:</label>
+                <div class="field">
+                    <span *ngIf="!isEditing">{{ profileForm.get('companyId')?.value }}</span>
+                    <input *ngIf="isEditing" formControlName="companyId" type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Vorname:</label>
+                <div class="field">
+                    <span *ngIf="!isEditing">{{ profileForm.get('firstName')?.value }}</span>
+                    <input *ngIf="isEditing" formControlName="firstName" type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Nachname:</label>
+                <div class="field">
+                    <span *ngIf="!isEditing">{{ profileForm.get('lastName')?.value }}</span>
+                    <input *ngIf="isEditing" formControlName="lastName" type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Telefonnummer:</label>
+                <div class="field">
+                    <span *ngIf="!isEditing">{{ profileForm.get('phone')?.value }}</span>
+                    <input *ngIf="isEditing" formControlName="phone" type="text" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label>E-Mail-Adresse:</label>
+                <div class="field">
+                    <span *ngIf="!isEditing">{{ profileForm.get('email')?.value }}</span>
+                    <input *ngIf="isEditing" formControlName="email" type="email" />
+                </div>
+            </div>
+        </div>
+        <button class="save-btn" *ngIf="isEditing" type="button" (click)="saveChanges()">Speichern</button>
+    </form>
+</div>
+
+<div class="address-container">
+    <div class="header">
+        <h2>Lieferadresse</h2>
+        <button class="edit-btn" (click)="toggleAddressEdit()">
+            {{ isAddressEditing ? 'Abbrechen' : 'Bearbeiten' }}
+        </button>
+    </div>
+    <form [formGroup]="addressForm">
+        <div class="form-group">
+            <label>Straße:</label>
+            <div class="field">
+                <span *ngIf="!isAddressEditing">{{ addressForm.get('street')?.value }}</span>
+                <input *ngIf="isAddressEditing" formControlName="street" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Hausnummer:</label>
+            <div class="field">
+                <span *ngIf="!isAddressEditing">{{ addressForm.get('houseNumber')?.value }}</span>
+                <input *ngIf="isAddressEditing" formControlName="houseNumber" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Ort:</label>
+            <div class="field">
+                <span *ngIf="!isAddressEditing">{{ addressForm.get('city')?.value }}</span>
+                <input *ngIf="isAddressEditing" formControlName="city" type="text" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label>PLZ:</label>
+            <div class="field">
+                <span *ngIf="!isAddressEditing">{{ addressForm.get('postalCode')?.value }}</span>
+                <input *ngIf="isAddressEditing" formControlName="postalCode" type="text" />
+            </div>
+        </div>
+        <button class="save-btn" *ngIf="isAddressEditing" type="button" (click)="saveAddressChanges()">Speichern</button>
+    </form>
+</div>

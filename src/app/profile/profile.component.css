@@ -1,0 +1,207 @@
+.profile-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgb(241, 180, 89);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .profile-container {
+    background-color: #3a3a3a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.address-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgb(241, 180, 89);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .address-container {
+    background-color: #3a3a3a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+h2 {
+    margin: 0;
+    color: rgb(31, 50, 56);
+    text-align: center;
+    flex: 1;
+    font-size: 2rem;
+}
+
+body.dark-mode h2 {
+    color: rgb(241, 180, 89);
+}
+
+.edit-btn {
+    padding: 0.5rem 1rem;
+    background-color: rgb(54, 88, 97);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-btn:hover {
+    background-color: rgb(31, 50, 56);
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+span,
+input {
+    flex: 1;
+    margin-right: 1rem;
+    text-align: left;
+}
+
+input {
+    padding: 0.5rem;
+    border: 1px solid rgb(54, 118, 129);
+    border-radius: 5px;
+}
+
+body.dark-mode input {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid rgb(241, 180, 89);
+}
+
+.save-btn {
+    display: block;
+    margin: 1.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background-color: rgb(54, 118, 129);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+    background-color: rgb(31, 50, 56);
+}
+
+body.dark-mode .save-btn {
+    background-color: rgb(241, 180, 89);
+}
+
+body.dark-mode .save-btn:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    z-index: 1000;
+    background-color: #4caf50;
+}
+
+.popup.error {
+    background-color: rgb(213, 27, 21);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container, .address-container {
+        padding: 1.5rem;
+        margin: 1.5rem auto;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .edit-btn {
+        position: static;
+        margin-top: 1rem;
+        transform: translateY(0);
+    }
+
+    .field {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left; 
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    label {
+        font-size: 1rem;
+    }
+
+    span,
+    input {
+        margin-right: 0;
+        margin-bottom: 1rem;
+        width: 100%;
+        text-align: left;
+    }
+
+    .save-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .profile-container, .address-container {
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    label {
+        font-size: 0.9rem;
+    }
+
+    input {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .save-btn {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+    }
+}

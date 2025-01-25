@@ -1,1 +1,49 @@
-<p>settings works!</p>
+<div class="settings-section">
+    <h2>Account-Einstellungen</h2>
+    <p>Ändern Sie Ihre Kontoeinstellungen unten.</p>
+    
+    <div>
+        <h3>Passwort ändern</h3>
+        <button *ngIf="!showFields" (click)="showPasswordFields()">Passwort ändern</button>
+        <div *ngIf="showFields">
+            <form>
+                <label for="oldPassword">Altes Passwort:</label><br>
+                <input type="password" id="oldPassword" placeholder="Altes Passwort" required><br><br>
+                
+                <label for="newPassword">Neues Passwort:</label><br>
+                <input type="password" id="newPassword" placeholder="Neues Passwort" required><br><br>
+                
+                <label for="confirmPassword">Neues Passwort bestätigen:</label><br>
+                <input type="password" id="confirmPassword" placeholder="Neues Passwort bestätigen" required><br><br>
+                
+                <button type="submit">Passwort ändern</button>
+            </form>
+        </div>
+    </div>
+        
+    <div>
+        <h3>Sprache ändern</h3>
+        <select (change)="changeLanguage($event)">
+            <option value="de">Deutsch</option>
+            <option value="en">Englisch</option>
+            <!-- Weitere Optionen hinzufügen -->
+        </select>
+    </div>
+    
+    <div>
+        <h3>Account löschen</h3>
+        <p>Bitte beachten Sie, dass das Löschen Ihres Accounts nicht rückgängig gemacht werden kann.</p>
+        <button (click)="openDeleteModal()">Account löschen</button>
+    </div>
+
+    <div *ngIf="showDeleteModal" class="modal" (click)="closeDeleteModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+            <span class="close" (click)="closeDeleteModal()">&times;</span>
+            <h3>Sind Sie sicher, dass Sie Ihren Account löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</h3>
+            <div class="modal-actions">
+                <button (click)="confirmedDeleteAccount()">Bestätigen</button>
+                <button (click)="closeDeleteModal()">Abbrechen</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,571 @@
-/* You can add global styles to this file, and also import other style files */
+/* Farbvariablen */
+:root {
+  --bg-dark: #333;
+  --bg-darker: #2a2a2a;
+  --bg-darkest: #3a3a3a;
+  --text-light: #ffffff;
+  --accent: #ffb746;
+  --accent-hover: #d51b15;
+  --border-dark: #555;
+  --bg-primary: rgb(20, 20, 20);
+  --text-primary: white;
+}
+
+/* Global Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: 'Geist', serif;
+  box-sizing: border-box;
+}
+
+/* Global Dark Mode Stile */
+body.dark-mode {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body.dark-mode .datenschutzerklaerung {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .datenschutzerklaerung h1,
+body.dark-mode .datenschutzerklaerung h2,
+body.dark-mode .datenschutzerklaerung h3,
+body.dark-mode .datenschutzerklaerung strong {
+  color: var(--accent);
+}
+
+body.dark-mode .datenschutzerklaerung p,
+body.dark-mode .datenschutzerklaerung ul li {
+  color: var(--text-light);
+}
+
+body.dark-mode .datenschutzerklaerung a {
+  color: var(--accent);
+}
+
+body.dark-mode .datenschutzerklaerung a:hover {
+  color: var(--accent-hover);
+}
+
+body.dark-mode .order-success .order-items li {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .payment-option {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .payment-shipping {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-shipping h1,
+body.dark-mode .payment-shipping h2,
+body.dark-mode .payment-shipping strong,
+body.dark-mode .payment-shipping a {
+  color: var(--accent);
+}
+
+body.dark-mode .payment-shipping a:hover {
+  color: var(--accent-hover);
+}
+
+body.dark-mode .payment-shipping .notice {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-shipping ul li {
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-shipping .notice {
+  background-color: var(--bg-darker) !important;
+  color: var(--text-light) !important;
+}
+
+/* Dark Mode Styles für die Products-Komponente */
+body.dark-mode .product-container {
+  color: var(--text-light);
+}
+
+body.dark-mode .product-container .product-card {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+body.dark-mode .product-container .product-title {
+  color: var(--accent);
+}
+
+body.dark-mode .product-container .product-price,
+body.dark-mode .product-container .product-stock,
+body.dark-mode .product-container .product-description {
+  color: var(--text-light);
+}
+
+body.dark-mode .product-container .product-image {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+body.dark-mode .modal .modal-content {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+  border-radius: 5px;
+  padding: 20px;
+}
+
+body.dark-mode .modal .close {
+  color: var(--text-light);
+}
+
+body.dark-mode .modal .product-title {
+  color: var(--accent);
+}
+
+body.dark-mode .modal .product-description,
+body.dark-mode .modal .product-price,
+body.dark-mode .modal .product-tax,
+body.dark-mode .modal .product-stock,
+body.dark-mode .modal .quantity-selector label {
+  color: #ffffff;
+}
+
+body.dark-mode .quantity-selector input {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .add-to-cart-btn {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .add-to-cart-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+/* Dark Mode Styles für die Shopping Cart-Komponente */
+body.dark-mode .shopping-cart-container {
+  color: var(--text-light);
+}
+
+body.dark-mode .shopping-cart-container h1,
+body.dark-mode .shopping-cart-container h3 {
+  color: var(--accent);
+}
+
+body.dark-mode .shopping-cart-container label,
+body.dark-mode .shopping-cart-container p {
+  color: var(--text-light);
+}
+
+body.dark-mode .shopping-cart-container .product-card {
+  background-color: var(--bg-dark);
+  border: 1px solid var(--border-dark);
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+body.dark-mode .shopping-cart-container .product-card img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+body.dark-mode .shopping-cart-container .quantity-selector input {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .shopping-cart-container .remove-from-cart-btn,
+body.dark-mode .shopping-cart-container .proceed-to-checkout-btn {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .shopping-cart-container .remove-from-cart-btn:hover,
+body.dark-mode .shopping-cart-container .proceed-to-checkout-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .shopping-cart-container .cart-empty-message {
+  color: var(--text-primary);
+}
+
+/* Dark Mode Styles für die Logout-Komponente */
+body.dark-mode .logout-container {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .logout-container p {
+  color: var(--text-light);
+}
+
+body.dark-mode .logout-container button {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .logout-container button:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .logout-container a {
+  color: var(--accent);
+}
+
+body.dark-mode .logout-container a:hover {
+  color: var(--accent-hover);
+}
+
+/* Dark Mode Styles für das Impressum */
+body.dark-mode .impressum {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .impressum h1,
+body.dark-mode .impressum h2,
+body.dark-mode .impressum strong {
+  color: var(--accent);
+}
+
+body.dark-mode .impressum a {
+  color: var(--accent);
+}
+
+body.dark-mode .impressum a:hover {
+  color: var(--accent-hover);
+}
+/* Dark Mode Styles für die Payment-Komponente */
+body.dark-mode .payment-container {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-container h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .payment-container label {
+  color: var(--text-light);
+}
+
+body.dark-mode .payment-container input[type="text"],
+body.dark-mode .payment-container input[type="email"],
+body.dark-mode .payment-container input[type="number"] {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .payment-container button[type="submit"] {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .payment-container button[type="submit"]:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .payment-container .error-message {
+  color: rgb(213, 27, 21);
+}
+
+/* Dark Mode Styles für das Anmeldeformular */
+body.dark-mode .registration-container {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .registration-container h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .registration-container label {
+  color: var(--text-light);
+}
+
+body.dark-mode .registration-container input[type="email"],
+body.dark-mode .registration-container input[type="password"],
+body.dark-mode .registration-container input[type="checkbox"],
+body.dark-mode .registration-container input[type="text"] {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .registration-container button[type="submit"],
+body.dark-mode .registration-container button[type="reset"] {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .registration-container button[type="submit"]:hover,
+body.dark-mode .registration-container button[type="reset"]:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .registration-container .error-message {
+  color: rgb(213, 27, 21);
+}
+
+/* Dark Mode Styles für das Anmeldeformular */
+body.dark-mode .an-login {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+}
+
+body.dark-mode .an-login h2 {
+  color: var(--accent);
+}
+
+body.dark-mode .an-login label {
+  color: var(--text-light);
+}
+
+body.dark-mode .an-login input[type="email"],
+body.dark-mode .an-login input[type="password"],
+body.dark-mode .an-login input[type="checkbox"] {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+  border: 1px solid var(--border-dark);
+}
+
+body.dark-mode .an-login button[type="submit"],
+body.dark-mode .an-login button[type="reset"] {
+  background-color: var(--accent);
+  color: #121212;
+}
+
+body.dark-mode .an-login button[type="submit"]:hover,
+body.dark-mode .an-login button[type="reset"]:hover {
+  background-color: var(--accent-hover);
+}
+
+body.dark-mode .an-login .forgot-password a {
+  color: var(--accent);
+}
+
+body.dark-mode .an-login .forgot-password a:hover {
+  color: var(--accent-hover);
+}
+
+/* Weitere Dark Mode Stile */
+body.dark-mode .about,
+body.dark-mode .header-container,
+body.dark-mode .search-bar,
+body.dark-mode .user-actions .dropdown-content,
+body.dark-mode .main-navigation,
+body.dark-mode .category-item,
+body.dark-mode .footer,
+body.dark-mode .profile-container,
+body.dark-mode .address-container,
+body.dark-mode .form-container,
+body.dark-mode .registration-footer {
+  background-color: var(--bg-darkest);
+  color: var(--text-light);
+}
+
+body.dark-mode .about a,
+body.dark-mode .footer-section a,
+body.dark-mode .impressum a,
+body.dark-mode .already-registered a,
+body.dark-mode .registration-footer a {
+  color: var(--accent);
+}
+
+body.dark-mode .about a:hover,
+body.dark-mode .footer-section a:hover,
+body.dark-mode .impressum a:hover,
+body.dark-mode .already-registered a:hover,
+body.dark-mode .registration-footer a:hover {
+  color: var(--accent-hover);
+}
+
+body.dark-mode .search-bar input,
+body.dark-mode input {
+  background-color: var(--bg-darker);
+  color: var(--text-light);
+}
+
+body.dark-mode .order-items li {
+  background-color: var(--bg-darker);
+  border: 1px solid var(--accent);
+}
+
+body.dark-mode .material-icons,
+body.dark-mode .dropicon-person {
+  color: var(--text-light);
+  background-color: transparent !important;
+}
+
+body.dark-mode .user-actions ul li a {
+  color: var(--text-light);
+  background-color: transparent !important;
+}
+
+body.dark-mode .user-actions ul li a:hover,
+body.dark-mode .user-actions .dropdown-content a:hover {
+  background-color: #555 !important;
+}
+
+/* Stile für spezifische Abschnitte */
+body.dark-mode .about {
+  padding: 2rem;
+  border-radius: 8px;
+  margin: 2rem auto;
+}
+
+body.dark-mode .about h1,
+body.dark-mode h2,
+body.dark-mode .summary h3,
+body.dark-mode .items-section h4,
+body.dark-mode .impressum h1,
+body.dark-mode .impressum h2,
+body.dark-mode .impressum .disclaimer h3 {
+  color: var(--accent);
+}
+
+body.dark-mode .about h2 {
+  color: rgb(213, 27, 21);
+}
+
+body.dark-mode p,
+body.dark-mode .about p,
+body.dark-mode .success-message,
+body.dark-mode .error-message {
+  color: var(--text-light);
+}
+
+body.dark-mode .order-success,
+body.dark-mode .success-message {
+  background-color: #4e4e4e;
+}
+
+body.dark-mode .order-success {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode strong,
+body.dark-mode .impressum strong {
+  color: var(--accent);
+}
+
+body.dark-mode .impressum .disclaimer {
+  background-color: var(--bg-darker);
+}
+
+body.dark-mode .registration-footer::before {
+  content: "";
+  border-left: 1px solid var(--accent);
+  height: 2rem;
+  margin: 0 1rem;
+}
+
+/* Fehler- und Erfolgsmeldungen */
+body.dark-mode .error-message {
+  color: rgb(213, 27, 21);
+}
+
+body.dark-mode .success-message {
+  color: rgb(34, 139, 34);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .form-container {
+      padding: 1.5rem 3rem;
+      width: 100%;
+  }
+
+  form h2 {
+      font-size: 1.8rem;
+  }
+
+  .already-registered {
+      position: static;
+      top: auto;
+      right: auto;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 1rem;
+  }
+
+  .already-registered div,
+  .already-registered button {
+      text-align: center;
+  }
+
+  .already-registered button {
+      width: auto;
+      margin: 0 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .form-container {
+      padding: 1rem 1.5rem;
+  }
+
+  form h2 {
+      font-size: 1.5rem;
+  }
+
+  .form-control {
+      padding: 0.5rem;
+      font-size: 0.9rem;
+  }
+
+  label {
+      font-size: 0.9rem;
+  }
+
+  .submit-btn {
+      font-size: 0.9rem;
+      padding: 0.75rem;
+  }
+
+  .already-registered a,
+  .registration-footer a {
+      font-size: 0.9rem;
+  }
+
+  .registration-footer {
+      padding: 0.5rem;
+  }
+
+  .registration-footer::before {
+      height: 1.5rem;
+  }
+}

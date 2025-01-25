@@ -64,12 +64,7 @@ form input[type="reset"] {
     margin-right: 2%;
 }
 
-form input[type="submit"]:hover,
-form input[type="reset"]:hover {
-    background-color: rgb(213, 27, 21);
-}
-
-/* Buttons nebeneinander ausrichten */
+/* Abstand zwischen den Buttons */
 form div button[type="submit"] {
     background-color: rgb(241, 180, 89);
     color: white;
@@ -79,6 +74,7 @@ form div button[type="submit"] {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-right: 1rem;
 }
 
 form div button[type="reset"] {
@@ -160,4 +156,63 @@ form .terms input {
 .registration-footer a:hover {
     text-decoration: underline;
     color: rgb(213, 27, 21);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 1.5rem 3rem;
+    }
+
+    form h2 {
+        font-size: 1.8rem;
+    }
+
+    form input[type="submit"],
+    form input[type="reset"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    form div button[type="submit"],
+    form div button[type="reset"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    form {
+        padding: 1rem 1.5rem;
+    }
+
+    form h2 {
+        font-size: 1.5rem;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="checkbox"] {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    form label {
+        font-size: 0.9rem;
+    }
+
+    form input[type="submit"],
+    form input[type="reset"] {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    form div button[type="submit"],
+    form div button[type="reset"] {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
 }

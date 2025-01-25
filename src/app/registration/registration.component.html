@@ -1,33 +1,43 @@
-<form>
+<form (ngSubmit)="register()" class="registration-container">
     <h2>Registrierung</h2>
 
     <div>
+        <label for="firstName">Vorname</label>
+        <input [(ngModel)]="firstName" id="firstName" name="firstName" type="text" placeholder="Max" required>
+    </div>
+
+    <div>
+        <label for="lastName">Nachname</label>
+        <input [(ngModel)]="lastName" id="lastName" name="lastName" type="text" placeholder="Mustermann" required>
+    </div>
+
+    <div>
         <label for="companyName">Firmenname</label>
-        <input id="companyName" type="text" placeholder="Beispiel GmbH">
+        <input [(ngModel)]="companyName" id="companyName" name="companyName" type="text" placeholder="Beispiel GmbH" required>
     </div>
 
     <div>
         <label for="companyId">Unternehmens-ID</label>
-        <input id="companyId" type="text" placeholder="123456">
+        <input [(ngModel)]="companyId" id="companyId" name="companyId" type="text" placeholder="123456" required>
     </div>
 
     <div>
         <label for="email">E-Mail-Adresse</label>
-        <input id="email" type="email" placeholder="example@firma.com">
+        <input [(ngModel)]="email" id="email" name="email" type="email" placeholder="example@firma.com" required>
     </div>
 
     <div>
         <label for="password">Passwort</label>
-        <input id="password" type="password" placeholder="********">
+        <input [(ngModel)]="password" id="password" name="password" type="password" placeholder="********" required>
     </div>
 
     <div>
         <label for="confirmPassword">Passwort bestätigen</label>
-        <input id="confirmPassword" type="password" placeholder="********">
+        <input [(ngModel)]="confirmPassword" id="confirmPassword" name="confirmPassword" type="password" placeholder="********" required>
     </div>
 
     <div class="terms">
-        <input id="terms" type="checkbox">
+        <input [(ngModel)]="termsAccepted" id="terms" name="terms" type="checkbox" required>
         <label for="terms">Ich akzeptiere die AGB und Datenschutzerklärung</label>
     </div>
 
@@ -35,4 +45,6 @@
         <button type="submit">Registrieren</button>
         <button type="reset" (click)="navigateToStartseite()">Abbrechen</button>
     </div>
+
+    <div class="error-message" *ngIf="errorMessage">{{ errorMessage }}</div>
 </form>

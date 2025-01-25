@@ -1,0 +1,209 @@
+/* Allgemeine Formular Styles */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(54, 88, 97);
+    color: white;
+    padding: 2rem 5rem;
+    border-radius: 8px;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+form h2 {
+    font-size: 2rem;
+    color: rgb(241, 180, 89);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Formularfelder */
+form div {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+form label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+form input[type="email"],
+form input[type="password"],
+form input[type="checkbox"] {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    color: rgb(31, 50, 56);
+}
+
+form input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+form button[type="submit"],
+form button[type="reset"] {
+    background-color: rgb(241, 180, 89);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s ease;
+    width: 48%;
+    margin-right: 2%;
+}
+
+form button[type="submit"]:hover,
+form button[type="reset"]:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+form div button[type="submit"] {
+    background-color: rgb(241, 180, 89);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form div button[type="reset"] {
+    background-color: rgb(54, 118, 129);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form div button[type="submit"]:hover {
+    background-color: rgb(213, 27, 21);
+}
+
+form div button[type="reset"]:hover {
+    background-color: rgb(74, 113, 94);
+}
+
+/* Styling für den angemeldet bleiben Haken */
+form .remember-me {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+form .remember-me input {
+    width: auto;
+    margin-right: 0.5rem;
+}
+
+/* Link für Passwort vergessen */
+.forgot-password {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.forgot-password a {
+    color: rgb(241, 180, 89);
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.forgot-password a:hover {
+    text-decoration: underline;
+    color: rgb(213, 27, 21);
+}
+
+/* Pop-up-Fenster-Stile für Login */
+.login-popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.login-popup.success {
+    background-color: #4caf50; 
+}
+
+.login-popup.error {
+    background-color: rgb(213, 27, 21); 
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    form {
+        padding: 1.5rem 3rem;
+    }
+
+    form h2 {
+        font-size: 1.8rem;
+    }
+
+    form button[type="submit"],
+    form button[type="reset"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    form div button[type="submit"],
+    form div button[type="reset"] {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    form {
+        padding: 1rem 1.5rem;
+    }
+
+    form h2 {
+        font-size: 1.5rem;
+    }
+
+    form input[type="email"],
+    form input[type="password"],
+    form input[type="checkbox"] {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    form label {
+        font-size: 0.9rem;
+    }
+
+    form button[type="submit"],
+    form button[type="reset"] {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+
+    form div button[type="submit"],
+    form div button[type="reset"] {
+        font-size: 0.9rem;
+        padding: 0.75rem;
+    }
+}

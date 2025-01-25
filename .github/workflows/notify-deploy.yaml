@@ -1,0 +1,18 @@
+name: Notify Deploy Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Dispatch Event
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: dhbw-wi22a/B2B-Deploy
+          event-type: update-submodule
+          client-payload: '{"repo": "${{ github.repository }}", "commit": "${{ github.sha }}"}'

@@ -1,0 +1,26 @@
+<div class="order-success">
+<h2>Bestellung erfolgreich:</h2>
+    <div *ngIf="orderDetails" class="order-details">
+    <p class="success-message">Vielen Dank für Ihre Bestellung. Ihre Bestellung wurde erfolgreich aufgegeben.</p>
+
+    <div class="summary">
+        <h3>Bestellübersicht</h3>
+        <p><strong>Name:</strong> {{ orderDetails.order_info.buyer_name }}</p>
+        <p><strong>E-Mail:</strong> {{ orderDetails.order_info.buyer_email }}</p>
+        <p><strong>Telefonnummer:</strong> {{ orderDetails.order_info.buyer_phone }}</p>
+        <p><strong>Adresse:</strong> {{ orderDetails.order_info.buyer_address }}</p>
+    </div>
+
+    <div class="items-section">
+        <h4>Artikel:</h4>
+        <ul class="order-items">
+            <li *ngFor="let item of orderDetails.items">
+                <span><strong>Artikel:</strong> {{ item.item_name }}</span>
+                <span><strong>Menge:</strong> {{ item.quantity }}</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<button class="home-button" (click)="navigateToHome()">Zur Startseite</button>
+</div>

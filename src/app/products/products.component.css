@@ -1,3 +1,26 @@
+/* Pop-up-Fenster-Stile */
+.popup {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.popup.success {
+    background-color: #4caf50; 
+}
+
+.popup.error {
+    background-color: rgb(213, 27, 21); 
+}
+
 /* Container für die Produktkarten */
 .product-container {
     display: grid;
@@ -9,7 +32,7 @@
 
 /* Stile für einzelne Produktkarten */
 .product-card {
-    background-color: rgb(241,180,89); 
+    background-color: rgb(241, 180, 89);
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     overflow: hidden;
@@ -29,7 +52,8 @@
 /* Bild-Styling */
 .product-image {
     width: 100%;
-    height: auto;
+    height: auto; 
+    object-fit: cover; 
     border-radius: 8px;
     margin-bottom: 15px;
 }
@@ -38,7 +62,7 @@
 .product-title {
     font-size: 1.4rem;
     font-weight: bold;
-    color: rgb(31,50,56); 
+    color: rgb(31, 50, 56);
     margin-bottom: 10px;
 }
 
@@ -46,21 +70,21 @@
 .product-price {
     font-size: 1.2rem;
     font-weight: 600;
-    color: rgb(213,27,21); 
+    color: rgb(213, 27, 21);
     margin-bottom: 10px;
 }
 
 /* Steuerangabe */
 .product-tax {
     font-size: 1rem;
-    color: rgb(54,88,97); 
+    color: rgb(54, 88, 97);
     margin-bottom: 20px;
 }
 
 /* Lagerbestand */
 .product-stock {
     font-size: 0.9rem;
-    color: rgb(110,48,49); 
+    color: rgb(110, 48, 49);
     margin-bottom: 15px;
 }
 
@@ -75,13 +99,13 @@
 .quantity-selector label {
     margin-right: 10px;
     font-size: 1rem;
-    color: rgb(31,50,56);
+    color: rgb(31, 50, 56);
 }
 
 .quantity-input {
     width: 60px;
     padding: 5px;
-    border: 1px solid rgb(213,27,21);
+    border: 1px solid rgb(213, 27, 21);
     border-radius: 5px;
     text-align: center;
     font-size: 1rem;
@@ -89,7 +113,7 @@
 
 /* Button zum Hinzufügen zum Warenkorb */
 .add-to-cart-btn {
-    background-color: rgb(51,135,184); 
+    background-color: rgb(51, 135, 184);
     color: white;
     border: none;
     padding: 10px 20px;
@@ -100,5 +124,172 @@
 }
 
 .add-to-cart-btn:hover {
-    background-color: rgb(74,113,94); 
+    background-color: rgb(74, 113, 94);
+}
+
+/* Produktbeschreibung */
+.product-description {
+    font-size: 1rem;
+    color: rgb(31, 50, 56);
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+/* Modal-Overlay */
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Modal-Inhalt */
+.modal-content {
+    background-color: rgb(241, 180, 89);
+    color: rgb(31, 50, 56);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 500px;
+    width: 90%;
+    animation: slideIn 0.3s ease;
+    text-align: center;
+}
+
+/* Modal-Bild-Styling */
+.modal-content img {
+    width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Schließen-Button */
+.close {
+    color: rgb(31, 50, 56);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Wunschlisten-Button */
+.wishlist-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 24px;
+    color: #1e90ff;
+    transition: color 0.3s;
+    margin-left: 10px; 
+}
+
+.wishlist-btn:hover {
+    color: #1e90ff;
+}
+
+
+/* Fade-In-Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Slide-In-Animation */
+@keyframes slideIn {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .popup {
+        font-size: 1rem;
+        padding: 0.8rem 1.6rem;
+    }
+
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .product-card {
+        padding: 15px;
+    }
+
+    .product-title {
+        font-size: 1.2rem;
+    }
+
+    .product-price, .product-tax, .product-stock {
+        font-size: 1rem;
+    }
+
+    .quantity-selector label, .quantity-input {
+        font-size: 0.9rem;
+    }
+
+    .add-to-cart-btn {
+        font-size: 0.9rem;
+        padding: 8px 15px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 576px) {
+    .popup {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+
+    .product-container {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-title {
+        font-size: 1rem;
+    }
+
+    .product-price, .product-tax, .product-stock {
+        font-size: 0.9rem;
+    }
+
+    .quantity-selector label, .quantity-input {
+        font-size: 0.8rem;
+    }
+
+    .add-to-cart-btn {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .modal-content {
+        max-width: 90%;
+    }
 }
