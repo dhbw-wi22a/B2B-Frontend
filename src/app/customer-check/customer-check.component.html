@@ -1,6 +1,7 @@
 <div class="container">
   <div class="form-container">
-    <h2>Gastbestellung</h2>
+    <h2 *ngIf="!isLoggedIn">Gastbestellung</h2>
+    <h2 *ngIf="isLoggedIn">Kundendaten</h2>
     <form [formGroup]="customercheckForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="company">Firmenname:</label>
@@ -41,7 +42,7 @@
       <button type="submit" class="submit-btn">Bestellung abschließen</button>
     </form>
   </div>
-  <div class="already-registered">
+  <div class="already-registered" *ngIf="!isLoggedIn">
     <div>
       <p>Schon registriert?</p>
       <button class="login-btn" (click)="navigateToLogin()">Login</button>

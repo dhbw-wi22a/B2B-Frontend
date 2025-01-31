@@ -25,7 +25,7 @@ export class ProfileComponent implements OnInit {
     private http: HttpClient,
     private renderer: Renderer2,
     private darkModeService: DarkModeService,
-    private cdr: ChangeDetectorRef // Hinzugefügt
+    private cdr: ChangeDetectorRef
   ) {}
 
   get authToken(): string | null {

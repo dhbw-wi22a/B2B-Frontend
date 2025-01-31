@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 import { environment } from '../../environments/environment';
 import { DarkModeService } from '../services/dark-mode.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'an-payment-method',
@@ -17,7 +18,13 @@ export class PaymentMethodComponent implements OnInit {
   paymentForm: FormGroup;
   selectedPaymentType: string | null = null;
 
-  constructor(private fb: FormBuilder, private router: Router, private http: HttpClient, private darkModeService: DarkModeService) { 
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient,
+    private darkModeService: DarkModeService,
+    private authService: AuthService,
+  ) { 
     this.paymentForm = this.fb.group({
       paymentType: ['', Validators.required],
       cardName: [''],
@@ -29,6 +36,10 @@ export class PaymentMethodComponent implements OnInit {
       bankIban: [''],
       bankBic: ['']
     });
+  }
+
+  get isLoggedIn(): boolean { 
+    return this.authService.isLoggedIn(); 
   }
 
   ngOnInit(): void {
@@ -83,7 +94,10 @@ export class PaymentMethodComponent implements OnInit {
 
       console.log('Sende Bestellung an das Backend:', orderDetails);
 
-      this.http.post(`${environment.apiUrl}/me/orders/?format=json`, orderDetails)
+      const token = localStorage.getItem('authToken');
+      const headers = token ? new HttpHeaders().set('Authorization', `Bearer ${token}`) : undefined;
+
+      this.http.post(`${environment.apiUrl}/me/orders/?format=json`, orderDetails, { headers })
         .subscribe(response => {
           console.log('Bestellung erfolgreich an das Backend gesendet:', response);
           localStorage.removeItem('cart');
