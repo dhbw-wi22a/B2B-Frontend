@@ -19,6 +19,7 @@ export class ProfileComponent implements OnInit {
   isEditing = false;
   isAddressEditing = false;
   apiUrl = environment.apiUrl + '/me/detail/';
+  selectedTab: 'profile' | 'address' = 'profile';
 
   constructor(
     private fb: FormBuilder,
@@ -80,6 +81,13 @@ export class ProfileComponent implements OnInit {
         lastName: data.last_name,
         phone: data.phone,
         email: data.email
+      });
+
+      this.addressForm.patchValue({
+        street: data.street,
+        houseNumber: data.house_number,
+        city: data.city,
+        postalCode: data.postal_code
       });
 
       this.cdr.detectChanges();
@@ -144,6 +152,10 @@ export class ProfileComponent implements OnInit {
     setTimeout(() => {
       this.renderer.removeChild(document.body, popup);
     }, 2000);
+  }
+
+  switchTab(tab: 'profile' | 'address'): void {
+    this.selectedTab = tab;
   }
 
   private handleError(error: any): void {
