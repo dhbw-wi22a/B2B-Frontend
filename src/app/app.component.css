@@ -71,6 +71,7 @@ html, body, .app-container {
   list-style: none;
   padding: 0;
   margin: 0;
+  align-items: center; /* Stellt sicher, dass alle Elemente exakt auf einer Höhe sind */
 }
 
 .user-actions ul li a {
@@ -89,7 +90,7 @@ html, body, .app-container {
   display: inline-block;
 }
 
-.user-actions .dropicon-person {
+.user-actions .dropicon-person, .dark-mode{
   background-color: rgb(31, 50, 56);
   color: white;
   padding: 10px;
@@ -121,9 +122,28 @@ html, body, .app-container {
   background-color: #f1b459;
 }
 
-/* Dropdown sichtbar machen */
+
 .user-actions .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.user-actions .dark-mode {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+}
+
+
+.user-actions .dark-mode:hover {
+  color: rgb(241, 180, 89);
 }
 
 /* Navigation */
@@ -312,38 +332,6 @@ html, body, .app-container {
   margin: 0.2rem 0;
 }
 
-/* Dark Mode Buttons Styling */
-.dark-mode-buttons {
-  display: flex;
-  gap: 10px;
-}
-
-body.dark-mode .dark-mode-buttons button,
-.dark-mode-buttons button {
-  background: none;
-  border: 2px solid #fff;
-  border-radius: 50%; 
-  width: 40px;
-  height: 40px;
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background-color 0.3s, border-color 0.3s;
-}
-
-body.dark-mode .dark-mode-buttons button.active,
-.dark-mode-buttons button.active {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
-}
-
-body.dark-mode .dark-mode-buttons button:hover,
-.dark-mode-buttons button:hover {
-  border-color: #4CAF50;
-}
-
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -358,7 +346,7 @@ body.dark-mode .dark-mode-buttons button:hover,
   -webkit-font-smoothing: antialiased;
 }
 
-.shopping-cart, .wishlist {
+.shopping-cart, .wishlist, .dark-mode {
   text-decoration: none;
   padding: 5px;
   border-radius: 4px;
@@ -366,12 +354,12 @@ body.dark-mode .dark-mode-buttons button:hover,
   color: white;
 }
 
-.shopping-cart ul li, .wishlist ul li {
+.shopping-cart ul li, .wishlist, .dark-mode ul li {
   list-style: none;
   margin: 5px 0;
 }
 
-.shopping-cart:hover, .wishlist:hover {
+.shopping-cart:hover, .wishlist:hover, .dark-mode:hover {
   color: rgb(241, 180, 89);
 }
 
@@ -391,6 +379,7 @@ body.dark-mode .dark-mode-buttons button:hover,
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+
   }
 
   .main-navigation ul {
