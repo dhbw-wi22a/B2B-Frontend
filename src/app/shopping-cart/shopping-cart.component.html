@@ -3,8 +3,8 @@
 
   <div *ngIf="isCartEmpty()" class="cart-empty-message">Warenkorb ist leer</div>
 
-  <div *ngFor="let post of uniqueCartItems; trackBy: trackByItemId" class="product-container">
-    <div class="product-card">
+  <div class="product-container">
+    <div *ngFor="let post of uniqueCartItems; trackBy: trackByItemId" class="product-card">
       <h3 class="product-title">{{ post.item_details.item_name }}</h3>
       <img [src]="post.item_details.images[0].image" alt="Produktbild" class="product-image">
       <p>{{ sanitizeDescription(post.item_details.item_description) }}</p>

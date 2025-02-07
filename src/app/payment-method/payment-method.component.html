@@ -19,7 +19,7 @@
       <input type="radio" formControlName="paymentType" value="bankTransfer" (change)="onCheckboxChange($event)"> Vorkasse
     </label>
     <br>
-    <label>
+    <label *ngIf="isLoggedIn">
       <input type="radio" formControlName="paymentType" value="invoice" (change)="onCheckboxChange($event)"> Kauf auf Rechnung
     </label>
   </div>
@@ -72,10 +72,13 @@
   </div>
 
   <!-- Kauf auf Rechnung -->
+<div *ngIf="isLoggedIn">
   <div *ngIf="paymentForm.get('paymentType')?.value === 'invoice'" class="payment-option">
     <h3>Kauf auf Rechnung</h3>
     <p>Die Rechnung wird an die angegebene Adresse gesendet.</p>
   </div>
+</div>
+
 
   <button type="submit" class="submit-btn" [ngClass]="{ 'invoice-button': paymentForm.get('paymentType')?.value === 'invoice' }" [disabled]="!paymentForm.valid"> Bezahlen </button>
 

@@ -72,10 +72,9 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  
   aggregateCartItems(): void {
     const itemMap = new Map<number, Product>();
-  
+
     this.cart.items.forEach(product => {
       const existingProduct = itemMap.get(product.item_id);
       if (existingProduct) {
@@ -84,11 +83,10 @@ export class ShoppingCartComponent implements OnInit {
         itemMap.set(product.item_id, { ...product });
       }
     });
-  
+
     this.uniqueCartItems = Array.from(itemMap.values());
   }
 
-  
   isCartEmpty(): boolean {
     return this.uniqueCartItems.length === 0;
   }

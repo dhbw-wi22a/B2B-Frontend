@@ -15,7 +15,6 @@ import { filter } from 'rxjs/operators';
   template: `
   <nav>
     <a href="/about">about</a>
-    <a href="/admin-dashboard">admin-dashboard</a>
     <a href="/company-area">company-area</a>
     <a href="/confirmation">confirmation</a>
     <a href="/customer-check">customer-check</a>

@@ -136,6 +136,36 @@ body.dark-mode .save-btn:hover {
     background-color: rgb(213, 27, 21);
 }
 
+.tabs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-bottom: 20px;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    justify-content: center; 
+}
+
+.tabs button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(241, 180, 89);
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+}
+
+.tabs button.active {
+    background-color: rgb(241, 180, 89);
+}
+
+.tabs button:hover {
+    background-color: rgb(218, 163, 81);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .profile-container, .address-container {

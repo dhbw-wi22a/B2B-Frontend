@@ -1,19 +1,25 @@
-<div class="profile-container">
-    <div class="header">
-        <h2>Kontodaten</h2>
-        <button class="edit-btn" (click)="toggleEdit()">
+<div class="tabs">
+    <button [ngClass]="{'active': selectedTab === 'profile'}" (click)="switchTab('profile')">Kontaktdaten</button>
+    <button [ngClass]="{'active': selectedTab === 'address'}" (click)="switchTab('address')">Lieferadresse</button>
+</div>
+
+<div [ngSwitch]="selectedTab">
+    <div *ngSwitchCase="'profile'" class="profile-container">
+        <div class="header">
+            <h2>Kontodaten</h2>
+            <button class="edit-btn" (click)="toggleEdit()">
             {{ isEditing ? 'Abbrechen' : 'Bearbeiten' }}
-        </button>
-    </div>
-    <form [formGroup]="profileForm">
-        <div class="section">
-            <div class="form-group">
-                <label>Firmenname:</label>
-                <div class="field">
-                    <span *ngIf="!isEditing">{{ profileForm.get('companyName')?.value }}</span>
-                    <input *ngIf="isEditing" formControlName="companyName" type="text" />
+            </button>
+        </div>
+        <form [formGroup]="profileForm">
+            <div class="section">
+                <div class="form-group">
+                    <label>Firmenname:</label>
+                    <div class="field">
+                        <span *ngIf="!isEditing">{{ profileForm.get('companyName')?.value }}</span>
+                        <input *ngIf="isEditing" formControlName="companyName" type="text" />
+                    </div>
                 </div>
-            </div>
             <div class="form-group">
                 <label>Unternehmens-ID:</label>
                 <div class="field">
@@ -51,10 +57,10 @@
             </div>
         </div>
         <button class="save-btn" *ngIf="isEditing" type="button" (click)="saveChanges()">Speichern</button>
-    </form>
-</div>
+        </form>
+    </div>
 
-<div class="address-container">
+    <div *ngSwitchCase="'address'" class="address-container">
     <div class="header">
         <h2>Lieferadresse</h2>
         <button class="edit-btn" (click)="toggleAddressEdit()">
@@ -63,7 +69,7 @@
     </div>
     <form [formGroup]="addressForm">
         <div class="form-group">
-            <label>Straße:</label>
+        <label>Straße:</label>
             <div class="field">
                 <span *ngIf="!isAddressEditing">{{ addressForm.get('street')?.value }}</span>
                 <input *ngIf="isAddressEditing" formControlName="street" type="text" />
@@ -92,4 +98,5 @@
         </div>
         <button class="save-btn" *ngIf="isAddressEditing" type="button" (click)="saveAddressChanges()">Speichern</button>
     </form>
+    </div>
 </div>
